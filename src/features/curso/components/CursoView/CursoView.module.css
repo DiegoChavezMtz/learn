@@ -8,7 +8,7 @@
 
 .banda { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); text-decoration: none; color: inherit; font-size: 0.92rem; }
 .banda .n { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-mono); font-weight: 700; font-size: 0.8rem; background: var(--mc); color: #fff; flex: none; }
-.banda.pronto { opacity: 0.6; }
+.banda.pronto { opacity: 0.6; cursor: pointer; text-align: left; width: 100%; font: inherit; color: inherit; }
 .banda.pronto .n { background: var(--card2); color: var(--soft); }
 .banda .t { flex: 1; font-weight: 600; line-height: 1.25; }
 .banda .e { font-size: 0.78rem; color: var(--soft); white-space: nowrap; }
@@ -19,23 +19,24 @@
 .mas[open] summary::after { transform: rotate(90deg); }
 .mas .lista { padding: 0 8px 8px; display: flex; flex-direction: column; gap: 6px; }
 
-.zona { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 18px; border-radius: 22px; text-decoration: none; color: inherit; background: linear-gradient(150deg, color-mix(in srgb, var(--mc) 38%, var(--card)), var(--card) 80%); border: 1px solid color-mix(in srgb, var(--mc) 50%, var(--line)); }
+.zona { position: absolute; left: 0; right: 0; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 18px; border-radius: 22px; text-decoration: none; color: inherit; background: linear-gradient(150deg, color-mix(in srgb, var(--mc) 38%, var(--card)), var(--card) 80%); border: 1px solid color-mix(in srgb, var(--mc) 50%, var(--line)); }
 .zona .k { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mc); font-weight: 700; }
 .zona h2 { font-size: 1.15rem; line-height: 1.2; }
 .zona .ver { font-size: 0.8rem; color: var(--soft); white-space: nowrap; }
 
 .mapa { position: relative; width: 100%; max-width: 420px; margin: 0 auto; }
 .mapa svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.nodo { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: inherit; background: none; border: 0; padding: 0; width: 120px; }
-.circ { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-mono); font-weight: 700; font-size: 0.95rem; border: 3px solid var(--bg); background: var(--card2); color: var(--ink); box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.8); transition: transform 0.12s; }
+.nodo { --r: 32px; position: absolute; width: 0; height: 0; text-decoration: none; color: inherit; background: none; border: 0; padding: 0; display: block; }
+.circ { position: absolute; left: calc(-1 * var(--r)); top: calc(-1 * var(--r)); width: calc(var(--r) * 2); height: calc(var(--r) * 2); border-radius: 50%; display: grid; place-items: center; font-family: var(--f-mono); font-weight: 700; font-size: 0.95rem; border: 3px solid var(--bg); background: var(--card2); color: var(--ink); box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.8); transition: transform 0.12s; }
 .nodo:active .circ { transform: scale(0.92); }
 .hecho .circ { background: linear-gradient(145deg, #3ddc97, #1fae78); color: #06210f; font-size: 1.6rem; }
-.disp .circ { box-shadow: 0 0 0 3px color-mix(in srgb, var(--g1) 55%, transparent), 0 10px 20px -10px rgba(0, 0, 0, 0.8); }
 .pronto .circ { background: var(--card); color: var(--soft); opacity: 0.6; border-style: dashed; border-color: var(--line); }
-.actual .circ { width: 92px; height: 92px; background: var(--grad); color: #fff; font-size: 2rem; box-shadow: 0 0 0 6px color-mix(in srgb, var(--g2) 30%, transparent), 0 18px 34px -10px color-mix(in srgb, var(--g2) 85%, transparent); animation: late 2s ease-in-out infinite; }
+.actual { --r: 46px; }
+.actual .circ { background: var(--grad); color: #fff; font-size: 2rem; box-shadow: 0 0 0 6px color-mix(in srgb, var(--g2) 30%, transparent), 0 18px 34px -10px color-mix(in srgb, var(--g2) 85%, transparent); animation: late 2s ease-in-out infinite; }
 @keyframes late { 0%, 100% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--g2) 30%, transparent), 0 18px 34px -10px color-mix(in srgb, var(--g2) 85%, transparent); } 50% { box-shadow: 0 0 0 14px color-mix(in srgb, var(--g2) 12%, transparent), 0 18px 34px -10px color-mix(in srgb, var(--g2) 85%, transparent); } }
-.cap { font-size: 0.7rem; color: var(--soft); text-align: center; line-height: 1.2; max-width: 120px; }
-.cap b { font-family: var(--f-mono); color: var(--ink); display: block; }
+.cap { position: absolute; top: -18px; left: calc(var(--r) + 10px); width: 132px; font-size: 0.72rem; color: var(--soft); line-height: 1.2; text-align: left; }
+.izq .cap { left: auto; right: calc(var(--r) + 10px); text-align: right; }
+.cap b { font-family: var(--f-mono); color: var(--ink); display: block; font-size: 0.8rem; }
 .pronto .cap { opacity: 0.55; }
 
 .tarjeta { position: absolute; left: 50%; transform: translateX(-50%); width: 94%; z-index: 3; border-radius: 26px; padding: 18px; background: var(--card); border: 1px solid color-mix(in srgb, var(--g2) 55%, var(--line)); box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; animation: sube 0.5s cubic-bezier(0.2, 0.9, 0.3, 1); }
