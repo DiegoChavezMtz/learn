@@ -1,0 +1,1486 @@
+{
+ "titulo": "Infraestructura de TI, redes y ciberseguridad",
+ "modulos": [
+  {
+   "n": 1,
+   "titulo": "Fundamentos de redes",
+   "objetivo": "Entender cómo viaja la información entre dos equipos, desde la señal física hasta la aplicación, y poder diagnosticar fallas por capas.",
+   "requisitos": [],
+   "horas": 53,
+   "proyecto": "Documentar la red de un laboratorio: diagrama por capas, plan de direccionamiento IPv4/IPv6, servicios DNS/DHCP y capturas que demuestren el viaje de un paquete.",
+   "temas": [
+    {
+     "id": "1.1",
+     "n": 1,
+     "titulo": "Modelos OSI y TCP/IP; encapsulación",
+     "pregunta": "¿Por qué la red se organiza en capas y qué le pasa a un mensaje al viajar?",
+     "practica": "Ver cada capa de un paquete real con Wireshark",
+     "academia": "piloto",
+     "leccion": {
+      "mapa": [
+       "md1",
+       "md2",
+       "md3a",
+       "md3b",
+       "md4",
+       "md5a",
+       "md5b",
+       "md6",
+       "md7",
+       "md8",
+       "bl1",
+       "md9",
+       "md10",
+       "md11"
+      ],
+      "sesiones": [
+       {
+        "id": "md1",
+        "paso": "Orientar",
+        "titulo": "¿Qué sabes ya?",
+        "minutos": 5
+       },
+       {
+        "id": "md2",
+        "paso": "Exponer",
+        "titulo": "¿Por qué capas?",
+        "minutos": 8
+       },
+       {
+        "id": "md3a",
+        "paso": "Exponer",
+        "titulo": "El mapa OSI y las capas 1 a 3",
+        "minutos": 10
+       },
+       {
+        "id": "md3b",
+        "paso": "Exponer",
+        "titulo": "Las capas 4 a 7",
+        "minutos": 10
+       },
+       {
+        "id": "md4",
+        "paso": "Exponer",
+        "titulo": "TCP/IP y su relación con OSI",
+        "minutos": 12
+       },
+       {
+        "id": "md5a",
+        "paso": "Exponer",
+        "titulo": "Encapsulación: bajando por las capas",
+        "minutos": 14
+       },
+       {
+        "id": "md5b",
+        "paso": "Exponer",
+        "titulo": "Encapsulación: los saltos y la llegada",
+        "minutos": 12
+       },
+       {
+        "id": "md6",
+        "paso": "Exponer",
+        "titulo": "Fuente primaria y tutor de IA",
+        "minutos": 15
+       },
+       {
+        "id": "md7",
+        "paso": "Practicar",
+        "titulo": "Ejercicios: clasificar y ordenar",
+        "minutos": 15
+       },
+       {
+        "id": "md8",
+        "paso": "Practicar",
+        "titulo": "Ejercicios: diagnosticar y predecir",
+        "minutos": 15
+       },
+       {
+        "id": "bl1",
+        "paso": "Practicar",
+        "titulo": "Laboratorio: la encapsulación en Wireshark",
+        "minutos": 100
+       },
+       {
+        "id": "md9",
+        "paso": "Explicar",
+        "titulo": "La prueba de Feynman",
+        "minutos": 15
+       },
+       {
+        "id": "md10",
+        "paso": "Consolidar",
+        "titulo": "Tus propias tarjetas",
+        "minutos": 15
+       },
+       {
+        "id": "md11",
+        "paso": "Registrar",
+        "titulo": "Tu nota del tema",
+        "minutos": 10
+       }
+      ]
+     }
+    },
+    {
+     "id": "1.2",
+     "n": 2,
+     "titulo": "Capa física y enlace: medios, Ethernet, direcciones MAC y ARP",
+     "pregunta": "¿Cómo encuentra una tarjeta de red a otra dentro de la misma red local?",
+     "practica": "Capturar ARP, limpiar la caché y observar la resolución",
+     "academia": "listo",
+     "leccion": null
+    },
+    {
+     "id": "1.3",
+     "n": 3,
+     "titulo": "Direccionamiento IPv4 y CIDR",
+     "pregunta": "¿Cómo sabe un equipo si otro está en su red o fuera de ella?",
+     "practica": "Calcular y comprobar redes con ipcalc y con la configuración real",
+     "academia": "listo",
+     "leccion": null
+    },
+    {
+     "id": "1.4",
+     "n": 4,
+     "titulo": "Subnetting y VLSM",
+     "pregunta": "¿Cómo se divide una red para usar bien las direcciones?",
+     "practica": "Diseñar el plan de direccionamiento de una oficina con VLSM",
+     "academia": "listo",
+     "leccion": null
+    },
+    {
+     "id": "1.5",
+     "n": 5,
+     "titulo": "IPv6",
+     "pregunta": "¿Qué cambia cuando las direcciones dejan de escasear?",
+     "practica": "Configurar y probar IPv6 entre dos VMs",
+     "academia": "listo",
+     "leccion": null
+    },
+    {
+     "id": "1.6",
+     "n": 6,
+     "titulo": "TCP y UDP",
+     "pregunta": "¿Cómo llegan los datos completos y en orden, o por qué a veces no importa?",
+     "practica": "Capturar un handshake, una retransmisión y tráfico UDP",
+     "academia": "listo",
+     "leccion": null
+    },
+    {
+     "id": "1.7",
+     "n": 7,
+     "titulo": "DNS y DHCP",
+     "pregunta": "¿Cómo obtiene un equipo su configuración y cómo convierte nombres en direcciones?",
+     "practica": "Montar un servidor DHCP y DNS en una VM y capturar el proceso DORA",
+     "academia": "listo",
+     "leccion": null
+    },
+    {
+     "id": "1.8",
+     "n": 8,
+     "titulo": "HTTP, HTTPS y TLS",
+     "pregunta": "¿Qué pasa cuando abres una página web segura?",
+     "practica": "Inspeccionar un handshake TLS y un certificado con curl y openssl",
+     "academia": "listo",
+     "leccion": null
+    },
+    {
+     "id": "1.9",
+     "n": 9,
+     "titulo": "Virtualización y contenedores (conceptos)",
+     "pregunta": "¿Cómo comparten varios sistemas la misma máquina física?",
+     "practica": "Comparar una VM y un contenedor sobre el mismo servicio",
+     "academia": "listo",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "Linux y automatización para operaciones",
+   "objetivo": "Administrar servidores Linux con soltura y automatizar tareas operativas con Bash, Python y SQL.",
+   "requisitos": [
+    1
+   ],
+   "horas": 68,
+   "proyecto": "Servidor Linux endurecido y documentado, con scripts de automatización (respaldo, análisis de logs y reporte) versionados en Git.",
+   "temas": [
+    {
+     "id": "2.1",
+     "n": 1,
+     "titulo": "Sistema de archivos y permisos",
+     "pregunta": "¿Quién puede leer, escribir o ejecutar cada archivo y por qué?",
+     "practica": "Diseñar permisos para un directorio compartido por equipos",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.2",
+     "n": 2,
+     "titulo": "Usuarios, grupos y elevación de privilegios",
+     "pregunta": "¿Cómo se da acceso a lo necesario sin dar de más?",
+     "practica": "Configurar sudo con mínimo privilegio para un operador",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.3",
+     "n": 3,
+     "titulo": "Procesos y servicios",
+     "pregunta": "¿Qué está corriendo en el servidor y cómo se controla?",
+     "practica": "Crear un servicio systemd propio con reinicio automático",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.4",
+     "n": 4,
+     "titulo": "Paquetes y parches",
+     "pregunta": "¿Cómo se instala y actualiza software sin romper el sistema?",
+     "practica": "Programar actualizaciones de seguridad automáticas",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.5",
+     "n": 5,
+     "titulo": "Procesamiento de texto y análisis de logs",
+     "pregunta": "¿Cómo se encuentra lo importante en miles de líneas de log?",
+     "practica": "Extraer las IP con más errores de un log de Nginx",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.6",
+     "n": 6,
+     "titulo": "Scripting en Bash",
+     "pregunta": "¿Cómo se convierte una tarea repetitiva en un comando?",
+     "practica": "Script de respaldo con rotación y registro",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.7",
+     "n": 7,
+     "titulo": "Python para seguridad y automatización",
+     "pregunta": "¿Cuándo conviene Python en vez de Bash?",
+     "practica": "Script que revisa puertos abiertos y genera un reporte",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.8",
+     "n": 8,
+     "titulo": "SQL básico para análisis de datos",
+     "pregunta": "¿Cómo se responden preguntas operativas con datos?",
+     "practica": "Cargar logs a SQLite y consultarlos",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.9",
+     "n": 9,
+     "titulo": "Redes y firewall local en Linux",
+     "pregunta": "¿Cómo se ve y se controla la red desde un servidor?",
+     "practica": "Configurar nftables con política de denegar por defecto",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.10",
+     "n": 10,
+     "titulo": "Endurecimiento de SSH",
+     "pregunta": "¿Cómo se protege la puerta de entrada al servidor?",
+     "practica": "Acceso solo por llave, sin root y con fail2ban",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.11",
+     "n": 11,
+     "titulo": "Control de acceso obligatorio y auditoría del sistema",
+     "pregunta": "¿Qué pasa si un proceso con permisos es comprometido?",
+     "practica": "Modo enforcing de SELinux o AppArmor y reglas de auditd",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "2.12",
+     "n": 12,
+     "titulo": "Control de versiones y documentación técnica",
+     "pregunta": "¿Cómo se trabaja en equipo sobre configuración y documentación?",
+     "practica": "Repositorio de infraestructura con README y ramas",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "Conmutación, enrutamiento y wireless",
+   "objetivo": "Diseñar, configurar y diagnosticar redes de campus conmutadas y enrutadas, cableadas e inalámbricas.",
+   "requisitos": [
+    1
+   ],
+   "horas": 78,
+   "proyecto": "Red de campus simulada (Packet Tracer, GNS3 o equipo real) con VLAN, troncales, STP, ruteo OSPF, redundancia de gateway y Wi-Fi seguro, más su guía de diagnóstico.",
+   "temas": [
+    {
+     "id": "3.1",
+     "n": 1,
+     "titulo": "Funcionamiento de un switch: tabla MAC, dominios de colisión y de difusión",
+     "pregunta": "¿Cómo decide un switch por dónde enviar cada trama?",
+     "practica": "Observar cómo se llena y envejece la tabla MAC",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.2",
+     "n": 2,
+     "titulo": "VLAN y troncales 802.1Q",
+     "pregunta": "¿Cómo se separan redes lógicas sobre el mismo cableado?",
+     "practica": "Separar tres departamentos con VLAN y una troncal",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.3",
+     "n": 3,
+     "titulo": "Ruteo entre VLAN",
+     "pregunta": "¿Cómo se comunican redes que separaste a propósito?",
+     "practica": "Router-on-a-stick y SVI en switch de capa 3",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.4",
+     "n": 4,
+     "titulo": "Agregación de enlaces (LACP) y protocolos de descubrimiento (CDP y LLDP)",
+     "pregunta": "¿Cómo se suman enlaces y se descubren vecinos?",
+     "practica": "Configurar un EtherChannel LACP y verificar con LLDP",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.5",
+     "n": 5,
+     "titulo": "Spanning Tree (Rapid PVST+)",
+     "pregunta": "¿Cómo se evita que la redundancia cree bucles?",
+     "practica": "Forzar el puente raíz y medir la convergencia",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.6",
+     "n": 6,
+     "titulo": "Fundamentos de wireless: bandas, canales, RF e interferencia",
+     "pregunta": "¿Por qué el Wi-Fi a veces es lento aunque la señal se vea bien?",
+     "practica": "Hacer un estudio de canales con un analizador",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.7",
+     "n": 7,
+     "titulo": "Seguridad wireless: WPA2 y WPA3; arquitecturas de AP",
+     "pregunta": "¿Cómo se protege una red que viaja por el aire?",
+     "practica": "Configurar WPA3 y una red de invitados aislada",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.8",
+     "n": 8,
+     "titulo": "Tabla de ruteo: coincidencia más larga, distancia administrativa y métrica",
+     "pregunta": "¿Cómo elige un router la mejor ruta?",
+     "practica": "Predecir y comprobar la ruta elegida con varias opciones",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.9",
+     "n": 9,
+     "titulo": "Rutas estáticas IPv4 e IPv6; ruta por defecto y flotante",
+     "pregunta": "¿Cuándo basta con decirle al router a dónde ir?",
+     "practica": "Ruta de respaldo flotante y prueba de falla",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.10",
+     "n": 10,
+     "titulo": "DHCP en equipos de red: servidor y relay",
+     "pregunta": "¿Cómo reciben direcciones las redes que no tienen servidor DHCP?",
+     "practica": "DHCP relay entre VLAN",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.11",
+     "n": 11,
+     "titulo": "OSPFv2 y OSPFv3",
+     "pregunta": "¿Cómo descubren los routers las rutas por sí solos?",
+     "practica": "OSPF multiárea con IPv4 e IPv6",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.12",
+     "n": 12,
+     "titulo": "Redundancia de puerta de enlace: HSRP y VRRP",
+     "pregunta": "¿Qué pasa con los equipos si se cae su gateway?",
+     "practica": "VRRP con conmutación por falla medida",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.13",
+     "n": 13,
+     "titulo": "Diagnóstico de red: metodología, capas 2 y 3, enrutamiento y clientes cableados e inalámbricos",
+     "pregunta": "¿Cómo se encuentra una falla sin adivinar?",
+     "practica": "Resolver fallas inyectadas en un escenario",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "3.14",
+     "n": 14,
+     "titulo": "Diseño de redes de campus",
+     "pregunta": "¿Cómo se diseña una red que crezca y aguante fallas?",
+     "practica": "Diseño jerárquico documentado para una empresa ficticia",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "Servicios, seguridad de red y automatización",
+   "objetivo": "Proteger y operar los servicios de red, y automatizar la configuración de los equipos.",
+   "requisitos": [
+    1,
+    3
+   ],
+   "horas": 63,
+   "proyecto": "Perímetro de una oficina con firewall de zonas, NAT, VPN, seguridad de capa 2, AAA y monitoreo, con su configuración en Git y desplegada de forma automatizada.",
+   "temas": [
+    {
+     "id": "4.1",
+     "n": 1,
+     "titulo": "NAT y PAT",
+     "pregunta": "¿Cómo salen a internet muchos equipos con una sola IP pública?",
+     "practica": "Configurar PAT y una redirección de puerto",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.2",
+     "n": 2,
+     "titulo": "Listas de control de acceso (ACL)",
+     "pregunta": "¿Cómo se decide qué tráfico pasa y cuál no?",
+     "practica": "ACL extendidas para segmentar servidores",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.3",
+     "n": 3,
+     "titulo": "Seguridad de capa 2: port security, DHCP snooping, DAI, storm control, RA Guard y 802.1X",
+     "pregunta": "¿Cómo se protege la red de quien ya está conectado a ella?",
+     "practica": "Mitigar un DHCP falso y un ARP spoofing",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.4",
+     "n": 4,
+     "titulo": "AAA: autenticación local, RADIUS y TACACS+",
+     "pregunta": "¿Quién entra a los equipos de red y qué puede hacer?",
+     "practica": "Login de administradores contra RADIUS",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.5",
+     "n": 5,
+     "titulo": "VPN: IPsec de sitio a sitio y de acceso remoto; WireGuard",
+     "pregunta": "¿Cómo se conectan sitios y personas de forma segura por internet?",
+     "practica": "Túnel WireGuard entre dos sitios",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.6",
+     "n": 6,
+     "titulo": "Transferencia segura y respaldo de configuraciones",
+     "pregunta": "¿Cómo se recupera un equipo si se pierde su configuración?",
+     "practica": "Respaldo automático de configuraciones por SCP o SFTP",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.7",
+     "n": 7,
+     "titulo": "DNS en operaciones y NTP",
+     "pregunta": "¿Por qué la hora y los nombres pueden tumbar una red?",
+     "practica": "DNS interno con resolución dividida y NTP sincronizado",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.8",
+     "n": 8,
+     "titulo": "Firewall con estado: zonas, políticas, NAT y registro",
+     "pregunta": "¿Cómo se diseña un perímetro que entienda conexiones?",
+     "practica": "Firewall de zonas en pfSense u OPNsense",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.9",
+     "n": 9,
+     "titulo": "Monitoreo y registro de red: SNMP, syslog y NetFlow",
+     "pregunta": "¿Cómo te enteras de un problema antes que los usuarios?",
+     "practica": "Recolectar syslog y NetFlow y crear una alerta",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.10",
+     "n": 10,
+     "titulo": "Modelos de gestión de red; automatización de red y configuración como código",
+     "pregunta": "¿Cómo se configuran 100 equipos sin entrar a cada uno?",
+     "practica": "Desplegar VLAN con Ansible desde Git",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "4.11",
+     "n": 11,
+     "titulo": "IA en operaciones de red: agentes, redacción de instrucciones y validación de resultados",
+     "pregunta": "¿Cómo se usa la IA sin poner en riesgo la red?",
+     "practica": "Asistente que propone cambios y validación antes de aplicarlos",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "Windows y PowerShell",
+   "objetivo": "Administrar entornos Windows y Active Directory y automatizarlos con PowerShell.",
+   "requisitos": [
+    1
+   ],
+   "horas": 38,
+   "proyecto": "Dominio Active Directory de laboratorio con OU, GPO de endurecimiento, permisos documentados y scripts de PowerShell para altas, bajas y auditoría.",
+   "temas": [
+    {
+     "id": "5.1",
+     "n": 1,
+     "titulo": "Arquitectura y administración de Windows Server y Windows cliente",
+     "pregunta": "¿Cómo está construido y cómo se administra Windows?",
+     "practica": "Instalar Windows Server Core y administrarlo en remoto",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "5.2",
+     "n": 2,
+     "titulo": "Servicios de directorio: Active Directory, dominios, DNS, GPO, cuentas y grupos",
+     "pregunta": "¿Cómo se administran cientos de usuarios y equipos desde un solo lugar?",
+     "practica": "Montar un dominio con OU y GPO básicas",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "5.3",
+     "n": 3,
+     "titulo": "Permisos y control de acceso en Windows",
+     "pregunta": "¿Cómo se combinan los permisos de NTFS y de recurso compartido?",
+     "practica": "Diseñar permisos de una carpeta compartida por áreas",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "5.4",
+     "n": 4,
+     "titulo": "Scripting y administración con PowerShell",
+     "pregunta": "¿Cómo se automatiza Windows con objetos en vez de texto?",
+     "practica": "Alta masiva de usuarios desde un CSV",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "5.5",
+     "n": 5,
+     "titulo": "Registros de eventos de Windows",
+     "pregunta": "¿Qué quedó registrado cuando algo pasó?",
+     "practica": "Encontrar inicios de sesión fallidos y crear una alerta",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "5.6",
+     "n": 6,
+     "titulo": "Endurecimiento de Windows",
+     "pregunta": "¿Cómo se reduce la superficie de ataque de Windows?",
+     "practica": "Aplicar una línea base de seguridad y medir el cambio",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "titulo": "Infraestructura de TI y virtualización",
+   "objetivo": "Diseñar y operar infraestructura virtualizada resiliente: cómputo, red, almacenamiento, respaldo, observabilidad y continuidad.",
+   "requisitos": [
+    1,
+    2
+   ],
+   "horas": 68,
+   "proyecto": "Clúster de virtualización de laboratorio con almacenamiento compartido, plantillas automatizadas, respaldos 3-2-1 probados, monitoreo con alertas e infraestructura como código.",
+   "temas": [
+    {
+     "id": "6.1",
+     "n": 1,
+     "titulo": "Virtualización de servidores: hipervisores, máquinas virtuales y contenedores de sistema",
+     "pregunta": "¿Qué hace realmente un hipervisor?",
+     "practica": "Comparar una VM KVM y un contenedor LXC en Proxmox",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.2",
+     "n": 2,
+     "titulo": "Redes virtuales avanzadas: puentes, VLAN y redes definidas por software",
+     "pregunta": "¿Cómo se conectan las VMs entre sí y con la red física?",
+     "practica": "VLAN-aware bridge y una red SDN en Proxmox",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.3",
+     "n": 3,
+     "titulo": "Almacenamiento: RAID, sistemas de archivos, NFS y SMB; capacidad y rendimiento",
+     "pregunta": "¿Cómo se guardan los datos sin perderlos y sin que sea lento?",
+     "practica": "Medir el rendimiento de distintos RAID y recursos compartidos",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.4",
+     "n": 4,
+     "titulo": "Almacenamiento para virtualización: pools, snapshots y replicación",
+     "pregunta": "¿Dónde viven los discos de las VMs y cómo se protegen?",
+     "practica": "Pool ZFS con snapshots y replicación",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.5",
+     "n": 5,
+     "titulo": "Plantillas y aprovisionamiento automático de máquinas virtuales",
+     "pregunta": "¿Cómo se crea una VM lista para usar en un minuto?",
+     "practica": "Plantilla con cloud-init",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.6",
+     "n": 6,
+     "titulo": "Clústeres, migración en vivo y alta disponibilidad",
+     "pregunta": "¿Cómo sigue funcionando un servicio si se cae un servidor?",
+     "practica": "Migración en vivo y prueba de falla de un nodo",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.7",
+     "n": 7,
+     "titulo": "Seguridad y aislamiento de hipervisores",
+     "pregunta": "¿Qué pasa si una VM es comprometida?",
+     "practica": "Endurecer el host y segmentar la red de administración",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.8",
+     "n": 8,
+     "titulo": "Respaldo y recuperación: regla 3-2-1, RPO y RTO",
+     "pregunta": "¿Cuánto puedes perder y en cuánto tiempo te recuperas?",
+     "practica": "Respaldo con Proxmox Backup Server y restauración cronometrada",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.9",
+     "n": 9,
+     "titulo": "Observabilidad: métricas, registros y alertas",
+     "pregunta": "¿Cómo sabes que algo va mal antes de que se caiga?",
+     "practica": "Prometheus, Grafana y Loki con alertas útiles",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.10",
+     "n": 10,
+     "titulo": "Infraestructura de clave pública y certificados internos",
+     "pregunta": "¿Cómo se confía en los servicios internos?",
+     "practica": "CA interna y emisión automática de certificados",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.11",
+     "n": 11,
+     "titulo": "Infraestructura como código",
+     "pregunta": "¿Cómo se describe la infraestructura en archivos versionados?",
+     "practica": "Crear VMs con Terraform y configurarlas con Ansible",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "6.12",
+     "n": 12,
+     "titulo": "Planeación de capacidad y continuidad del negocio",
+     "pregunta": "¿Qué pasa si crece la demanda o si ocurre un desastre?",
+     "practica": "Plan de capacidad y continuidad para un servicio real",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "titulo": "Contenedores, Kubernetes y entrega continua",
+   "objetivo": "Construir, desplegar y operar aplicaciones en contenedores y Kubernetes con entrega continua y prácticas de confiabilidad.",
+   "requisitos": [
+    2,
+    6
+   ],
+   "horas": 63,
+   "proyecto": "Aplicación desplegada en Kubernetes vía GitOps, con pipeline CI/CD, estrategia de despliegue canario, observabilidad y SLO definidos.",
+   "temas": [
+    {
+     "id": "7.1",
+     "n": 1,
+     "titulo": "Internos de contenedores: namespaces, cgroups, imágenes OCI y registros",
+     "pregunta": "¿Qué es realmente un contenedor por dentro?",
+     "practica": "Crear un contenedor a mano con unshare y cgroups",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.2",
+     "n": 2,
+     "titulo": "Construcción y optimización de imágenes",
+     "pregunta": "¿Cómo se hace una imagen pequeña, rápida y segura?",
+     "practica": "Reducir el tamaño de una imagen con multi-stage",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.3",
+     "n": 3,
+     "titulo": "Redes y almacenamiento en contenedores",
+     "pregunta": "¿Cómo se comunican y dónde guardan datos los contenedores?",
+     "practica": "Compose con red propia y volúmenes persistentes",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.4",
+     "n": 4,
+     "titulo": "Kubernetes: arquitectura, cargas de trabajo, servicios, ingreso y Gateway API",
+     "pregunta": "¿Cómo orquesta Kubernetes cientos de contenedores?",
+     "practica": "Desplegar una app con Deployment, Service e Ingress",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.5",
+     "n": 5,
+     "titulo": "Kubernetes: almacenamiento, configuración y secretos",
+     "pregunta": "¿Cómo se manejan datos y configuración en Kubernetes?",
+     "practica": "PVC, ConfigMap y Secret para una base de datos",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.6",
+     "n": 6,
+     "titulo": "Empaquetado y despliegue: Helm y Kustomize",
+     "pregunta": "¿Cómo se despliega la misma app en varios ambientes?",
+     "practica": "Chart de Helm con valores por ambiente",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.7",
+     "n": 7,
+     "titulo": "Operación y diagnóstico de clústeres",
+     "pregunta": "¿Cómo se encuentra por qué un pod no arranca?",
+     "practica": "Resolver fallas inyectadas en un clúster",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.8",
+     "n": 8,
+     "titulo": "CI/CD: pipelines de compilación, prueba y despliegue",
+     "pregunta": "¿Cómo llega el código a producción sin pasos manuales?",
+     "practica": "Pipeline que compila, prueba y publica una imagen",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.9",
+     "n": 9,
+     "titulo": "Estrategias de despliegue: continuo, azul-verde y canario",
+     "pregunta": "¿Cómo se libera una versión sin afectar a todos los usuarios?",
+     "practica": "Despliegue canario con reversión automática",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.10",
+     "n": 10,
+     "titulo": "GitOps",
+     "pregunta": "¿Cómo se hace que Git sea la única fuente de verdad del clúster?",
+     "practica": "Argo CD o Flux sincronizando desde un repositorio",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "7.11",
+     "n": 11,
+     "titulo": "Confiabilidad: SLO, presupuestos de error y gestión de incidentes",
+     "pregunta": "¿Qué tan confiable debe ser un servicio y qué se hace cuando falla?",
+     "practica": "Definir SLO y alertas por presupuesto de error",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "titulo": "Seguridad defensiva y operaciones de seguridad",
+   "objetivo": "Proteger, monitorear y detectar amenazas en una organización, con criterio para priorizar.",
+   "requisitos": [
+    1,
+    2,
+    5
+   ],
+   "horas": 88,
+   "proyecto": "Mini-SOC de laboratorio: SIEM con fuentes de Linux y Windows, reglas de detección mapeadas a MITRE ATT&CK, gestión de vulnerabilidades y modelo de amenazas de un servicio.",
+   "temas": [
+    {
+     "id": "8.1",
+     "n": 1,
+     "titulo": "Principios de seguridad: CIA, AAA, Zero Trust, mínimo privilegio y defensa en profundidad",
+     "pregunta": "¿Qué se protege, de quién y con qué criterio?",
+     "practica": "Analizar una arquitectura existente con estos principios",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.2",
+     "n": 2,
+     "titulo": "Criptografía aplicada",
+     "pregunta": "¿Qué garantiza realmente cada mecanismo criptográfico?",
+     "practica": "Cifrar, firmar y verificar con openssl y GPG",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.3",
+     "n": 3,
+     "titulo": "Endurecimiento de sistemas y líneas base (CIS Benchmarks)",
+     "pregunta": "¿Cómo se mide qué tan seguro está un sistema?",
+     "practica": "Evaluar un servidor contra CIS y corregir",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.4",
+     "n": 4,
+     "titulo": "Gestión de identidades y accesos: SSO (SAML y OAuth), LDAP, MFA y passkeys",
+     "pregunta": "¿Cómo se demuestra quién eres sin depender solo de contraseñas?",
+     "practica": "SSO con Keycloak y MFA",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.5",
+     "n": 5,
+     "titulo": "Seguridad de correo y DNS: SPF, DKIM y DMARC",
+     "pregunta": "¿Cómo se evita que suplanten tu dominio?",
+     "practica": "Configurar y validar SPF, DKIM y DMARC",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.6",
+     "n": 6,
+     "titulo": "Telemetría y registro de seguridad",
+     "pregunta": "¿Qué hay que registrar para poder investigar después?",
+     "practica": "Centralizar logs de Linux y Windows con Sysmon",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.7",
+     "n": 7,
+     "titulo": "Monitoreo y detección: SIEM, IDS/IPS, EDR y XDR",
+     "pregunta": "¿Cómo se detecta un ataque entre millones de eventos?",
+     "practica": "Wazuh y Suricata detectando un escaneo",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.8",
+     "n": 8,
+     "titulo": "Ingeniería de detección: reglas, Sigma y MITRE ATT&CK",
+     "pregunta": "¿Cómo se escribe una detección que no genere ruido?",
+     "practica": "Escribir y probar reglas Sigma",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.9",
+     "n": 9,
+     "titulo": "Gestión de vulnerabilidades: CVE, CVSS, evaluación y priorización",
+     "pregunta": "¿Qué vulnerabilidad se corrige primero?",
+     "practica": "Escanear, priorizar y dar seguimiento",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.10",
+     "n": 10,
+     "titulo": "Inteligencia de amenazas",
+     "pregunta": "¿Qué amenazas son relevantes para ti?",
+     "practica": "Enriquecer alertas con indicadores de amenaza",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.11",
+     "n": 11,
+     "titulo": "Amenazas a sistemas de IA: inyección de instrucciones, envenenamiento, evasión y privacidad",
+     "pregunta": "¿Cómo se ataca una aplicación que usa IA?",
+     "practica": "Probar inyección de instrucciones en una app de laboratorio",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.12",
+     "n": 12,
+     "titulo": "IA aplicada a operaciones de seguridad: triaje, enriquecimiento de alertas y orquestación (SOAR)",
+     "pregunta": "¿Cómo se usa la IA para responder más rápido sin perder control?",
+     "practica": "Flujo SOAR con triaje asistido y revisión humana",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.13",
+     "n": 13,
+     "titulo": "Protección de datos: clasificación, cifrado, DLP, enmascarado y tokenización",
+     "pregunta": "¿Cómo se protege la información sensible donde sea que esté?",
+     "practica": "Clasificar y enmascarar datos de prueba",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.14",
+     "n": 14,
+     "titulo": "Arquitectura segura: segmentación y control de acceso a red",
+     "pregunta": "¿Cómo se limita el daño si un equipo es comprometido?",
+     "practica": "Rediseñar la segmentación de una red plana",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.15",
+     "n": 15,
+     "titulo": "Seguridad de endpoints y dispositivos móviles; gestión de activos",
+     "pregunta": "¿Cómo proteges lo que ni siquiera sabes que tienes?",
+     "practica": "Inventario de activos y política de endpoints",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "8.16",
+     "n": 16,
+     "titulo": "Modelado de amenazas",
+     "pregunta": "¿Qué podría salir mal en un sistema antes de construirlo?",
+     "practica": "Modelo STRIDE de una aplicación real",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "titulo": "Seguridad ofensiva",
+   "objetivo": "Evaluar la seguridad desde la perspectiva del atacante, de forma ética y metódica, y comunicar los hallazgos.",
+   "requisitos": [
+    1,
+    2,
+    5,
+    8
+   ],
+   "horas": 73,
+   "proyecto": "Prueba de penetración completa a un laboratorio propio (red, Active Directory y aplicación web) con informe profesional.",
+   "temas": [
+    {
+     "id": "9.1",
+     "n": 1,
+     "titulo": "Ética, alcance, marco legal y reglas de compromiso",
+     "pregunta": "¿Qué te autoriza a atacar un sistema y dónde está el límite?",
+     "practica": "Redactar reglas de compromiso para un laboratorio",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.2",
+     "n": 2,
+     "titulo": "Metodología de pruebas de penetración",
+     "pregunta": "¿Cómo se ataca de forma ordenada y repetible?",
+     "practica": "Planear una prueba con PTES u OSSTMM",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.3",
+     "n": 3,
+     "titulo": "Reconocimiento pasivo (OSINT)",
+     "pregunta": "¿Qué se puede saber de un objetivo sin tocarlo?",
+     "practica": "Perfil OSINT de un dominio propio",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.4",
+     "n": 4,
+     "titulo": "Reconocimiento y escaneo de redes",
+     "pregunta": "¿Qué equipos y servicios hay en una red?",
+     "practica": "Escaneo con nmap de un laboratorio",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.5",
+     "n": 5,
+     "titulo": "Enumeración de servicios",
+     "pregunta": "¿Qué revela cada servicio que encontraste?",
+     "practica": "Enumerar SMB, HTTP y SNMP",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.6",
+     "n": 6,
+     "titulo": "Explotación de vulnerabilidades",
+     "pregunta": "¿Cómo se convierte una vulnerabilidad en acceso?",
+     "practica": "Explotar una máquina vulnerable de práctica",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.7",
+     "n": 7,
+     "titulo": "Ataques a contraseñas y efecto de MFA",
+     "pregunta": "¿Por qué caen las contraseñas y qué cambia con MFA?",
+     "practica": "Auditar hashes en laboratorio y demostrar el efecto de MFA",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.8",
+     "n": 8,
+     "titulo": "Escalamiento de privilegios en Linux y Windows",
+     "pregunta": "¿Cómo pasa un atacante de usuario a administrador?",
+     "practica": "Escalar privilegios en máquinas de práctica",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.9",
+     "n": 9,
+     "titulo": "Movimiento lateral y pivoteo",
+     "pregunta": "¿Cómo se mueve un atacante dentro de la red?",
+     "practica": "Pivotear entre segmentos de un laboratorio",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.10",
+     "n": 10,
+     "titulo": "Seguridad de Active Directory: Kerberos y errores comunes de configuración",
+     "pregunta": "¿Por qué Active Directory es el objetivo favorito?",
+     "practica": "Auditar un dominio de laboratorio con BloodHound",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.11",
+     "n": 11,
+     "titulo": "Seguridad de aplicaciones web: OWASP Top 10 2025, inyección, XSS y control de acceso",
+     "pregunta": "¿Cuáles son las fallas web más comunes y cómo se explotan?",
+     "practica": "Resolver laboratorios de OWASP Juice Shop",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.12",
+     "n": 12,
+     "titulo": "Pruebas de autenticación y manejo de sesiones",
+     "pregunta": "¿Cómo se rompe un login o se roba una sesión?",
+     "practica": "Pruebas de sesión con Burp Suite",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "9.13",
+     "n": 13,
+     "titulo": "Elaboración de informes de pruebas de penetración",
+     "pregunta": "¿Cómo se comunica un hallazgo para que se corrija?",
+     "practica": "Informe ejecutivo y técnico de un laboratorio",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "titulo": "Nube y seguridad en la nube",
+   "objetivo": "Diseñar, operar y proteger infraestructura en nube pública (AWS y Azure) con buenas prácticas de costo, identidad y red.",
+   "requisitos": [
+    1,
+    6,
+    7
+   ],
+   "horas": 63,
+   "proyecto": "Arquitectura de tres capas en la nube, desplegada con IaC, con identidad de mínimo privilegio, red segmentada, cifrado, registro, alertas de costo y evaluación de postura.",
+   "temas": [
+    {
+     "id": "10.1",
+     "n": 1,
+     "titulo": "Modelos de servicio, responsabilidad compartida y Well-Architected",
+     "pregunta": "¿Qué protege el proveedor y qué te toca a ti?",
+     "practica": "Revisar una arquitectura con el marco Well-Architected",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.2",
+     "n": 2,
+     "titulo": "Gobierno de cuentas, regiones y control de costos",
+     "pregunta": "¿Cómo se evita una factura sorpresa?",
+     "practica": "Estructura de cuentas, presupuestos y alertas",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.3",
+     "n": 3,
+     "titulo": "Identidad y acceso en la nube: roles, políticas y mínimo privilegio",
+     "pregunta": "¿Quién o qué puede hacer cada cosa en tu nube?",
+     "practica": "Políticas IAM de mínimo privilegio y su validación",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.4",
+     "n": 4,
+     "titulo": "Redes en la nube: redes virtuales, subredes, rutas y grupos de seguridad",
+     "pregunta": "¿Cómo se diseña una red en la nube?",
+     "practica": "VPC con subredes públicas y privadas",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.5",
+     "n": 5,
+     "titulo": "Cómputo, almacenamiento, bases de datos y serverless",
+     "pregunta": "¿Qué servicio conviene para cada carga?",
+     "practica": "Desplegar la misma app con VM, contenedor y serverless",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.6",
+     "n": 6,
+     "titulo": "Kubernetes administrado en la nube",
+     "pregunta": "¿Qué te resuelve y qué no un Kubernetes administrado?",
+     "practica": "Clúster EKS o AKS con ingreso y escalado",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.7",
+     "n": 7,
+     "titulo": "Cifrado y gestión de llaves",
+     "pregunta": "¿Quién controla las llaves de tus datos?",
+     "practica": "Cifrado con KMS y rotación de llaves",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.8",
+     "n": 8,
+     "titulo": "Registro y detección de amenazas en la nube",
+     "pregunta": "¿Cómo se detecta actividad sospechosa en la nube?",
+     "practica": "CloudTrail o Activity Log con detección y alertas",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.9",
+     "n": 9,
+     "titulo": "Cumplimiento y protección perimetral",
+     "pregunta": "¿Cómo se protege lo expuesto a internet?",
+     "practica": "WAF y protección DDoS frente a una app",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.10",
+     "n": 10,
+     "titulo": "Gestión de postura de seguridad en la nube",
+     "pregunta": "¿Cómo se encuentran configuraciones inseguras automáticamente?",
+     "practica": "Evaluar una cuenta con una herramienta CSPM",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "10.11",
+     "n": 11,
+     "titulo": "Equivalencias entre AWS y Azure",
+     "pregunta": "¿Cómo se traduce lo que sabes de una nube a la otra?",
+     "practica": "Mapa de equivalencias de la arquitectura del módulo",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "titulo": "DevSecOps y seguridad de la cadena de entrega",
+   "objetivo": "Integrar la seguridad en todo el ciclo de entrega de software, desde el código hasta la ejecución.",
+   "requisitos": [
+    7,
+    8
+   ],
+   "horas": 68,
+   "proyecto": "Pipeline seguro de extremo a extremo: detección de secretos, SAST, SCA, DAST, SBOM, imágenes firmadas, escaneo de IaC, políticas de admisión y evidencia de cumplimiento automática.",
+   "temas": [
+    {
+     "id": "11.1",
+     "n": 1,
+     "titulo": "Seguridad del pipeline: permisos, runners e identidad federada",
+     "pregunta": "¿Cómo se evita que el pipeline sea la puerta de entrada?",
+     "practica": "Pipeline con OIDC en lugar de llaves estáticas",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.2",
+     "n": 2,
+     "titulo": "Gestión de secretos y detección de secretos expuestos",
+     "pregunta": "¿Dónde viven los secretos y cómo se detecta uno filtrado?",
+     "practica": "Vault o un gestor de secretos y detección en Git",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.3",
+     "n": 3,
+     "titulo": "Análisis estático de código (SAST)",
+     "pregunta": "¿Cómo se encuentran fallas en el código antes de ejecutarlo?",
+     "practica": "Integrar Semgrep o CodeQL al pipeline",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.4",
+     "n": 4,
+     "titulo": "Análisis dinámico de aplicaciones (DAST)",
+     "pregunta": "¿Cómo se encuentran fallas probando la app en ejecución?",
+     "practica": "Escaneo con OWASP ZAP en el pipeline",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.5",
+     "n": 5,
+     "titulo": "Análisis de dependencias y licencias (SCA)",
+     "pregunta": "¿Qué riesgo traen las librerías que usas?",
+     "practica": "Detectar y actualizar dependencias vulnerables",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.6",
+     "n": 6,
+     "titulo": "Cadena de suministro de software: SBOM, firma y verificación de imágenes",
+     "pregunta": "¿Cómo se demuestra que lo que corre es lo que construiste?",
+     "practica": "Generar un SBOM y firmar imágenes con Cosign",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.7",
+     "n": 7,
+     "titulo": "Escaneo de imágenes de contenedores",
+     "pregunta": "¿Qué vulnerabilidades trae tu imagen?",
+     "practica": "Escanear con Trivy y bloquear las críticas",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.8",
+     "n": 8,
+     "titulo": "Seguridad de infraestructura como código: escaneo y validación",
+     "pregunta": "¿Cómo se detecta una configuración insegura antes de desplegarla?",
+     "practica": "Escanear Terraform con Checkov",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.9",
+     "n": 9,
+     "titulo": "Políticas como código y control de admisión",
+     "pregunta": "¿Cómo se impide que entre algo inseguro al clúster?",
+     "practica": "Políticas con Kyverno u OPA Gatekeeper",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.10",
+     "n": 10,
+     "titulo": "Seguridad de Kubernetes: RBAC, políticas de red y seguridad de pods",
+     "pregunta": "¿Cómo se limita lo que puede hacer cada cosa en Kubernetes?",
+     "practica": "RBAC mínimo, NetworkPolicy y Pod Security",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.11",
+     "n": 11,
+     "titulo": "Seguridad de contenedores en tiempo de ejecución",
+     "pregunta": "¿Cómo se detecta un contenedor que se comporta raro?",
+     "practica": "Detección con Falco",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "11.12",
+     "n": 12,
+     "titulo": "Cumplimiento continuo y recolección automática de evidencia",
+     "pregunta": "¿Cómo se demuestra el cumplimiento sin hacerlo a mano?",
+     "practica": "Generar evidencia automática desde el pipeline",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "titulo": "Respuesta a incidentes, forense, riesgo y privacidad en México",
+   "objetivo": "Responder a incidentes con método, preservar e investigar evidencia, gestionar el riesgo y cumplir con el marco de privacidad mexicano.",
+   "requisitos": [
+    8,
+    9
+   ],
+   "horas": 53,
+   "proyecto": "Programa de seguridad para una organización ficticia: playbooks de incidentes probados en simulacro, análisis forense de un caso, registro de riesgos, mapeo a NIST CSF 2.0 y cumplimiento de la LFPDPPP.",
+   "temas": [
+    {
+     "id": "12.1",
+     "n": 1,
+     "titulo": "Ciclo de respuesta a incidentes; playbooks, roles y escalamiento",
+     "pregunta": "¿Qué se hace, en qué orden y quién lo decide cuando hay un incidente?",
+     "practica": "Playbook de ransomware y simulacro de mesa",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "12.2",
+     "n": 2,
+     "titulo": "Evidencia digital y cadena de custodia",
+     "pregunta": "¿Cómo se preserva la evidencia para que sea válida?",
+     "practica": "Adquirir una imagen de disco con cadena de custodia",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "12.3",
+     "n": 3,
+     "titulo": "Forense de disco y memoria",
+     "pregunta": "¿Qué pasó en un equipo comprometido?",
+     "practica": "Analizar una imagen con Autopsy y la memoria con Volatility",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "12.4",
+     "n": 4,
+     "titulo": "Análisis de malware y ransomware",
+     "pregunta": "¿Qué hace una muestra maliciosa?",
+     "practica": "Análisis estático y dinámico en un entorno aislado",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "12.5",
+     "n": 5,
+     "titulo": "Gobierno de seguridad: NIST CSF 2.0, ISO/IEC 27001 y CIS Controls",
+     "pregunta": "¿Cómo se organiza un programa de seguridad completo?",
+     "practica": "Evaluar la madurez de una organización con NIST CSF 2.0",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "12.6",
+     "n": 6,
+     "titulo": "Gestión de riesgos: matriz, SLE, ALE, ARO y registro de riesgos",
+     "pregunta": "¿Cuánto cuesta un riesgo y cuánto conviene invertir en él?",
+     "practica": "Registro de riesgos cuantificado",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "12.7",
+     "n": 7,
+     "titulo": "Riesgo de terceros y cumplimiento",
+     "pregunta": "¿Cómo te afectan los riesgos de tus proveedores?",
+     "practica": "Cuestionario de evaluación de un proveedor",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "12.8",
+     "n": 8,
+     "titulo": "Privacidad en México: LFPDPPP 2025, aviso de privacidad, derechos y medidas de seguridad",
+     "pregunta": "¿Qué exige la ley mexicana a quien trata datos personales?",
+     "practica": "Aviso de privacidad y medidas de seguridad de una app",
+     "academia": "por-desarrollar",
+     "leccion": null
+    },
+    {
+     "id": "12.9",
+     "n": 9,
+     "titulo": "Auditoría y concienciación",
+     "pregunta": "¿Cómo se verifica que los controles funcionan y que la gente sabe qué hacer?",
+     "practica": "Plan de auditoría interna y campaña de concienciación",
+     "academia": "por-desarrollar",
+     "leccion": null
+    }
+   ]
+  }
+ ]
+}

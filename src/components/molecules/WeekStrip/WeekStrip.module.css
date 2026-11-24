@@ -1,0 +1,6 @@
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.dia { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 700; color: var(--soft); text-transform: uppercase; }
+.dot { width: 100%; max-width: 40px; aspect-ratio: 1; border-radius: 14px; background: var(--card2); border: 1px solid var(--line); display: grid; place-items: center; font-size: 1rem; }
+.on .dot { background: var(--grad); border-color: transparent; box-shadow: 0 8px 16px -8px color-mix(in srgb, var(--g2) 80%, transparent); }
+.hoy .dot { border-color: var(--g1); }
+.hoy { color: var(--ink); }

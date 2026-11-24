@@ -1,0 +1,14 @@
+{
+ "V01": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V01-d43b6ceb8b22.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V01-d43b6ceb8b22.vtt",
+  "huella": "d43b6ceb8b22",
+  "fuente": "V01-por-que-capas.mp4"
+ },
+ "V02": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V02-3dea69ff1b6c.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V02-3dea69ff1b6c.vtt",
+  "huella": "3dea69ff1b6c",
+  "fuente": "V02-osi-mapa-siete-capas.mp4"
+ }
+}

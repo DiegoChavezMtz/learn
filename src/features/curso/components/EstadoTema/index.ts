@@ -1,0 +1,1 @@
+export { EstadoTema } from './EstadoTema';

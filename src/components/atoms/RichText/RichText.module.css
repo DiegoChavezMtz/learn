@@ -1,0 +1,4 @@
+.root { display: flex; flex-direction: column; gap: var(--space-3); }
+.root strong { font-weight: 600; }
+.root code { font-family: var(--f-mono); font-size: 0.9em; background: var(--wash); padding: 1px 6px; border-radius: 5px; }
+.root a { color: var(--g1); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }

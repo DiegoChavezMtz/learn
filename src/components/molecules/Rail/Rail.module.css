@@ -1,0 +1,5 @@
+.rail { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; }
+.rail > * { height: 26px; border-radius: 6px; background: var(--wash); border: 0; padding: 0; display: block; }
+.done { background: var(--ok) !important; }
+.now { background: var(--accent) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
+.soon { background: repeating-linear-gradient(45deg, var(--wash) 0 4px, transparent 4px 8px) !important; border: 1px solid var(--line) !important; }

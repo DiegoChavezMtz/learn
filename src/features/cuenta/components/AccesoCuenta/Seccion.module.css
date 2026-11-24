@@ -1,0 +1,7 @@
+.sec { background: var(--card); border-radius: var(--radius-l); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
+.sec h2 { font-size: 1.15rem; }
+.muted { color: var(--soft); font-size: 0.9rem; }
+.err { color: var(--bad); font-size: 0.9rem; }
+.ok { color: var(--ok); font-size: 0.9rem; }
+.input { font: inherit; color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: var(--radius-m); padding: var(--space-3) 14px; width: 100%; min-height: 50px; }
+.form { display: flex; flex-direction: column; gap: var(--space-3); }

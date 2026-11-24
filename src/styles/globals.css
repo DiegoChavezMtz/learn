@@ -1,0 +1,35 @@
+/* Sistema visual: base oscura cálida con degradado naranja → coral → magenta (dirección elegida por Diego, 2026-11-23). */
+:root {
+  color-scheme: dark;
+  --bg: #120b12; --bg2: #1a1119; --card: #211722; --card2: #2b1e2c; --wash: #2b1e2c; --line: #3b2a3c;
+  --ink: #fff4ee; --soft: #b9a4b5;
+  --g1: #ffa24a; --g2: #ff4d6d; --g3: #c026d3;
+  --grad: linear-gradient(150deg, var(--g1) 0%, var(--g2) 55%, var(--g3) 100%);
+  --grad-soft: linear-gradient(150deg, color-mix(in srgb, var(--g1) 22%, transparent), color-mix(in srgb, var(--g3) 22%, transparent));
+  --accent: #ff7a45; --accent-ink: #1a0b10;
+  --l1: #b9a4b5; --l2: #7aa2ff; --l3: #3ddc97; --l4: #ffa24a; --l5: #c084fc;
+  --ok: #3ddc97; --mid: #ffc857; --bad: #ff5d73;
+  --f-disp: var(--font-disp), "Bricolage Grotesque", system-ui, sans-serif;
+  --f-body: var(--font-body), "Inter", system-ui, -apple-system, sans-serif;
+  --f-mono: var(--font-mono), ui-monospace, Menlo, monospace;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
+  --radius-m: 16px; --radius-l: 26px;
+  --shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.7);
+  --measure: 520px;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0; color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.5;
+  background: radial-gradient(120% 60% at 50% -10%, color-mix(in srgb, var(--g3) 22%, transparent), transparent 60%), var(--bg);
+  background-attachment: fixed;
+  padding-inline: max(var(--space-4), env(safe-area-inset-left, 0px));
+  padding-block: max(14px, env(safe-area-inset-top, 0px)) 24px;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid var(--g1); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--f-disp); letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }

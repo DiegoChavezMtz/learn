@@ -1,0 +1,4 @@
+.badge { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--wash); color: var(--soft); white-space: nowrap; }
+.ok { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.accent { background: color-mix(in srgb, var(--g1) 16%, transparent); color: var(--g1); }
+.mid { background: color-mix(in srgb, var(--mid) 16%, transparent); color: var(--mid); }

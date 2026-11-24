@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# datos personales de Diego: nunca al repositorio
+/export/
+
+# Documentos y base de datos: solo viven en local (no van al repositorio)
+*.md
+/docs/
+/supabase/
+*.sql

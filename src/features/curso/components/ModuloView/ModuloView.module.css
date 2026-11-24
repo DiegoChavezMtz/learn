@@ -1,0 +1,41 @@
+.col { display: flex; flex-direction: column; gap: 18px; padding-top: 4px; }
+.back { color: var(--soft); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+.hero { border-radius: 28px; padding: 22px; display: flex; flex-direction: column; gap: 10px; background: linear-gradient(160deg, color-mix(in srgb, var(--mc) 34%, var(--card)), var(--card) 75%); border: 1px solid color-mix(in srgb, var(--mc) 45%, var(--line)); box-shadow: var(--shadow); }
+.kicker { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mc); font-weight: 700; }
+.h1 { font-size: 1.6rem; line-height: 1.15; font-weight: 800; }
+.muted { color: var(--soft); }
+.small { font-size: 0.88rem; }
+.h2 { font-size: 1.05rem; }
+
+.ahora { display: flex; flex-direction: column; gap: 12px; text-decoration: none; color: inherit; border-radius: 28px; padding: 22px; background: var(--grad); color: #fff; box-shadow: 0 24px 46px -26px color-mix(in srgb, var(--g2) 80%, transparent); position: relative; overflow: hidden; }
+.ahora::before { content: ""; position: absolute; width: 180px; height: 180px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); right: -60px; top: -70px; }
+.ahora > * { position: relative; }
+.ahora .etq { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.92; font-weight: 700; }
+.ahora h2 { font-size: 1.45rem; line-height: 1.15; }
+.ahora p { opacity: 0.92; font-size: 0.95rem; }
+.ahora .bar { height: 10px; border-radius: 5px; background: rgba(0, 0, 0, 0.25); overflow: hidden; }
+.ahora .bar i { display: block; height: 100%; background: #fff; border-radius: 5px; }
+.ahora .go { align-self: flex-start; padding: 11px 20px; border-radius: 999px; background: #fff; color: #2a0f1d; font-family: var(--f-disp); font-weight: 800; }
+.prep { background: var(--card); border: 1px dashed var(--line); color: var(--ink); box-shadow: none; }
+.prep::before { display: none; }
+
+.hechos { border-radius: 20px; background: var(--card); border: 1px solid var(--line); }
+.hechos summary { list-style: none; cursor: pointer; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--ok); }
+.hechos summary::-webkit-details-marker { display: none; }
+.hechos summary::after { content: "›"; font-size: 1.4rem; color: var(--soft); transition: transform 0.2s; }
+.hechos[open] summary::after { transform: rotate(90deg); }
+.lista { list-style: none; margin: 0; padding: 0 10px 10px; display: flex; flex-direction: column; gap: 6px; }
+.item { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: var(--card2); text-decoration: none; color: inherit; }
+.item .id { font-family: var(--f-mono); font-size: 0.8rem; font-weight: 700; color: var(--soft); min-width: 2.4em; }
+.item .t { flex: 1; font-size: 0.95rem; line-height: 1.3; }
+.item .ok { color: var(--ok); font-weight: 800; }
+
+.sigs { display: flex; flex-direction: column; gap: 8px; }
+.sig { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); text-decoration: none; color: inherit; opacity: 0.85; }
+.sig .id { font-family: var(--f-mono); font-size: 0.8rem; font-weight: 700; color: var(--mc); min-width: 2.4em; }
+.sig .t { flex: 1; font-weight: 600; line-height: 1.3; }
+.mas { align-self: center; background: none; border: 0; color: var(--soft); font-weight: 600; padding: 8px 14px; }
+.proyecto { background: var(--card); border: 1px solid var(--line); border-radius: 22px; }
+.proyecto summary { list-style: none; cursor: pointer; padding: 14px 18px; font-weight: 700; }
+.proyecto summary::-webkit-details-marker { display: none; }
+.proyecto p { padding: 0 18px 16px; color: var(--soft); font-size: 0.9rem; }

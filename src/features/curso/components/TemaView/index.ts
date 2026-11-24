@@ -1,0 +1,1 @@
+export { TemaView } from './TemaView';

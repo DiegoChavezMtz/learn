@@ -1,0 +1,1 @@
+export { ProgresoView } from './ProgresoView';

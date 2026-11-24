@@ -1,0 +1,1 @@
+export { ExportarRegistro } from './ExportarRegistro';

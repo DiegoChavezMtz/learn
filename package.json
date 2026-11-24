@@ -6,19 +6,32 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint",
+    "new:feature": "bash scripts/new-feature.sh",
+    "sync:content": "node scripts/sync-content.mjs && node scripts/build-curso.mjs",
+    "prebuild": "npm run sync:content",
+    "publish:videos": "node --env-file-if-exists=.env.local scripts/publish-videos.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.119.2",
+    "clsx": "^2.1.1",
+    "marked": "^18.2.1",
     "next": "16.4.6",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.1176.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
-    "typescript": "^5"
+    "eslint-plugin-boundaries": "^7.4.4",
+    "typescript": "^5",
+    "zod": "^4.6.7"
   }
 }
