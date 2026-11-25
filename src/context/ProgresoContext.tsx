@@ -6,7 +6,7 @@ import { isoDay } from '@/utils/dates';
 import { calificar as calificarRepaso } from '@/utils/spacedRepetition';
 import { META_DIARIA, XP, xpDelDia, xpTotal } from '@/utils/xp';
 import { racha as calcularRacha } from '@/utils/streak';
-import { useTema } from './TemaContext';
+import { useModoLibre, useTema } from './TemaContext';
 
 type Info = { aciertos: number; total: number; mini: Mini | null };
 type CursoCtx = {
@@ -84,14 +84,16 @@ export function useProgresoCurso(): CursoCtx {
 export function useProgreso() {
   const c = useProgresoCurso();
   const tema = useTema();
+  const libre = useModoLibre();
   return useMemo(() => ({
     listo: c.listo, tema, hoy: c.hoy, racha: c.racha,
     progreso: c.todos[tema] ?? vacio(),
-    calificar: (id: string, bien: boolean) => c.calificar(tema, id, bien),
+    // En práctica libre, calificar no cambia cajas ni fechas del repaso espaciado.
+    calificar: (id: string, bien: boolean) => { if (!libre) c.calificar(tema, id, bien); },
     guardarPreprueba: (id: string, r: number) => c.guardarPreprueba(tema, id, r),
     marcarDia: () => c.marcarDia(tema),
     sumarXp: (n: number) => c.sumarXp(tema, n),
     xpHoy: c.xpHoy, meta: c.meta,
     terminarSesion: (id: string, info: Info, registro: Registro) => c.terminarSesion(tema, id, info, registro),
-  }), [c, tema]);
+  }), [c, tema, libre]);
 }

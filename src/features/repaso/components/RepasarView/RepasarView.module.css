@@ -1,0 +1,20 @@
+.col { display: flex; flex-direction: column; gap: 18px; padding-top: 4px; }
+.back { color: var(--soft); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+.h1 { font-size: 2rem; line-height: 1.1; font-weight: 800; }
+.muted { color: var(--soft); }
+.small { font-size: 0.88rem; }
+.debiles { position: relative; overflow: hidden; border-radius: 28px; padding: 22px; background: var(--grad); color: #fff; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 24px 46px -26px color-mix(in srgb, var(--g2) 80%, transparent); }
+.debiles::before { content: ""; position: absolute; width: 190px; height: 190px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); right: -60px; top: -70px; }
+.debiles > * { position: relative; }
+.etq { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; opacity: 0.92; }
+.num { font-family: var(--f-disp); font-size: 3rem; font-weight: 800; line-height: 1; }
+.num small { font-size: 1rem; font-weight: 600; margin-left: 6px; opacity: 0.9; }
+.lista { display: flex; flex-direction: column; gap: 8px; }
+.h2 { font-size: 1.05rem; }
+.fila { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; width: 100%; padding: 14px 16px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); color: inherit; font: inherit; }
+.fila:disabled { opacity: 0.5; }
+.fila strong { font-family: var(--f-mono); font-size: 0.8rem; color: var(--g1); margin-right: 6px; }
+.cuenta { font-size: 0.8rem; color: var(--soft); white-space: nowrap; }
+.fin { flex: 1; border-radius: 32px; padding: 34px 24px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; background: var(--grad); color: #fff; min-height: calc(100dvh - 40px); box-shadow: 0 24px 50px -24px color-mix(in srgb, var(--g2) 75%, transparent); }
+.fin .big { font-family: var(--f-disp); font-size: 4.5rem; font-weight: 800; line-height: 1; }
+.fin .acc { margin-top: auto; width: 100%; display: flex; flex-direction: column; gap: 10px; }

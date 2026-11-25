@@ -1,14 +1,50 @@
 {
  "V01": {
-  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V01-d43b6ceb8b22.mp4",
-  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V01-d43b6ceb8b22.vtt",
-  "huella": "d43b6ceb8b22",
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V01-829270708c63.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V01-829270708c63.vtt",
+  "huella": "829270708c63",
   "fuente": "V01-por-que-capas.mp4"
  },
  "V02": {
-  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V02-3dea69ff1b6c.mp4",
-  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V02-3dea69ff1b6c.vtt",
-  "huella": "3dea69ff1b6c",
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V02-73eb9ae1c8df.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V02-73eb9ae1c8df.vtt",
+  "huella": "73eb9ae1c8df",
   "fuente": "V02-osi-mapa-siete-capas.mp4"
+ },
+ "V03": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V03-a1628cc72630.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V03-a1628cc72630.vtt",
+  "huella": "a1628cc72630",
+  "fuente": "V03-capas-1-y-2-dentro-de-mi-red.mp4"
+ },
+ "V04": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V04-f93137448fb9.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V04-f93137448fb9.vtt",
+  "huella": "f93137448fb9",
+  "fuente": "V04-capa-3-entre-redes.mp4"
+ },
+ "V05": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V05-bb022b7f1600.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V05-bb022b7f1600.vtt",
+  "huella": "bb022b7f1600",
+  "fuente": "V05-capa-4-puertos.mp4"
+ },
+ "V06": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V06-339059a94e41.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V06-339059a94e41.vtt",
+  "huella": "339059a94e41",
+  "fuente": "V06-capas-5-a-7-lo-que-ve-la-app.mp4"
+ },
+ "V07": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V07-e7cae02fda73.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V07-e7cae02fda73.vtt",
+  "huella": "e7cae02fda73",
+  "fuente": "V07-tcpip-cuatro-capas.mp4"
+ },
+ "V08": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V08-4a9b704d85f4.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V08-4a9b704d85f4.vtt",
+  "huella": "4a9b704d85f4",
+  "fuente": "V08-diagnosticar-con-osi-implementar-con-tcpip.mp4"
  }
 }

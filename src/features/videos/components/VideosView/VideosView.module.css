@@ -1,0 +1,30 @@
+.video { position: fixed; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: min(100%, 480px); height: 100%; object-fit: contain; background: #000; z-index: 1; pointer-events: none; transition: opacity 0.25s ease; }
+.oculto { opacity: 0; }
+.feed { position: fixed; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: min(100%, 480px); z-index: 2; overflow-y: auto; scroll-snap-type: y mandatory; overscroll-behavior: contain; scrollbar-width: none; }
+.feed::-webkit-scrollbar { display: none; }
+.reel { position: relative; height: 100dvh; scroll-snap-align: start; scroll-snap-stop: always; display: flex; flex-direction: column; justify-content: flex-end; cursor: pointer; }
+.reel::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 120px; background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent); pointer-events: none; }
+.reel::after { content: ""; position: absolute; inset: auto 0 0 0; height: 220px; background: linear-gradient(0deg, rgba(0, 0, 0, 0.75), transparent); pointer-events: none; }
+.arriba { position: absolute; top: max(12px, env(safe-area-inset-top, 0px)); left: 16px; right: 16px; z-index: 3; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; color: #fff; }
+.titulo { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.titulo h2 { font-size: 1.05rem; line-height: 1.2; color: #fff; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8); }
+.cuenta { font-family: var(--f-mono); font-size: 0.8rem; background: rgba(0, 0, 0, 0.45); padding: 5px 12px; border-radius: 999px; }
+.info { position: relative; z-index: 3; padding: 0 76px calc(112px + env(safe-area-inset-bottom, 0px)) 18px; color: #fff; display: flex; flex-direction: column; gap: 8px; }
+.chip { align-self: flex-start; font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; background: var(--grad); padding: 4px 12px; border-radius: 999px; font-weight: 700; }
+.ir { align-self: flex-start; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.9rem; padding: 8px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); }
+.lado { position: absolute; right: 14px; bottom: calc(130px + env(safe-area-inset-bottom, 0px)); z-index: 4; display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.boton { width: 52px; height: 52px; border-radius: 50%; border: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); color: #fff; font-size: 1.4rem; display: grid; place-items: center; }
+.sonido { position: absolute; z-index: 4; left: 50%; transform: translateX(-50%); top: 96px; background: rgba(0, 0, 0, 0.6); color: #fff; padding: 8px 16px; border-radius: 999px; font-weight: 700; font-size: 0.88rem; border: 0; animation: late 2s ease-in-out infinite; }
+@keyframes late { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+.play { position: absolute; z-index: 3; inset: 0; display: grid; place-items: center; font-size: 4.5rem; color: rgba(255, 255, 255, 0.9); pointer-events: none; text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6); }
+.barra { position: fixed; z-index: 3; left: 50%; transform: translateX(-50%); width: min(100%, 480px); bottom: calc(98px + env(safe-area-inset-bottom, 0px)); height: 3px; background: rgba(255, 255, 255, 0.25); pointer-events: none; }
+.barra i { display: block; height: 100%; width: 0; background: var(--grad); }
+.error { position: absolute; z-index: 4; top: 45%; left: 20px; right: 20px; text-align: center; color: #fff; background: rgba(0, 0, 0, 0.6); padding: 14px; border-radius: 16px; font-size: 0.9rem; }
+.candado { cursor: default; background: radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--g3) 30%, transparent), transparent 60%), var(--bg); justify-content: center; align-items: center; text-align: center; gap: 14px; padding: 0 28px 100px; color: var(--ink); }
+.candado::before, .candado::after { display: none; }
+.candado .cand { font-size: 3.4rem; }
+.candado h2 { font-size: 1.4rem; line-height: 1.2; }
+.candado p { color: var(--soft); }
+.vacio { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; text-align: center; align-items: center; }
+.vacio h1 { font-size: 1.8rem; line-height: 1.1; }
+.vacio p { color: var(--soft); max-width: 32ch; }

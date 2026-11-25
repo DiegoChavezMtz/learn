@@ -31,6 +31,12 @@ export function Player({ items, onExit, onFinish, evaluar }: Props) {
       },
       guardarTexto: (id, texto) => { stats.current.texto[id] = texto; },
       participar: () => premio(XP.preprueba),
+      corta: (resultado, tutor) => {
+        stats.current.total++;
+        if (resultado === 'ok') stats.current.aciertos++;
+        if (tutor) premio(XP.explica[resultado]);
+        else premio(XP.explicaAuto, resultado === 'ok' ? undefined : 'Gracias por ser honesto 💛');
+      },
       guardarMini: (mini, ia) => {
         stats.current.mini = mini; stats.current.ia = ia;
         // Con el tutor, la escala; autocalificada, XP fijo. Elegir 🟡 o ❌ sin tutor merece un gracias, no menos puntos.

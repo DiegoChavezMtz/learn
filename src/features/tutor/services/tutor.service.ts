@@ -4,11 +4,11 @@ import { getSupabaseAdmin } from '@/lib/supabaseAdmin';
 import { http } from '@/services/http';
 import type { Evaluacion } from '@/types/progreso';
 import type { PeticionTutor } from '@/types/tutor';
-import { buildMensajes, parseEvaluacion } from '../utils/tutor.prompt';
+import { buildMensajes, buildMensajesCorta, parseEvaluacion } from '../utils/tutor.prompt';
 
 type ChatResponse = { choices?: { message?: { content?: string } }[]; base_resp?: { status_code: number } };
 
-export const LIMITES = { texto: 6000, prompt: 600, puntos: 12, punto: 300 } as const;
+export const LIMITES = { texto: 6000, textoCorta: 800, prompt: 600, puntos: 12, punto: 300 } as const;
 
 export const tutorService = {
   disponible: () => !!env.MINIMAX_API_KEY,
@@ -21,14 +21,17 @@ export const tutorService = {
     return !error && !!data.user;
   },
 
-  entradaValida: (p: PeticionTutor) =>
-    p.texto.trim().length >= 15 && p.texto.length <= LIMITES.texto && p.prompt.length <= LIMITES.prompt &&
-    p.puntos.length > 0 && p.puntos.length <= LIMITES.puntos && p.puntos.every((x) => x.length <= LIMITES.punto),
+  entradaValida(p: PeticionTutor): boolean {
+    const corta = p.tipo === 'corta';
+    const largo = p.texto.trim().length;
+    return (corta ? largo >= 3 && p.texto.length <= LIMITES.textoCorta && (p.referencia ?? '').length <= LIMITES.texto : largo >= 15 && p.texto.length <= LIMITES.texto) &&
+      p.prompt.length <= LIMITES.prompt && (corta || p.puntos.length > 0) && p.puntos.length <= LIMITES.puntos && p.puntos.every((x) => x.length <= LIMITES.punto);
+  },
 
   async evaluar(p: PeticionTutor): Promise<Evaluacion | null> {
     const r = await http.post<ChatResponse>(
       '/chat/completions',
-      { model: env.MINIMAX_MODEL, temperature: 0.2, max_tokens: 1200, messages: buildMensajes(p.prompt, p.puntos, p.texto.trim()) },
+      { model: env.MINIMAX_MODEL, temperature: 0.2, max_tokens: 1200, messages: p.tipo === 'corta' ? buildMensajesCorta(p.prompt, p.referencia ?? '', p.puntos, p.texto.trim()) : buildMensajes(p.prompt, p.puntos, p.texto.trim()) },
       { baseURL: env.MINIMAX_BASE_URL, headers: { Authorization: `Bearer ${env.MINIMAX_API_KEY}` }, cache: 'no-store' },
     );
     return parseEvaluacion(r.choices?.[0]?.message?.content ?? '');

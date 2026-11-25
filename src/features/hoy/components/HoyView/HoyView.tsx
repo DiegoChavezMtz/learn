@@ -5,7 +5,6 @@ import { Button } from '@/components/atoms/Button';
 import { Flame } from '@/components/atoms/Flame';
 import { Ring } from '@/components/atoms/Ring';
 import { Screen } from '@/components/atoms/Screen';
-import { AccountLink } from '@/components/molecules/AccountLink';
 import { SyncStatus } from '@/components/molecules/SyncStatus';
 import { WeekStrip } from '@/components/molecules/WeekStrip';
 import { useProgresoCurso } from '@/context/ProgresoContext';
@@ -14,6 +13,7 @@ import type { Curso } from '@/types/curso';
 import { siguientePaso } from '@/utils/curso';
 import { etiqueta } from '@/utils/lesson';
 import { rutasOffline } from '@/utils/offline';
+import { debilesSinCatalogo } from '@/utils/repasar';
 import { vencidos } from '@/utils/spacedRepetition';
 import { nivel } from '@/utils/xp';
 import styles from './HoyView.module.css';
@@ -42,6 +42,10 @@ export function HoyView({ curso }: { curso: Curso }) {
   const minutos = Math.ceil(totalRep * 0.5) + (sesion?.minutos ?? 0);
   const vacio = totalRep === 0 && !paso;
   const nv = nivel(xpTotal);
+  // "Practicar": práctica libre del tema en el que vas (o el último con tarjetas vistas); no mueve el calendario.
+  const conVistas = Object.entries(todos).filter(([, p]) => Object.keys(p.repaso).length > 0).map(([t]) => t);
+  const temaPractica = paso && todos[paso.tema.id]?.repaso && Object.keys(todos[paso.tema.id].repaso).length ? paso.tema.id : conVistas[conVistas.length - 1];
+  const nDebiles = Object.values(todos).reduce((s, p) => s + debilesSinCatalogo(p.repaso), 0);
 
   const hrefSesion = paso ? `/tema/${paso.tema.id}/sesion/${paso.sesion.id}` : '/curso';
   const hrefRepaso = temaRepaso ? `/tema/${temaRepaso}/repaso${paso && paso.tema.id === temaRepaso ? `?luego=${paso.sesion.id}` : ''}` : hrefSesion;
@@ -57,7 +61,6 @@ export function HoyView({ curso }: { curso: Curso }) {
           <div className={styles.pills}>
             <span className={styles.pill} aria-label={`Nivel ${nv.nivel}`}>⚡ {nv.nivel}</span>
             <span className={styles.pill} aria-label="Racha"><Flame size={18} />{racha}</span>
-            <AccountLink />
           </div>
         </div>
 
@@ -92,6 +95,14 @@ export function HoyView({ curso }: { curso: Curso }) {
         </section>
 
         <WeekStrip dias={dias} hoy={hoy} />
+
+        {temaPractica && (
+          <Link href={`/tema/${temaPractica}/repasar`} className={styles.practica}>
+            <span className={styles.pIcono}>🎯</span>
+            <span className={styles.pTexto}><strong>Practicar cuando quieras</strong><span className={`${styles.muted} ${styles.small}`}>{nDebiles > 0 ? `${nDebiles} ${nDebiles === 1 ? 'punto débil' : 'puntos débiles'} · no cambia tus fechas` : 'Repasa lo que ya viste · no cambia tus fechas'}</span></span>
+            <span className={styles.muted}>›</span>
+          </Link>
+        )}
 
         {paso && proximos.length > 0 && (
           <section className={styles.camino}>

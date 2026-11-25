@@ -2,7 +2,6 @@
 import { useMemo } from 'react';
 import { Flame } from '@/components/atoms/Flame';
 import { Screen } from '@/components/atoms/Screen';
-import { AccountLink } from '@/components/molecules/AccountLink';
 import { useProgresoCurso } from '@/context/ProgresoContext';
 import { progressStore } from '@/lib/progressStore';
 import { INTERVALOS } from '@/utils/spacedRepetition';
@@ -25,7 +24,7 @@ export function ProgresoView() {
   return (
     <Screen>
       <div className={styles.col}>
-        <div className={styles.cab}><h1 className={styles.h1}>Progreso</h1><AccountLink /></div>
+        <h1 className={styles.h1}>Progreso</h1>
 
         <section className={styles.nivel}>
           <span className={styles.n}>{nv.nivel}</span>

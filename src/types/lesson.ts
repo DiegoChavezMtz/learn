@@ -14,6 +14,7 @@ export type Tarjeta = Base &
     | { tipo: 'preprueba'; pregunta: string; opciones: string[]; correcta: number }
     | { tipo: 'reflexion'; pregunta: string; opciones: string[]; nota?: string }
     | { tipo: 'abierta'; pregunta: string; opcional?: boolean }
+    | { tipo: 'corta'; pregunta: string; respuesta: string; puntos?: string[]; repaso?: boolean; capa?: number }
     | { tipo: 'explica'; prompt: string; puntos: string[]; segundos?: number; repaso?: boolean; capa?: number }
   );
 
@@ -29,4 +30,4 @@ export type SesionLibro = { id: string; paso: string; titulo: string; md: string
 export type Libro = { tema: string; titulo: string; modulo: string; pregunta: string; sesiones: SesionLibro[] };
 
 /** Lo que el reproductor necesita para pintar una tarjeta. */
-export type ItemTarjeta = { tarjeta: Tarjeta; paso: Paso; repaso?: boolean };
+export type ItemTarjeta = { tarjeta: Tarjeta; paso: Paso; repaso?: boolean; libre?: boolean };

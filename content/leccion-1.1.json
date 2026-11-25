@@ -118,9 +118,9 @@
      "tipo": "video",
      "video": "V01",
      "titulo": "¿Por qué la red se divide en capas?",
-     "src": "/_blob/a85bea3d44c58a3180301f5c77bfdb0e",
-     "asset": "a85bea3d44c58a3180301f5c77bfdb0e",
-     "versionVideo": "brief-2026-11-23",
+     "src": "/_blob/fc1a59642b5e6b90931b83e2660ca780",
+     "asset": "fc1a59642b5e6b90931b83e2660ca780",
+     "versionVideo": "ruta-corregida-2026-11-23",
      "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V01-por-que-capas.mp4"
     },
     {
@@ -185,6 +185,17 @@
      "explica": "Nadie abre lo que no le corresponde. El chofer solo mira el tramo que le toca. Igual pasa con las capas."
     },
     {
+     "id": "md2-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "Cambias el cable por Wi-Fi y tu navegador sigue igual. ¿Por qué no se entera?",
+     "respuesta": "Porque está en otra capa: el cambio solo toca las capas de abajo, y cada capa usa el servicio de la de abajo sin saber cómo funciona por dentro.",
+     "puntos": [
+      "El cambio solo afecta a las capas de abajo (física/enlace)",
+      "Cada capa no conoce el interior de las demás; solo usa su servicio"
+     ]
+    },
+    {
      "id": "md2-mini",
      "tipo": "explica",
      "prompt": "¿Por qué se divide la red en capas? ¿Qué ganas con eso?",
@@ -214,10 +225,10 @@
      "tipo": "video",
      "video": "V02",
      "titulo": "OSI: el mapa de siete capas",
-     "src": "/_blob/a91d1bdbdec944e91d517d22d88656b8",
+     "src": "/_blob/3ad62bf6a63bb0ac9b1a717ca78b21c6",
      "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V02-osi-mapa-siete-capas.mp4",
-     "asset": "a91d1bdbdec944e91d517d22d88656b8",
-     "versionVideo": "vertical-2026-11-23"
+     "asset": "3ad62bf6a63bb0ac9b1a717ca78b21c6",
+     "versionVideo": "vertical-sin-ahora-tu-2026-11-23"
     },
     {
      "id": "md3a-torre",
@@ -253,8 +264,10 @@
      "tipo": "video",
      "video": "V03",
      "titulo": "Capas 1 y 2: la vida dentro de tu red",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/fd700a65bdab4f77c714cbc22dad8301",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V03-capas-1-y-2-dentro-de-mi-red.mp4",
+     "asset": "fd700a65bdab4f77c714cbc22dad8301",
+     "versionVideo": "vertical-sin-ahora-tu-2026-11-23"
     },
     {
      "id": "md3a-c1",
@@ -271,12 +284,22 @@
      "texto": "Lleva los datos entre equipos de la **misma red local**, usando **direcciones MAC** (una por tarjeta de red).\n\nLos datos viajan en **tramas**, que al final llevan un código para detectar errores.\n\nEquipos: **switch**, punto de acceso.\n\n**Capa 2 = dentro de mi red.**"
     },
     {
+     "id": "md3a-q6",
+     "tipo": "vf",
+     "repaso": true,
+     "afirmacion": "La capa 1 sabe a qué equipo va cada bit.",
+     "verdadera": false,
+     "explica": "La capa 1 solo transmite señales; no entiende de direcciones. Encontrar al equipo dentro de tu red es trabajo de la capa 2, con la MAC."
+    },
+    {
      "id": "video-v04",
      "tipo": "video",
      "video": "V04",
      "titulo": "Capa 3: cómo se llega a otra red",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/a6a122d25b6abc5dafd3ae49d63aa90a",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V04-capa-3-entre-redes.mp4",
+     "asset": "a6a122d25b6abc5dafd3ae49d63aa90a",
+     "versionVideo": "vertical-2026-11-23"
     },
     {
      "id": "md3a-c3",
@@ -338,6 +361,28 @@
      "explica": "Bits en la física, tramas en enlace, paquetes en red."
     },
     {
+     "id": "md3a-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "¿Qué diferencia hay entre una dirección MAC y una dirección IP?",
+     "respuesta": "La MAC (capa 2) identifica a una tarjeta de red y solo sirve dentro de la red local; la IP (capa 3) sirve para llegar a equipos en otras redes.",
+     "puntos": [
+      "MAC: capa 2, dentro de la red local",
+      "IP: capa 3, entre redes"
+     ]
+    },
+    {
+     "id": "md3a-corta2",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "¿Qué hace un router que no hace un switch?",
+     "respuesta": "Conecta redes distintas y decide por dónde sigue cada paquete según la IP de destino; el switch solo mueve tramas dentro de la misma red usando la MAC.",
+     "puntos": [
+      "Router: capa 3, entre redes, decide la ruta por IP",
+      "Switch: capa 2, dentro de la red, usa MAC"
+     ]
+    },
+    {
      "id": "md3a-mini",
      "tipo": "explica",
      "prompt": "Di las 7 capas en orden y, para las capas 1, 2 y 3: qué problema resuelve cada una, su unidad de datos, su dirección y su equipo típico.",
@@ -367,8 +412,10 @@
      "tipo": "video",
      "video": "V05",
      "titulo": "Capa 4: ¿a qué programa va el mensaje?",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/76da1ed1c05b83f6e0aa306997b1c8c9",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V05-capa-4-puertos.mp4",
+     "asset": "76da1ed1c05b83f6e0aa306997b1c8c9",
+     "versionVideo": "vertical-2026-11-23"
     },
     {
      "id": "md3b-c4",
@@ -408,8 +455,10 @@
      "tipo": "video",
      "video": "V06",
      "titulo": "Capas 5, 6 y 7: lo que ve la aplicación",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/02c46cfbdd38532d9ba0c75b308f6525",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V06-capas-5-a-7-lo-que-ve-la-app.mp4",
+     "asset": "02c46cfbdd38532d9ba0c75b308f6525",
+     "versionVideo": "vertical-vozpy-2026-11-24"
     },
     {
      "id": "md3b-c5",
@@ -473,6 +522,28 @@
      "explica": "Los puertos son la dirección de la capa 4. Bloquear el 22 corta SSH."
     },
     {
+     "id": "md3b-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "Llega un paquete a tu computadora. ¿Cómo sabe si es para el navegador o para WhatsApp?",
+     "respuesta": "Por el puerto de destino (capa 4): cada programa escucha en su propio puerto.",
+     "puntos": [
+      "El puerto de destino",
+      "Es la dirección de la capa 4 / transporte"
+     ]
+    },
+    {
+     "id": "md3b-corta2",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "¿Por qué en la práctica las capas 5, 6 y 7 casi siempre se ven como una sola?",
+     "respuesta": "Porque sus funciones (diálogo, formato y cifrado, servicio) las resuelve la propia aplicación o protocolos como TLS, no capas separadas.",
+     "puntos": [
+      "Las resuelve la propia aplicación o protocolos como TLS",
+      "Por eso TCP/IP las junta en la capa de aplicación"
+     ]
+    },
+    {
      "id": "md3b-mini",
      "tipo": "explica",
      "prompt": "¿Qué hace la capa 4 y qué dirección usa? ¿Qué aporta cada una de las capas 5, 6 y 7, y por qué en la práctica se funden?",
@@ -503,8 +574,10 @@
      "tipo": "video",
      "video": "V07",
      "titulo": "TCP/IP: las cuatro capas de internet",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/356b448c2e7ece89cf43086083788bfb",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V07-tcpip-cuatro-capas.mp4",
+     "asset": "356b448c2e7ece89cf43086083788bfb",
+     "versionVideo": "vertical-vozpy-2026-11-24"
     },
     {
      "id": "md4-capas",
@@ -556,8 +629,10 @@
      "tipo": "video",
      "video": "V08",
      "titulo": "Diagnosticas con OSI, implementas con TCP/IP",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/8e7599b493bcf86e99511b439bb99d57",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V08-diagnosticar-con-osi-implementar-con-tcpip.mp4",
+     "asset": "8e7599b493bcf86e99511b439bb99d57",
+     "versionVideo": "vertical-vozpy-2026-11-24"
     },
     {
      "id": "md4-comparar",
@@ -585,6 +660,17 @@
      ],
      "correcta": 0,
      "explica": "Los números de capa que se usan al diagnosticar vienen de OSI. En TCP/IP, la capa 3 equivale a la capa internet."
+    },
+    {
+     "id": "md4-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "Si internet corre sobre TCP/IP, ¿para qué sigue sirviendo OSI?",
+     "respuesta": "Como mapa para pensar y diagnosticar: sus números de capa son el lenguaje común (“es un problema de capa 2”).",
+     "puntos": [
+      "Sirve para pensar y diagnosticar",
+      "Da un lenguaje común con números de capa"
+     ]
     },
     {
      "id": "md4-mini",
@@ -662,6 +748,19 @@
      "capa": 1
     },
     {
+     "id": "md5a-q6",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "Cuando IP agrega su encabezado en tu PC, ¿qué IP de destino pone?",
+     "opciones": [
+      "La del servidor, el destino final",
+      "La de tu router",
+      "La de tu propia PC"
+     ],
+     "correcta": 0,
+     "explica": "La IP de destino siempre es la del destino final. Lo que apunta al router es la MAC de la trama, no la IP."
+    },
+    {
      "id": "video-v10",
      "tipo": "video",
      "video": "V10",
@@ -735,6 +834,29 @@
      "afirmacion": "El TTL va en el encabezado TCP.",
      "verdadera": false,
      "explica": "El TTL va en el encabezado IP (capa 3): limita cuántos saltos entre routers puede dar el paquete."
+    },
+    {
+     "id": "md5a-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "Tu PC manda una petición a un servidor de internet. ¿A qué MAC va la trama y por qué?",
+     "respuesta": "A la MAC del router (gateway), porque el servidor está en otra red y la MAC solo sirve dentro de la red local.",
+     "puntos": [
+      "Va a la MAC del router / gateway",
+      "Porque el destino está fuera de la red y la MAC solo vale localmente"
+     ]
+    },
+    {
+     "id": "md5a-corta2",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "¿Qué agrega cada capa al encapsular una petición web, de la 4 a la 2?",
+     "respuesta": "Capa 4: TCP con los puertos (segmento). Capa 3: IP con las direcciones IP y el TTL (paquete). Capa 2: Ethernet con las MAC y el FCS al final (trama).",
+     "puntos": [
+      "Capa 4: puertos → segmento",
+      "Capa 3: IP origen/destino y TTL → paquete",
+      "Capa 2: MAC origen/destino y FCS → trama"
+     ]
     },
     {
      "id": "md5a-mini",
@@ -861,6 +983,18 @@
       "Poco: ya lo sabía y ahora sé explicarlo"
      ],
      "nota": "Sirve para medir cuánto movió el tema tus ideas previas."
+    },
+    {
+     "id": "md5b-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "En cada salto por un router, ¿qué cambia y qué se mantiene?",
+     "respuesta": "Cambian las MAC (cada tramo arma una trama nueva) y baja el TTL; las IP de origen y destino se mantienen (salvo NAT).",
+     "puntos": [
+      "Cambian las MAC",
+      "Baja el TTL en 1",
+      "Las IP se mantienen (salvo NAT)"
+     ]
     },
     {
      "id": "md5b-mini",
@@ -1109,6 +1243,17 @@
      "explica": "El FCS es un tráiler: Ethernet lo pone al final de la trama para detectar errores."
     },
     {
+     "id": "md7-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "¿Por qué ARP no encaja limpio en una sola capa?",
+     "respuesta": "Porque sirve a la capa 3 (traduce IP a MAC) pero viaja directo dentro de una trama Ethernet, sin encabezado IP.",
+     "puntos": [
+      "Traduce IP a MAC: sirve a la capa 3",
+      "Viaja dentro de Ethernet sin encabezado IP"
+     ]
+    },
+    {
      "id": "md7-mini",
      "tipo": "explica",
      "prompt": "¿Por qué ARP es una pregunta trampa al clasificarlo en una capa?",
@@ -1280,6 +1425,17 @@
       "Reinicio todo y veo si se arregla"
      ],
      "nota": "Compara con lo que respondiste en la primera sesión. Revisar de abajo hacia arriba evita perder tiempo."
+    },
+    {
+     "id": "md8-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "El ping a 8.8.8.8 funciona, pero ninguna página abre por nombre. ¿Qué capa sospechas y por qué?",
+     "respuesta": "La capa 7 (DNS): hasta la capa 3 todo funciona porque el ping a una IP responde; lo que falla es convertir nombres en IP.",
+     "puntos": [
+      "Capa 7 / aplicación, DNS",
+      "El ping a una IP demuestra que hasta la capa 3 funciona"
+     ]
     },
     {
      "id": "md8-mini",

@@ -18,11 +18,10 @@ export function Video({ tarjeta: c, kicker, onNext, stats }: CardProps<Extract<T
     <>
       <span className={styles.kicker}>{kicker} · video de 1 minuto</span>
       <h2>{c.titulo}</h2>
-      <video ref={ref} className={styles.video} src={c.src} controls playsInline preload="metadata" crossOrigin="anonymous" onError={() => setFallo(true)}>
-        {c.subs && <track kind="subtitles" srcLang="es" label="Español" src={c.subs} default />}
+      <video ref={ref} className={styles.video} src={c.src} controls playsInline preload="metadata" onError={() => setFallo(true)}>
       </video>
       {fallo && <p className={`${styles.note} ${styles.err}`}>El video no se pudo cargar. Puedes continuar sin él.</p>}
-      <p className={`${styles.muted} ${styles.small}`}>Míralo con atención: justo después vas a explicarlo tú.</p>
+      <p className={`${styles.muted} ${styles.small}`}>Míralo con atención: enseguida lo practicas.</p>
       <div className={styles.actions}><Button onClick={continuar}>Continuar</Button></div>
     </>
   );

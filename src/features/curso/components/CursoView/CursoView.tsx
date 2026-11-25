@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import { Button } from '@/components/atoms/Button';
 import { Flame } from '@/components/atoms/Flame';
 import { Screen } from '@/components/atoms/Screen';
-import { AccountLink } from '@/components/molecules/AccountLink';
 import { useProgresoCurso } from '@/context/ProgresoContext';
 import { useOfflineWarm } from '@/hooks/useOfflineWarm';
 import type { Curso, ModuloCurso, TemaCurso } from '@/types/curso';
@@ -98,7 +97,6 @@ export function CursoView({ curso }: { curso: Curso }) {
           </div>
           <div className={styles.acciones}>
             {iAncla >= 0 && <button type="button" className={styles.loc} onClick={dondeVoy}>📍 Dónde voy</button>}
-            <AccountLink />
           </div>
         </div>
 

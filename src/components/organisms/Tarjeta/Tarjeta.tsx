@@ -5,6 +5,7 @@ import type { Evaluador } from '@/types/tutor';
 import { layerColor, pasoColor } from '@/utils/lesson';
 import { Abierta } from './Abierta';
 import { Concepto } from './Concepto';
+import { Corta } from './Corta';
 import { Explica } from './Explica';
 import { Opcion } from './Opcion';
 import { Orden } from './Orden';
@@ -18,10 +19,10 @@ import { Video } from './Video';
 type Props = { item: ItemTarjeta; onNext: () => void; stats: StatsApi; evaluar?: Evaluador };
 
 export function Tarjeta({ item, onNext, stats, evaluar }: Props) {
-  const { tarjeta: t, paso, repaso } = item;
+  const { tarjeta: t, paso, repaso, libre } = item;
   const capa = 'capa' in t ? t.capa : undefined;
   const color = capa ? layerColor(capa) : pasoColor[paso] ?? 'var(--accent)';
-  const p = { onNext, stats, kicker: repaso ? 'Repaso' : paso };
+  const p = { onNext, stats, kicker: libre ? 'Práctica libre' : repaso ? 'Repaso' : paso };
 
   let cuerpo: React.ReactNode;
   switch (t.tipo) {
@@ -33,6 +34,7 @@ export function Tarjeta({ item, onNext, stats, evaluar }: Props) {
     case 'reflexion': cuerpo = <Reflexion tarjeta={t} {...p} />; break;
     case 'video': cuerpo = <Video tarjeta={t} {...p} />; break;
     case 'abierta': cuerpo = <Abierta tarjeta={t} {...p} />; break;
+    case 'corta': cuerpo = <Corta tarjeta={t} {...p} evaluar={evaluar} />; break;
     case 'explica': cuerpo = <Explica tarjeta={t} {...p} evaluar={evaluar} />; break;
   }
   return <article className={styles.card} style={{ '--cc': color } as CSSProperties}>{cuerpo}</article>;

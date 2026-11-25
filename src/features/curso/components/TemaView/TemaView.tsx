@@ -48,7 +48,8 @@ export function TemaView({ tema: t, modulo, anterior, siguiente, hayLibro, video
               ) : (
                 <div className={styles.paso}><strong>¡Tema completado! 🏆</strong><span>Repásalo cuando quieras; tus repasos volverán solos.</span></div>
               )}
-              {nRepasos > 0 && <Button variant="ghost" small href={`/tema/${t.id}/repaso`}>Repasar ({nRepasos})</Button>}
+              {nRepasos > 0 && <Button variant="ghost" small href={`/tema/${t.id}/repaso`}>Repasos de hoy ({nRepasos})</Button>}
+              {hechos.length > 0 && <Button variant="ghost" small href={`/tema/${t.id}/repasar`}>Practicar lo que ya viste</Button>}
             </>
           ) : (
             <p className={styles.preg}>Estamos preparando este tema. Cuando esté listo, se abre solo.</p>

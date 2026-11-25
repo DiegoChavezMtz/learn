@@ -9,6 +9,8 @@ export type StatsApi = {
   participar: () => void;
   guardarTexto: (tarjetaId: string, texto: string) => void;
   guardarMini: (mini: Mini, ia: Evaluacion | null) => void;
+  /** Respuesta corta: solo ✅ cuenta como acierto; XP según la revisó el tutor (escala) o la persona (fijo). */
+  corta: (resultado: Mini, tutor: boolean) => void;
 };
 
 export type CardProps<T> = { tarjeta: T; kicker: string; onNext: () => void; stats: StatsApi; evaluar?: Evaluador };
