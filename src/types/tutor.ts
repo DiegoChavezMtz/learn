@@ -1,7 +1,7 @@
 import type { Evaluacion } from './progreso';
 
-/** `explica` (1 a 5 min) o `corta` (1-2 frases, con respuesta de referencia). */
-export type PeticionTutor = { tipo?: 'explica' | 'corta'; prompt: string; puntos: string[]; texto: string; token: string; referencia?: string };
+/** `explica` (1 a 5 min) o `corta` (1-2 frases, con respuesta de referencia). `pista`: la que ya se dio, en el segundo intento de la corta. */
+export type PeticionTutor = { tipo?: 'explica' | 'corta'; prompt: string; puntos: string[]; texto: string; token: string; referencia?: string; pista?: string };
 export type RespuestaTutor =
   | { ok: true; evaluacion: Evaluacion }
   | { ok: false; error: 'sin-sesion' | 'no-disponible' | 'texto-invalido' };

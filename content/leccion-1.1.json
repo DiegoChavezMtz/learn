@@ -3,98 +3,747 @@
  "titulo": "Modelos OSI y TCP/IP; encapsulación",
  "modulo": "Módulo 1 · Fundamentos de redes",
  "pregunta": "¿Por qué la red se organiza en capas y qué le pasa a un mensaje desde que sale de una app hasta que viaja por el cable?",
+ "version": "v0.13",
  "mapa": [
-  "md1",
-  "md2",
-  "md3a",
-  "md3b",
-  "md4",
-  "md5a",
-  "md5b",
-  "md6",
-  "md7",
-  "md8",
-  "bl1",
-  "md9",
-  "md10",
-  "md11"
+  "s01",
+  "s02",
+  "s03",
+  "s04",
+  "s05",
+  "s06",
+  "s07",
+  "s08",
+  "s09",
+  "s10",
+  "s11",
+  "s12",
+  "s13",
+  "s14",
+  "s15",
+  "s16",
+  "s17",
+  "s18",
+  "s19",
+  "s20",
+  "s21",
+  "s22",
+  "s23"
  ],
+ "conceptos": [
+  {
+   "id": "porque-capas",
+   "nombre": "Por qué la red se divide en capas"
+  },
+  {
+   "id": "osi-capas",
+   "nombre": "Las 7 capas de OSI"
+  },
+  {
+   "id": "capa1",
+   "nombre": "Capa 1 · Física"
+  },
+  {
+   "id": "capa2",
+   "nombre": "Capa 2 · Enlace, MAC y switch"
+  },
+  {
+   "id": "capa3",
+   "nombre": "Capa 3 · Red, IP y router"
+  },
+  {
+   "id": "capa4",
+   "nombre": "Capa 4 · Transporte y puertos"
+  },
+  {
+   "id": "capas-altas",
+   "nombre": "Capas 5, 6 y 7"
+  },
+  {
+   "id": "tcpip",
+   "nombre": "El modelo TCP/IP"
+  },
+  {
+   "id": "osi-vs-tcpip",
+   "nombre": "Para qué sirve cada modelo"
+  },
+  {
+   "id": "rfc1122",
+   "nombre": "Lo que dice el RFC 1122"
+  },
+  {
+   "id": "encapsular",
+   "nombre": "Encapsular y sus nombres"
+  },
+  {
+   "id": "encabezados",
+   "nombre": "Qué pone cada encabezado"
+  },
+  {
+   "id": "mac-destino",
+   "nombre": "A qué MAC va la trama (y ARP)"
+  },
+  {
+   "id": "saltos",
+   "nombre": "Qué cambia en cada salto"
+  },
+  {
+   "id": "desencapsular",
+   "nombre": "Desencapsular"
+  },
+  {
+   "id": "diagnostico",
+   "nombre": "Diagnosticar por capas"
+  }
+ ],
+ "diagnostico": {
+  "inicial": [
+   {
+    "id": "di-01",
+    "tipo": "preprueba",
+    "concepto": "porque-capas",
+    "pregunta": "¿Para qué se divide la red en capas?",
+    "opciones": [
+     "Para que los datos viajen más rápido",
+     "Para que cada marca haga su versión",
+     "Para cambiar una parte sin romper las demás",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-02",
+    "tipo": "preprueba",
+    "concepto": "osi-capas",
+    "pregunta": "¿Cuántas capas tiene el modelo OSI?",
+    "opciones": [
+     "5",
+     "7",
+     "4",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-03",
+    "tipo": "preprueba",
+    "concepto": "capa1",
+    "pregunta": "¿Qué hace la capa física?",
+    "opciones": [
+     "Convierte los bits en señales",
+     "Elige la ruta entre redes",
+     "Identifica al programa de destino",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "di-04",
+    "tipo": "preprueba",
+    "concepto": "capa2",
+    "pregunta": "¿En qué capa trabaja un switch?",
+    "opciones": [
+     "Capa 3",
+     "Capa 4",
+     "Capa 2",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-05",
+    "tipo": "preprueba",
+    "concepto": "capa3",
+    "pregunta": "¿Qué dirección se usa para llegar a otra red?",
+    "opciones": [
+     "El puerto",
+     "La IP",
+     "La MAC",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-06",
+    "tipo": "preprueba",
+    "concepto": "capa4",
+    "pregunta": "¿Qué indica a qué programa va un mensaje?",
+    "opciones": [
+     "El puerto",
+     "La IP",
+     "La MAC",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "di-07",
+    "tipo": "preprueba",
+    "concepto": "capas-altas",
+    "pregunta": "Google Chrome, ¿es un protocolo de capa 7?",
+    "opciones": [
+     "Sí: el navegador es la capa 7",
+     "No: Chrome trabaja en la capa 4",
+     "No: es un programa que usa HTTP",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-08",
+    "tipo": "preprueba",
+    "concepto": "tcpip",
+    "pregunta": "¿Cuántas capas tiene el modelo TCP/IP?",
+    "opciones": [
+     "3",
+     "4",
+     "7",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-09",
+    "tipo": "preprueba",
+    "concepto": "osi-vs-tcpip",
+    "pregunta": "¿En qué se diferencian OSI y TCP/IP?",
+    "opciones": [
+     "OSI es un mapa; TCP/IP es lo que se usa",
+     "Son el mismo modelo con otro nombre",
+     "OSI es el moderno; TCP/IP ya no se usa",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "di-10",
+    "tipo": "preprueba",
+    "concepto": "rfc1122",
+    "pregunta": "¿IP garantiza que los datos lleguen?",
+    "opciones": [
+     "Sí; IP confirma cada paquete",
+     "Solo cuando es una red local",
+     "No; si hace falta, lo asegura TCP",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-11",
+    "tipo": "preprueba",
+    "concepto": "encapsular",
+    "pregunta": "¿Qué es encapsular?",
+    "opciones": [
+     "Comprimir los datos para enviarlos",
+     "Envolver los datos en encabezados",
+     "Cifrar los datos para protegerlos",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-12",
+    "tipo": "preprueba",
+    "concepto": "mac-destino",
+    "pregunta": "Tu PC manda datos a un servidor de internet. ¿A qué MAC va la trama?",
+    "opciones": [
+     "A la MAC de tu router",
+     "A la MAC del servidor",
+     "A todas las MAC de la red",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "di-13",
+    "tipo": "preprueba",
+    "concepto": "encabezados",
+    "pregunta": "¿En qué encabezado va el TTL?",
+    "opciones": [
+     "TCP",
+     "Ethernet",
+     "IP",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-14",
+    "tipo": "preprueba",
+    "concepto": "saltos",
+    "pregunta": "En cada salto por un router, ¿qué cambia?",
+    "opciones": [
+     "Los puertos",
+     "Las MAC",
+     "Las IP",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-15",
+    "tipo": "preprueba",
+    "concepto": "desencapsular",
+    "pregunta": "Al recibir, ¿qué encabezado quita primero el servidor?",
+    "opciones": [
+     "Ethernet",
+     "TCP",
+     "IP",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "di-16",
+    "tipo": "preprueba",
+    "concepto": "diagnostico",
+    "pregunta": "El ping a 8.8.8.8 funciona, pero ninguna página abre por nombre. ¿Qué capa falla?",
+    "opciones": [
+     "Capa 3 (IP)",
+     "Capa 1 (cable)",
+     "Capa 7 (DNS)",
+     "No sé"
+    ],
+    "correcta": 2
+   }
+  ],
+  "final": [
+   {
+    "id": "df-01",
+    "tipo": "preprueba",
+    "concepto": "porque-capas",
+    "pregunta": "Cambias el cable por Wi-Fi. ¿Qué capas tienen que cambiar?",
+    "opciones": [
+     "Todas las capas",
+     "Solo la de aplicación",
+     "Solo las de abajo",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-02",
+    "tipo": "preprueba",
+    "concepto": "osi-capas",
+    "pregunta": "¿Qué capa de OSI va justo arriba de la de red?",
+    "opciones": [
+     "Sesión",
+     "Transporte",
+     "Enlace",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-03",
+    "tipo": "preprueba",
+    "concepto": "capa1",
+    "pregunta": "¿Qué hace un hub con lo que recibe?",
+    "opciones": [
+     "Repite la señal a todos sus puertos",
+     "Lo manda al puerto según la MAC",
+     "Lo manda a la red según la IP",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "df-04",
+    "tipo": "preprueba",
+    "concepto": "capa2",
+    "pregunta": "¿Hasta dónde sirve una dirección MAC?",
+    "opciones": [
+     "En cualquier parte de internet",
+     "Solo dentro de la computadora",
+     "Solo dentro de la red local",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-05",
+    "tipo": "preprueba",
+    "concepto": "capa3",
+    "pregunta": "¿Qué hace el router con cada paquete?",
+    "opciones": [
+     "Lo entrega al programa según el puerto",
+     "Decide por dónde sigue según la IP",
+     "Lo reparte a todos los equipos",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-06",
+    "tipo": "preprueba",
+    "concepto": "capa4",
+    "pregunta": "¿Qué protocolo confirma que todo llegue y en orden?",
+    "opciones": [
+     "TCP",
+     "UDP",
+     "IP",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "df-07",
+    "tipo": "preprueba",
+    "concepto": "capas-altas",
+    "pregunta": "El cifrado y la compresión, ¿a qué capa de OSI corresponden?",
+    "opciones": [
+     "Sesión (5)",
+     "Transporte (4)",
+     "Presentación (6)",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-08",
+    "tipo": "preprueba",
+    "concepto": "tcpip",
+    "pregunta": "¿Qué capa de TCP/IP agrupa las capas 1 y 2 de OSI?",
+    "opciones": [
+     "Transporte",
+     "Enlace",
+     "Internet",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-09",
+    "tipo": "preprueba",
+    "concepto": "osi-vs-tcpip",
+    "pregunta": "«Es un problema de capa 3»: ¿qué modelo da ese número?",
+    "opciones": [
+     "OSI",
+     "TCP/IP",
+     "Ninguno de los dos",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "df-10",
+    "tipo": "preprueba",
+    "concepto": "rfc1122",
+    "pregunta": "Según el RFC 1122, ¿qué es ICMP?",
+    "opciones": [
+     "Un protocolo de transporte, igual que TCP o UDP",
+     "Un protocolo de aplicación, igual que DNS o HTTP",
+     "Parte integral de IP, aunque viaja dentro de IP",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-11",
+    "tipo": "preprueba",
+    "concepto": "encapsular",
+    "pregunta": "¿Cómo se llama el mensaje que ya tiene encabezado TCP, pero aún no IP?",
+    "opciones": [
+     "Trama",
+     "Segmento",
+     "Paquete",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-12",
+    "tipo": "preprueba",
+    "concepto": "mac-destino",
+    "pregunta": "Tu PC no conoce la MAC de su router. ¿Qué usa para averiguarla?",
+    "opciones": [
+     "ARP",
+     "DNS",
+     "ICMP",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "df-13",
+    "tipo": "preprueba",
+    "concepto": "encabezados",
+    "pregunta": "¿Qué agrega Ethernet al final de la trama?",
+    "opciones": [
+     "El TTL",
+     "El puerto",
+     "El FCS",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-14",
+    "tipo": "preprueba",
+    "concepto": "saltos",
+    "pregunta": "Un paquete sale con TTL 64 y pasa por 4 routers. ¿Con qué TTL llega?",
+    "opciones": [
+     "68",
+     "60",
+     "64",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-15",
+    "tipo": "preprueba",
+    "concepto": "desencapsular",
+    "pregunta": "¿Cómo decide el servidor a qué programa entregar los datos?",
+    "opciones": [
+     "Por el puerto de destino",
+     "Por la MAC de destino",
+     "Por la IP de origen",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "df-16",
+    "tipo": "preprueba",
+    "concepto": "diagnostico",
+    "pregunta": "El LED del puerto del switch está apagado. ¿Qué capa revisas?",
+    "opciones": [
+     "Capa 2",
+     "Capa 3",
+     "Capa 1",
+     "No sé"
+    ],
+    "correcta": 2
+   }
+  ],
+  "retencion": [
+   {
+    "id": "dr-01",
+    "tipo": "preprueba",
+    "concepto": "porque-capas",
+    "pregunta": "¿Qué sabe una capa sobre el interior de las demás?",
+    "opciones": [
+     "Todo: las coordina",
+     "Solo cómo funciona la de arriba",
+     "Nada: solo usa su servicio",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-02",
+    "tipo": "preprueba",
+    "concepto": "osi-capas",
+    "pregunta": "¿Cuál es la capa 5 de OSI?",
+    "opciones": [
+     "Transporte",
+     "Sesión",
+     "Presentación",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-03",
+    "tipo": "preprueba",
+    "concepto": "capa1",
+    "pregunta": "¿Cómo se llama la unidad de datos de la capa 1?",
+    "opciones": [
+     "Bits",
+     "Trama",
+     "Paquete",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "dr-04",
+    "tipo": "preprueba",
+    "concepto": "capa2",
+    "pregunta": "¿Qué equipo es de capa 2?",
+    "opciones": [
+     "Router",
+     "Hub",
+     "Switch",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-05",
+    "tipo": "preprueba",
+    "concepto": "capa3",
+    "pregunta": "Llegas a los equipos de tu oficina, pero a nada de internet. ¿Qué capa sospechas primero?",
+    "opciones": [
+     "Capa 2",
+     "Capa 3",
+     "Capa 1",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-06",
+    "tipo": "preprueba",
+    "concepto": "capa4",
+    "pregunta": "¿Qué servicio usa normalmente el puerto 443?",
+    "opciones": [
+     "Web segura (HTTPS)",
+     "Resolución de nombres (DNS)",
+     "Terminal remota (SSH)",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "dr-07",
+    "tipo": "preprueba",
+    "concepto": "capas-altas",
+    "pregunta": "¿Qué capa de OSI controla cuándo empieza y termina el diálogo?",
+    "opciones": [
+     "Presentación (6)",
+     "Aplicación (7)",
+     "Sesión (5)",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-08",
+    "tipo": "preprueba",
+    "concepto": "tcpip",
+    "pregunta": "¿En qué capa de TCP/IP va el protocolo IP?",
+    "opciones": [
+     "Enlace",
+     "Internet",
+     "Transporte",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-09",
+    "tipo": "preprueba",
+    "concepto": "osi-vs-tcpip",
+    "pregunta": "¿Cuál de los dos modelos se diseñó antes de implementarse?",
+    "opciones": [
+     "OSI",
+     "TCP/IP",
+     "Los dos a la vez",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "dr-10",
+    "tipo": "preprueba",
+    "concepto": "rfc1122",
+    "pregunta": "Según el RFC 1122, si IP no garantiza la entrega, ¿quién la asegura cuando hace falta?",
+    "opciones": [
+     "La capa de enlace",
+     "El router de cada salto",
+     "La capa de transporte (TCP)",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-11",
+    "tipo": "preprueba",
+    "concepto": "encapsular",
+    "pregunta": "Al bajar por las capas, ¿qué viene justo después de «paquete»?",
+    "opciones": [
+     "Datos",
+     "Trama",
+     "Segmento",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-12",
+    "tipo": "preprueba",
+    "concepto": "mac-destino",
+    "pregunta": "El destino está en tu misma red. ¿A qué MAC va la trama?",
+    "opciones": [
+     "A la MAC de ese equipo",
+     "A la MAC del router",
+     "A la MAC de difusión",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "dr-13",
+    "tipo": "preprueba",
+    "concepto": "encabezados",
+    "pregunta": "¿En qué encabezado va el puerto de destino?",
+    "opciones": [
+     "IP",
+     "Ethernet",
+     "TCP o UDP",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-14",
+    "tipo": "preprueba",
+    "concepto": "saltos",
+    "pregunta": "Sin NAT, en el último tramo, ¿qué IP de origen lleva el paquete?",
+    "opciones": [
+     "La del primer router",
+     "La de tu PC",
+     "La del último router",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-15",
+    "tipo": "preprueba",
+    "concepto": "desencapsular",
+    "pregunta": "¿En qué orden quita los encabezados el servidor?",
+    "opciones": [
+     "Ethernet, IP, TCP",
+     "TCP, IP, Ethernet",
+     "IP, Ethernet, TCP",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "dr-16",
+    "tipo": "preprueba",
+    "concepto": "diagnostico",
+    "pregunta": "`ping` al servidor funciona, pero la web no carga: el firewall bloquea el 443. ¿Qué capa?",
+    "opciones": [
+     "Capa 3",
+     "Capa 7",
+     "Capa 4",
+     "No sé"
+    ],
+    "correcta": 2
+   }
+  ]
+ },
  "sesiones": [
   {
-   "id": "md1",
+   "id": "s01",
    "paso": "Orientar",
-   "titulo": "¿Qué sabes ya?",
-   "minutos": 5,
+   "titulo": "Un mensaje va a hacer un viaje",
+   "minutos": 3,
+   "libro": "md1",
    "tarjetas": [
     {
-     "id": "md1-intro",
+     "id": "s01-intro",
      "tipo": "concepto",
      "titulo": "Un mensaje va a hacer un viaje",
-     "texto": "En este tema vas a seguir a un mensaje desde tu navegador hasta un servidor al otro lado del mundo.\n\nAntes de aprender nada, responde lo que **crees**. Equivocarte aquí ayuda: prepara a tu cerebro para lo que viene.",
+     "texto": "En este tema vas a seguir a un mensaje desde tu navegador hasta un servidor al otro lado del mundo.\n\nAcabas de hacer el **diagnóstico inicial**. Equivocarte ahí ayuda: prepara a tu cerebro para lo que viene. Al final del tema lo repites y ves cuánto cambió.",
      "visual": "viaje"
     },
     {
-     "id": "pp1",
-     "tipo": "preprueba",
-     "pregunta": "¿Para qué se divide la red en capas?",
-     "opciones": [
-      "Para cambiar una parte sin romper las demás",
-      "Para que los datos viajen más rápido",
-      "Para que cada marca haga su propia versión",
-      "No sé"
-     ],
-     "correcta": 0
-    },
-    {
-     "id": "pp2",
-     "tipo": "preprueba",
-     "pregunta": "Tu PC le manda datos a un servidor en internet. ¿A qué MAC va la trama que sale de tu PC?",
-     "opciones": [
-      "A la MAC del servidor",
-      "A la MAC de tu router",
-      "A todas las MAC de la red",
-      "No sé"
-     ],
-     "correcta": 1
-    },
-    {
-     "id": "pp3",
-     "tipo": "preprueba",
-     "pregunta": "¿En qué capa trabaja un switch y en cuál un router?",
-     "opciones": [
-      "Switch en la 2, router en la 3",
-      "Switch en la 3, router en la 2",
-      "Los dos trabajan en la 3",
-      "No sé"
-     ],
-     "correcta": 0
-    },
-    {
-     "id": "pp4",
-     "tipo": "preprueba",
-     "pregunta": "¿Qué es encapsular?",
-     "opciones": [
-      "Cifrar los datos para protegerlos",
-      "Envolver los datos en encabezados",
-      "Comprimir los datos para enviarlos",
-      "No sé"
-     ],
-     "correcta": 1
-    },
-    {
-     "id": "pp5",
-     "tipo": "preprueba",
-     "pregunta": "¿En qué se diferencian OSI y TCP/IP?",
-     "opciones": [
-      "OSI es un mapa; TCP/IP es lo que se usa",
-      "Son el mismo modelo con otro nombre",
-      "OSI es el moderno; TCP/IP ya no se usa",
-      "No sé"
-     ],
-     "correcta": 0
-    },
-    {
-     "id": "md1-reflexion",
+     "id": "s01-reflexion",
      "tipo": "reflexion",
      "pregunta": "En tu trabajo alguien dice “no hay internet”. ¿Qué revisas primero?",
      "nota": "No hay respuesta incorrecta: es para ver cómo diagnosticas hoy. Al final del tema lo volvemos a ver.",
@@ -108,10 +757,11 @@
    ]
   },
   {
-   "id": "md2",
+   "id": "s02",
    "paso": "Exponer",
    "titulo": "¿Por qué capas?",
    "minutos": 8,
+   "libro": "md2",
    "tarjetas": [
     {
      "id": "video-v01",
@@ -124,21 +774,21 @@
      "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V01-por-que-capas.mp4"
     },
     {
-     "id": "md2-gancho",
+     "id": "s02-gancho",
      "tipo": "concepto",
      "titulo": "Cambias del cable al Wi-Fi…",
      "texto": "…y tu navegador sigue funcionando igual, sin enterarse de nada.\n\n¿Cómo es posible, si la señal ahora viaja por el aire y no por un cable?",
      "visual": "cablewifi"
     },
     {
-     "id": "md2-problemas",
+     "id": "s02-problemas",
      "tipo": "concepto",
      "titulo": "Los 4 problemas del video",
      "texto": "Toca cada problema para verlo. (Hay más; por ejemplo, cómo encontrar a un equipo dentro de tu propia red. Lo verás en la capa 2.)",
      "visual": "problemas"
     },
     {
-     "id": "md2-q1",
+     "id": "s02-q1",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "Imagina que toda la red fuera un solo programa. Si cambias el cable por Wi-Fi, ¿qué pasa?",
@@ -148,23 +798,33 @@
       "Solo cambia la velocidad de la red"
      ],
      "correcta": 0,
-     "explica": "Sin capas, todo depende de todo: tocar una pieza obliga a cambiar el resto."
+     "explica": "Sin capas, todo depende de todo: tocar una pieza obliga a cambiar el resto.",
+     "concepto": "porque-capas"
     },
     {
-     "id": "md2-regla",
+     "id": "s02-regla",
      "tipo": "concepto",
      "titulo": "La solución: capas",
      "texto": "Cada capa:\n\n**1.** Resuelve **un solo** tipo de problema.\n\n**2.** Le da un servicio a la capa de **arriba** y usa el de la capa de **abajo**.\n\n**3.** **No sabe** cómo trabajan las demás por dentro.\n\nPor eso cambiar el cable por Wi-Fi solo toca las capas de abajo."
     },
     {
-     "id": "md2-paqueteria",
+     "id": "s02-q2",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "porque-capas",
+     "afirmacion": "Cada capa conoce cómo funciona por dentro la capa de abajo.",
+     "verdadera": false,
+     "explica": "Solo usa su **servicio**. No sabe cómo trabaja por dentro: por eso puedes cambiar una sin tocar las demás."
+    },
+    {
+     "id": "s02-paqueteria",
      "tipo": "concepto",
      "titulo": "Como una paquetería",
      "texto": "Toca **Siguiente nivel** para ver cómo cada uno agrega lo suyo por fuera.",
      "visual": "paqueteria"
     },
     {
-     "id": "md2-q2",
+     "id": "s02-q3",
      "tipo": "orden",
      "repaso": true,
      "pregunta": "Ordena los niveles de la paquetería, de adentro hacia afuera:",
@@ -174,18 +834,35 @@
       "Guía con la dirección",
       "Camión"
      ],
-     "explica": "Cada nivel envuelve al anterior y agrega solo la información que necesita."
+     "explica": "Cada nivel envuelve al anterior y agrega solo la información que necesita.",
+     "concepto": "porque-capas"
     },
     {
-     "id": "md2-q3",
+     "id": "s02-q4",
      "tipo": "vf",
      "repaso": true,
      "afirmacion": "Para entregar el paquete, el chofer tiene que leer la carta.",
      "verdadera": false,
-     "explica": "Nadie abre lo que no le corresponde. El chofer solo mira el tramo que le toca. Igual pasa con las capas."
+     "explica": "Nadie abre lo que no le corresponde. El chofer solo mira el tramo que le toca. Igual pasa con las capas.",
+     "concepto": "porque-capas"
     },
     {
-     "id": "md2-corta1",
+     "id": "s02-q5",
+     "tipo": "error",
+     "repaso": true,
+     "concepto": "porque-capas",
+     "pregunta": "Toca la parte que está **mal**:",
+     "partes": [
+      "Cada capa resuelve un solo tipo de problema.",
+      "Cada capa usa el servicio de la de abajo.",
+      "Si cambias el cable por Wi-Fi, hay que actualizar el navegador.",
+      "Cada capa le da servicio a la de arriba."
+     ],
+     "incorrecta": 2,
+     "explica": "El navegador está arriba; el cambio de cable a Wi-Fi solo toca las capas de abajo."
+    },
+    {
+     "id": "s02-corta1",
      "tipo": "corta",
      "repaso": true,
      "pregunta": "Cambias el cable por Wi-Fi y tu navegador sigue igual. ¿Por qué no se entera?",
@@ -193,29 +870,31 @@
      "puntos": [
       "El cambio solo afecta a las capas de abajo (física/enlace)",
       "Cada capa no conoce el interior de las demás; solo usa su servicio"
-     ]
+     ],
+     "concepto": "porque-capas",
+     "pista": "Piensa en qué capas toca el cambio y qué sabe cada capa de las otras."
     },
     {
-     "id": "md2-mini",
+     "id": "s02-mini",
      "tipo": "explica",
-     "prompt": "¿Por qué se divide la red en capas? ¿Qué ganas con eso?",
+     "concepto": "porque-capas",
+     "prompt": "En una frase: ¿qué ganas al dividir la red en capas?",
      "puntos": [
-      "Comunicar equipos implica varios problemas distintos (señal, red local, otras redes, entrega completa, aplicación)",
-      "Cada capa resuelve un solo problema",
-      "Cada capa usa el servicio de la de abajo y da servicio a la de arriba, sin conocer su interior",
-      "Se puede cambiar una capa (por ejemplo, cable por Wi-Fi) sin romper las demás"
-     ]
+      "Se puede cambiar una capa sin romper las demás, porque cada una resuelve un solo problema y no conoce el interior de las otras"
+     ],
+     "segundos": 45
     }
    ]
   },
   {
-   "id": "md3a",
+   "id": "s03",
    "paso": "Exponer",
-   "titulo": "El mapa OSI y las capas 1 a 3",
-   "minutos": 10,
+   "titulo": "OSI: el mapa de siete capas",
+   "minutos": 7,
+   "libro": "md3a",
    "tarjetas": [
     {
-     "id": "md3a-gancho",
+     "id": "s03-gancho",
      "tipo": "concepto",
      "titulo": "“Es un problema de capa 2”",
      "texto": "Lo vas a oír en cualquier equipo de TI. ¿Capa 2 de qué?\n\nDel **modelo OSI**: un mapa de **7 capas** que publicó la ISO (norma ISO/IEC 7498-1). Internet no se construyó sobre él, pero todos usan sus números para **pensar y diagnosticar**."
@@ -231,20 +910,20 @@
      "versionVideo": "vertical-sin-ahora-tu-2026-11-23"
     },
     {
-     "id": "md3a-torre",
+     "id": "s03-torre",
      "tipo": "concepto",
      "titulo": "Las 7 capas",
      "texto": "Toca cada capa para ver qué hace.",
      "visual": "torre"
     },
     {
-     "id": "md3a-truco",
+     "id": "s03-truco",
      "tipo": "concepto",
      "titulo": "Un truco para el orden",
      "texto": "De la 1 a la 7, una palabra por capa:\n\n**F**íjate **E**n **R**edes, **T**odo **S**e **P**uede **A**prender\n\nFísica · Enlace · Red · Transporte · Sesión · Presentación · Aplicación"
     },
     {
-     "id": "md3a-q1",
+     "id": "s03-q1",
      "tipo": "orden",
      "repaso": true,
      "pregunta": "Ordena las capas de OSI, de abajo (1) hacia arriba (7):",
@@ -257,8 +936,98 @@
       "Presentación",
       "Aplicación"
      ],
-     "explica": "Fíjate En Redes, Todo Se Puede Aprender."
+     "explica": "Fíjate En Redes, Todo Se Puede Aprender.",
+     "concepto": "osi-capas"
     },
+    {
+     "id": "s03-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "osi-capas",
+     "pregunta": "¿Qué capa de OSI va justo arriba de la de red (3)?",
+     "opciones": [
+      "Transporte",
+      "Sesión",
+      "Enlace de datos"
+     ],
+     "correcta": 0,
+     "explica": "Física, enlace, red, **transporte**… Fíjate En Redes, **T**odo Se Puede Aprender."
+    },
+    {
+     "id": "s03-q3",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "osi-capas",
+     "pregunta": "Une cada número con su capa:",
+     "pares": [
+      [
+       "1",
+       "Física"
+      ],
+      [
+       "3",
+       "Red"
+      ],
+      [
+       "5",
+       "Sesión"
+      ],
+      [
+       "7",
+       "Aplicación"
+      ]
+     ],
+     "explica": "F·E·R·T·S·P·A: Fíjate En Redes, Todo Se Puede Aprender."
+    },
+    {
+     "id": "s03-q4",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "osi-capas",
+     "afirmacion": "Internet se construyó directamente sobre el modelo OSI.",
+     "verdadera": false,
+     "explica": "OSI es un mapa para pensar y diagnosticar. Internet corre sobre TCP/IP (lo verás pronto)."
+    },
+    {
+     "id": "s03-q5",
+     "tipo": "armar",
+     "repaso": true,
+     "concepto": "osi-capas",
+     "pregunta": "Arma la torre OSI de abajo hacia arriba. Sobran piezas:",
+     "piezas": [
+      "Física",
+      "Enlace de datos",
+      "Red",
+      "Transporte",
+      "Sesión",
+      "Presentación",
+      "Aplicación"
+     ],
+     "distractores": [
+      "Internet",
+      "Acceso"
+     ],
+     "explica": "«Internet» y «Acceso» son nombres de TCP/IP, no de OSI."
+    },
+    {
+     "id": "s03-mini",
+     "tipo": "explica",
+     "concepto": "osi-capas",
+     "prompt": "Di las 7 capas de OSI en orden, de abajo hacia arriba.",
+     "puntos": [
+      "Física, enlace, red, transporte, sesión, presentación, aplicación"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s04",
+   "paso": "Exponer",
+   "titulo": "Capas 1 y 2: dentro de tu red",
+   "minutos": 7,
+   "libro": "md3a",
+   "tarjetas": [
     {
      "id": "video-v03",
      "tipo": "video",
@@ -270,27 +1039,134 @@
      "versionVideo": "vertical-sin-ahora-tu-2026-11-23"
     },
     {
-     "id": "md3a-c1",
+     "id": "s04-c1",
      "tipo": "concepto",
      "titulo": "Capa 1 · Física",
      "capa": 1,
      "texto": "Convierte los **bits** en **señales**: pulsos eléctricos en un cable, luz en una fibra u ondas de radio.\n\n**No entiende de direcciones**: solo transmite.\n\nUnidad: **bits** · Equipos: cable, repetidor, hub."
     },
     {
-     "id": "md3a-c2",
+     "id": "s04-q1",
+     "tipo": "vf",
+     "repaso": true,
+     "afirmacion": "La capa 1 sabe a qué equipo va cada bit.",
+     "verdadera": false,
+     "explica": "La capa 1 solo transmite señales; no entiende de direcciones. Encontrar al equipo dentro de tu red es trabajo de la capa 2, con la MAC.",
+     "concepto": "capa1"
+    },
+    {
+     "id": "s04-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "Una PC se quedó sin cable de red. ¿Qué capa está fallando?",
+     "opciones": [
+      "Capa 1 · Física",
+      "Capa 2 · Enlace",
+      "Capa 3 · Red"
+     ],
+     "correcta": 0,
+     "explica": "Sin señal física no hay nada más arriba: capa 1.",
+     "concepto": "capa1"
+    },
+    {
+     "id": "s04-c2",
      "tipo": "concepto",
      "titulo": "Capa 2 · Enlace de datos",
      "capa": 2,
      "texto": "Lleva los datos entre equipos de la **misma red local**, usando **direcciones MAC** (una por tarjeta de red).\n\nLos datos viajan en **tramas**, que al final llevan un código para detectar errores.\n\nEquipos: **switch**, punto de acceso.\n\n**Capa 2 = dentro de mi red.**"
     },
     {
-     "id": "md3a-q6",
+     "id": "s04-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "capa2",
+     "pregunta": "¿Qué equipo usa la dirección MAC para mandar cada trama al equipo correcto?",
+     "opciones": [
+      "El switch",
+      "El hub",
+      "El repetidor"
+     ],
+     "correcta": 0,
+     "explica": "El switch es de capa 2: lee la MAC. El hub y el repetidor solo repiten señales (capa 1)."
+    },
+    {
+     "id": "s04-q4",
      "tipo": "vf",
      "repaso": true,
-     "afirmacion": "La capa 1 sabe a qué equipo va cada bit.",
-     "verdadera": false,
-     "explica": "La capa 1 solo transmite señales; no entiende de direcciones. Encontrar al equipo dentro de tu red es trabajo de la capa 2, con la MAC."
+     "concepto": "capa2",
+     "afirmacion": "La trama lleva al final un código para detectar errores.",
+     "verdadera": true,
+     "explica": "Ese código se llama **FCS**. Lo verás de nuevo en la encapsulación."
     },
+    {
+     "id": "s04-q5",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "capa2",
+     "pregunta": "¿Capa 1 o capa 2?",
+     "grupos": [
+      "Capa 1 · Física",
+      "Capa 2 · Enlace"
+     ],
+     "items": [
+      {
+       "texto": "Cable UTP",
+       "grupo": 0
+      },
+      {
+       "texto": "Hub",
+       "grupo": 0
+      },
+      {
+       "texto": "Ondas de radio",
+       "grupo": 0
+      },
+      {
+       "texto": "Switch",
+       "grupo": 1
+      },
+      {
+       "texto": "Dirección MAC",
+       "grupo": 1
+      },
+      {
+       "texto": "Trama",
+       "grupo": 1
+      }
+     ],
+     "explica": "Capa 1 = señales, sin direcciones. Capa 2 = dentro de tu red, con MAC."
+    },
+    {
+     "id": "s04-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "capa1",
+     "pregunta": "¿Por qué la capa 1 no puede entregar los datos a un equipo concreto?",
+     "respuesta": "Porque no entiende de direcciones: solo convierte bits en señales y los transmite.",
+     "puntos": [
+      "No maneja direcciones; solo transmite señales"
+     ],
+     "pista": "¿Qué dirección usa la capa 1?"
+    },
+    {
+     "id": "s04-mini",
+     "tipo": "explica",
+     "concepto": "capa2",
+     "prompt": "En una frase: ¿qué problema resuelve la capa 2?",
+     "puntos": [
+      "Llevar los datos entre equipos de la misma red local, usando direcciones MAC"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s05",
+   "paso": "Exponer",
+   "titulo": "Capa 3: llegar a otra red",
+   "minutos": 8,
+   "libro": "md3a",
+   "tarjetas": [
     {
      "id": "video-v04",
      "tipo": "video",
@@ -302,14 +1178,14 @@
      "versionVideo": "vertical-2026-11-23"
     },
     {
-     "id": "md3a-c3",
+     "id": "s05-c3",
      "tipo": "concepto",
      "titulo": "Capa 3 · Red",
      "capa": 3,
      "texto": "Lleva los datos **entre redes distintas**, usando **direcciones IP**.\n\nLos datos viajan en **paquetes**. El **router** conecta redes y decide por dónde sigue cada paquete, un tramo a la vez.\n\nAquí viven IPv4, IPv6 e ICMP (el que usa `ping`).\n\n**Capa 3 = entre redes.**"
     },
     {
-     "id": "md3a-q2",
+     "id": "s05-q1",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "La dirección MAC, ¿hasta dónde sirve?",
@@ -319,23 +1195,25 @@
       "Solo dentro de tu computadora"
      ],
      "correcta": 0,
-     "explica": "La MAC identifica la tarjeta de red y solo vale dentro de tu red local. Para salir, hace falta la capa 3."
+     "explica": "La MAC identifica la tarjeta de red y solo vale dentro de tu red local. Para salir, hace falta la capa 3.",
+     "concepto": "capa2"
     },
     {
-     "id": "md3a-q3",
+     "id": "s05-q2",
      "tipo": "opcion",
      "repaso": true,
-     "pregunta": "Una PC se quedó sin cable de red. ¿Qué capa está fallando?",
+     "concepto": "capa3",
+     "pregunta": "Tu PC quiere llegar a un servidor en otro país. ¿Qué dirección le sirve para llegar hasta allá?",
      "opciones": [
-      "Capa 1 · Física",
-      "Capa 2 · Enlace",
-      "Capa 3 · Red"
+      "La IP del servidor",
+      "La MAC del servidor",
+      "El puerto del servidor"
      ],
      "correcta": 0,
-     "explica": "Sin señal física no hay nada más arriba: capa 1."
+     "explica": "La IP es la dirección de capa 3: sirve **entre redes**. La MAC solo vale en tu red local."
     },
     {
-     "id": "md3a-q4",
+     "id": "s05-q3",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "Llegas a los equipos de tu oficina, pero a nada de internet. ¿Qué capa sospechas primero?",
@@ -345,10 +1223,11 @@
       "Capa 3 · Red"
      ],
      "correcta": 2,
-     "explica": "Llegar a otras redes es trabajo de la capa 3 (IP y router). Es una primera sospecha, no un diagnóstico definitivo."
+     "explica": "Llegar a otras redes es trabajo de la capa 3 (IP y router). Es una primera sospecha, no un diagnóstico definitivo.",
+     "concepto": "capa3"
     },
     {
-     "id": "md3a-q5",
+     "id": "s05-q4",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿Cómo se llaman los datos en las capas 1, 2 y 3?",
@@ -358,10 +1237,73 @@
       "Bits, paquete, trama"
      ],
      "correcta": 0,
-     "explica": "Bits en la física, tramas en enlace, paquetes en red."
+     "explica": "Bits en la física, tramas en enlace, paquetes en red.",
+     "concepto": "encabezados"
     },
     {
-     "id": "md3a-corta1",
+     "id": "s05-q5",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "capa3",
+     "afirmacion": "ICMP, el protocolo que usa `ping`, es de capa 3.",
+     "verdadera": true,
+     "explica": "ICMP viaja dentro de IP y se considera parte de la capa de red."
+    },
+    {
+     "id": "s05-q6",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "capa3",
+     "pregunta": "¿Dentro de mi red o entre redes?",
+     "grupos": [
+      "Dentro de mi red (capa 2)",
+      "Entre redes (capa 3)"
+     ],
+     "items": [
+      {
+       "texto": "Switch",
+       "grupo": 0
+      },
+      {
+       "texto": "Dirección MAC",
+       "grupo": 0
+      },
+      {
+       "texto": "Trama",
+       "grupo": 0
+      },
+      {
+       "texto": "Router",
+       "grupo": 1
+      },
+      {
+       "texto": "Dirección IP",
+       "grupo": 1
+      },
+      {
+       "texto": "Paquete",
+       "grupo": 1
+      }
+     ],
+     "explica": "Capa 2 = dentro de mi red. Capa 3 = entre redes."
+    },
+    {
+     "id": "s05-q7",
+     "tipo": "error",
+     "repaso": true,
+     "concepto": "capa3",
+     "pregunta": "Toca la parte que está **mal**:",
+     "partes": [
+      "El router conecta redes distintas.",
+      "El router decide la ruta con la MAC de destino.",
+      "El paquete avanza un tramo a la vez.",
+      "Los datos viajan en paquetes."
+     ],
+     "incorrecta": 1,
+     "explica": "El router decide la ruta con la **IP** de destino. La MAC solo sirve dentro de cada red."
+    },
+    {
+     "id": "s05-corta1",
      "tipo": "corta",
      "repaso": true,
      "pregunta": "¿Qué diferencia hay entre una dirección MAC y una dirección IP?",
@@ -369,40 +1311,31 @@
      "puntos": [
       "MAC: capa 2, dentro de la red local",
       "IP: capa 3, entre redes"
-     ]
+     ],
+     "concepto": "capa3",
+     "pista": "Piensa en qué capa está cada una y hasta dónde sirve."
     },
     {
-     "id": "md3a-corta2",
-     "tipo": "corta",
-     "repaso": true,
-     "pregunta": "¿Qué hace un router que no hace un switch?",
-     "respuesta": "Conecta redes distintas y decide por dónde sigue cada paquete según la IP de destino; el switch solo mueve tramas dentro de la misma red usando la MAC.",
-     "puntos": [
-      "Router: capa 3, entre redes, decide la ruta por IP",
-      "Switch: capa 2, dentro de la red, usa MAC"
-     ]
-    },
-    {
-     "id": "md3a-mini",
+     "id": "s05-mini",
      "tipo": "explica",
-     "prompt": "Di las 7 capas en orden y, para las capas 1, 2 y 3: qué problema resuelve cada una, su unidad de datos, su dirección y su equipo típico.",
+     "concepto": "capa3",
+     "prompt": "¿Qué hace un router que no hace un switch?",
      "puntos": [
-      "Orden: física, enlace, red, transporte, sesión, presentación, aplicación",
-      "Capa 1: bits como señales, sin direcciones; cable, hub",
-      "Capa 2: dentro de la red local; MAC; trama; switch",
-      "Capa 3: entre redes; IP; paquete; router"
-     ]
+      "Conecta redes distintas y decide por dónde sigue cada paquete según la IP de destino (el switch solo mueve tramas dentro de la red, con la MAC)"
+     ],
+     "segundos": 45
     }
    ]
   },
   {
-   "id": "md3b",
+   "id": "s06",
    "paso": "Exponer",
-   "titulo": "Las capas 4 a 7",
-   "minutos": 10,
+   "titulo": "Capa 4: ¿a qué programa va?",
+   "minutos": 7,
+   "libro": "md3b",
    "tarjetas": [
     {
-     "id": "md3b-gancho",
+     "id": "s06-gancho",
      "tipo": "concepto",
      "titulo": "¿A qué programa va?",
      "texto": "Tienes abiertos el navegador, WhatsApp y Spotify al mismo tiempo. Llega un paquete con tu IP. ¿Cómo sabe tu computadora a cuál de los tres le toca?\n\nLa IP lleva el mensaje hasta la **computadora**. Falta llegar al **programa**: ese es trabajo de la capa 4."
@@ -418,14 +1351,14 @@
      "versionVideo": "vertical-2026-11-23"
     },
     {
-     "id": "md3b-c4",
+     "id": "s06-c4",
      "tipo": "concepto",
      "titulo": "Capa 4 · Transporte",
      "texto": "Comunicación **entre programas**, de extremo a extremo.\n\nSu dirección es el **puerto**: `80` web, `443` web segura, `53` DNS, `22` SSH.\n\nDos protocolos:\n**TCP** confirma que todo llegue y en orden. Su unidad es el **segmento**.\n**UDP** es más simple y rápido, sin confirmar. Su unidad es el **datagrama**.\n\nEquipo típico: el **firewall** que filtra por puerto.\n\n**Capa 4 = a qué programa.**",
      "capa": 4
     },
     {
-     "id": "md3b-q1",
+     "id": "s06-q1",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "La IP lleva el mensaje hasta tu computadora. ¿Qué indica a qué programa le toca?",
@@ -435,10 +1368,46 @@
       "El nombre del dominio"
      ],
      "correcta": 0,
-     "explica": "El puerto es la dirección de la capa 4: identifica al programa dentro de la computadora."
+     "explica": "El puerto es la dirección de la capa 4: identifica al programa dentro de la computadora.",
+     "concepto": "capa4"
     },
     {
-     "id": "md3b-q2",
+     "id": "s06-q2",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "capa4",
+     "pregunta": "Une cada puerto con su servicio:",
+     "pares": [
+      [
+       "80",
+       "Web"
+      ],
+      [
+       "443",
+       "Web segura (https)"
+      ],
+      [
+       "53",
+       "DNS"
+      ],
+      [
+       "22",
+       "SSH"
+      ]
+     ],
+     "explica": "Los puertos conocidos: 80 web, 443 web segura, 53 DNS, 22 SSH."
+    },
+    {
+     "id": "s06-q3",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "capa4",
+     "afirmacion": "UDP confirma que cada dato llegue y en orden.",
+     "verdadera": false,
+     "explica": "Eso lo hace **TCP**. UDP es más simple y rápido: no confirma."
+    },
+    {
+     "id": "s06-q4",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿Cómo se llama la unidad de datos de TCP y la de UDP?",
@@ -448,8 +1417,55 @@
       "Trama y segmento"
      ],
      "correcta": 0,
-     "explica": "TCP arma segmentos; UDP, datagramas. Los dos son capa 4."
+     "explica": "TCP arma segmentos; UDP, datagramas. Los dos son capa 4.",
+     "concepto": "encabezados"
     },
+    {
+     "id": "s06-q5",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "Un firewall bloquea el puerto 22. ¿En qué capa está actuando?",
+     "opciones": [
+      "Capa 4 · Transporte",
+      "Capa 3 · Red",
+      "Capa 7 · Aplicación"
+     ],
+     "correcta": 0,
+     "explica": "Los puertos son la dirección de la capa 4. Bloquear el 22 corta SSH.",
+     "concepto": "capa4"
+    },
+    {
+     "id": "s06-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "Llega un paquete a tu computadora. ¿Cómo sabe si es para el navegador o para WhatsApp?",
+     "respuesta": "Por el puerto de destino (capa 4): cada programa escucha en su propio puerto.",
+     "puntos": [
+      "El puerto de destino",
+      "Es la dirección de la capa 4 / transporte"
+     ],
+     "concepto": "capa4",
+     "pista": "La IP ya te trajo a la computadora. ¿Qué dirección distingue a cada programa?"
+    },
+    {
+     "id": "s06-mini",
+     "tipo": "explica",
+     "concepto": "capa4",
+     "prompt": "En una frase: ¿qué diferencia hay entre TCP y UDP?",
+     "puntos": [
+      "TCP confirma que todo llegue y en orden; UDP es más simple y rápido, sin confirmar"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s07",
+   "paso": "Exponer",
+   "titulo": "Capas 5, 6 y 7: lo que ve la app",
+   "minutos": 8,
+   "libro": "md3b",
+   "tarjetas": [
     {
      "id": "video-v06",
      "tipo": "video",
@@ -461,42 +1477,59 @@
      "versionVideo": "vertical-vozpy-2026-11-24"
     },
     {
-     "id": "md3b-c5",
+     "id": "s07-c5",
      "tipo": "concepto",
      "titulo": "Capa 5 · Sesión",
      "texto": "Establece y controla el **diálogo** entre dos aplicaciones: cuándo empieza, cuándo termina y quién habla.",
      "capa": 5
     },
     {
-     "id": "md3b-c6",
+     "id": "s07-c6",
      "tipo": "concepto",
      "titulo": "Capa 6 · Presentación",
      "texto": "Decide **cómo se representan** los datos: codificación de caracteres, compresión y cifrado.\n\nTLS (el candado de `https`) se suele ubicar aquí, aunque no encaja limpio en una sola capa.",
      "capa": 6
     },
     {
-     "id": "md3b-c7",
+     "id": "s07-c7",
      "tipo": "concepto",
      "titulo": "Capa 7 · Aplicación",
      "texto": "Da servicios de red a las aplicaciones.\n\nOjo: es el **protocolo**, no el programa. Chrome no es capa 7; **HTTP** sí.\n\nEjemplos: HTTP, DNS, SMTP (correo) y SSH. Su dirección son los **nombres**: URL y dominio.",
      "capa": 7
     },
     {
-     "id": "md3b-funden",
-     "tipo": "concepto",
-     "titulo": "En la práctica, 5, 6 y 7 se funden",
-     "texto": "Casi siempre las resuelve **la propia aplicación** o protocolos como TLS. Por eso TCP/IP las junta en una sola capa (lo verás en la siguiente sesión).\n\nPara el día a día, quédate con tres:\n**Capa 2** = dentro de mi red (MAC, switch)\n**Capa 3** = entre redes (IP, router)\n**Capa 4** = a qué programa (puerto)"
+     "id": "s07-q1",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "capas-altas",
+     "pregunta": "Une cada capa con lo que hace:",
+     "pares": [
+      [
+       "5 · Sesión",
+       "Controla el diálogo: cuándo empieza y termina"
+      ],
+      [
+       "6 · Presentación",
+       "Codifica, comprime y cifra"
+      ],
+      [
+       "7 · Aplicación",
+       "Da servicios de red a las apps"
+      ]
+     ],
+     "explica": "Sesión = diálogo · Presentación = formato · Aplicación = servicio."
     },
     {
-     "id": "md3b-q3",
+     "id": "s07-q2",
      "tipo": "vf",
      "repaso": true,
      "afirmacion": "Google Chrome es un protocolo de capa 7.",
      "verdadera": false,
-     "explica": "Chrome es un programa. El protocolo de capa 7 que usa para pedir páginas es HTTP."
+     "explica": "Chrome es un programa. El protocolo de capa 7 que usa para pedir páginas es HTTP.",
+     "concepto": "capas-altas"
     },
     {
-     "id": "md3b-q4",
+     "id": "s07-q3",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "El cifrado y la compresión de los datos, ¿a qué capa de OSI corresponden?",
@@ -506,65 +1539,63 @@
       "Transporte (4)"
      ],
      "correcta": 0,
-     "explica": "La capa 6 decide cómo se representan los datos: codificación, compresión y cifrado."
+     "explica": "La capa 6 decide cómo se representan los datos: codificación, compresión y cifrado.",
+     "concepto": "capas-altas"
     },
     {
-     "id": "md3b-q5",
-     "tipo": "opcion",
+     "id": "s07-q4",
+     "tipo": "error",
      "repaso": true,
-     "pregunta": "Un firewall bloquea el puerto 22. ¿En qué capa está actuando?",
-     "opciones": [
-      "Capa 4 · Transporte",
-      "Capa 3 · Red",
-      "Capa 7 · Aplicación"
+     "concepto": "capas-altas",
+     "pregunta": "Toca el ejemplo que está **mal**:",
+     "partes": [
+      "HTTP es un protocolo de capa 7.",
+      "DNS es un protocolo de capa 7.",
+      "Chrome es un protocolo de capa 7.",
+      "SMTP (correo) es de capa 7."
      ],
-     "correcta": 0,
-     "explica": "Los puertos son la dirección de la capa 4. Bloquear el 22 corta SSH."
+     "incorrecta": 2,
+     "explica": "Chrome es un **programa**. Usa HTTP, que sí es protocolo de capa 7."
     },
     {
-     "id": "md3b-corta1",
-     "tipo": "corta",
-     "repaso": true,
-     "pregunta": "Llega un paquete a tu computadora. ¿Cómo sabe si es para el navegador o para WhatsApp?",
-     "respuesta": "Por el puerto de destino (capa 4): cada programa escucha en su propio puerto.",
-     "puntos": [
-      "El puerto de destino",
-      "Es la dirección de la capa 4 / transporte"
-     ]
+     "id": "s07-funden",
+     "tipo": "concepto",
+     "titulo": "En la práctica, 5, 6 y 7 se funden",
+     "texto": "Casi siempre las resuelve **la propia aplicación** o protocolos como TLS. Por eso TCP/IP las junta en una sola capa (lo verás en la siguiente sesión).\n\nPara el día a día, quédate con tres:\n**Capa 2** = dentro de mi red (MAC, switch)\n**Capa 3** = entre redes (IP, router)\n**Capa 4** = a qué programa (puerto)"
     },
     {
-     "id": "md3b-corta2",
+     "id": "s07-corta1",
      "tipo": "corta",
      "repaso": true,
      "pregunta": "¿Por qué en la práctica las capas 5, 6 y 7 casi siempre se ven como una sola?",
      "respuesta": "Porque sus funciones (diálogo, formato y cifrado, servicio) las resuelve la propia aplicación o protocolos como TLS, no capas separadas.",
      "puntos": [
-      "Las resuelve la propia aplicación o protocolos como TLS",
-      "Por eso TCP/IP las junta en la capa de aplicación"
-     ]
+      "Las resuelve la propia aplicación o protocolos como TLS"
+     ],
+     "concepto": "capas-altas",
+     "pista": "¿Quién se encarga en la práctica del diálogo, el formato y el cifrado?"
     },
     {
-     "id": "md3b-mini",
+     "id": "s07-mini",
      "tipo": "explica",
-     "prompt": "¿Qué hace la capa 4 y qué dirección usa? ¿Qué aporta cada una de las capas 5, 6 y 7, y por qué en la práctica se funden?",
+     "concepto": "capas-altas",
+     "prompt": "¿Por qué Chrome no es capa 7, pero HTTP sí?",
      "puntos": [
-      "Capa 4: comunicación entre programas de extremo a extremo; usa puertos; TCP (segmento) y UDP (datagrama)",
-      "Capa 5: establece y controla el diálogo entre aplicaciones",
-      "Capa 6: representación de los datos: codificación, compresión, cifrado",
-      "Capa 7: servicios de red para las aplicaciones (protocolos como HTTP o DNS, no los programas)",
-      "Se funden porque en la práctica las resuelve la propia aplicación o protocolos como TLS"
-     ]
+      "Chrome es un programa; la capa 7 son los protocolos que usan las apps, como HTTP"
+     ],
+     "segundos": 30
     }
    ]
   },
   {
-   "id": "md4",
+   "id": "s08",
    "paso": "Exponer",
-   "titulo": "TCP/IP y su relación con OSI",
-   "minutos": 12,
+   "titulo": "TCP/IP: las cuatro capas de internet",
+   "minutos": 6,
+   "libro": "md4",
    "tarjetas": [
     {
-     "id": "md4-gancho",
+     "id": "s08-gancho",
      "tipo": "concepto",
      "titulo": "Si OSI tiene 7 capas… ¿internet usa 7?",
      "texto": "No. Internet corre sobre **TCP/IP**, un modelo de **4 capas** que nació con ARPANET y se documenta en estándares como el RFC 1122.\n\nOSI es el mapa para pensar. TCP/IP es lo que de verdad está corriendo."
@@ -580,13 +1611,13 @@
      "versionVideo": "vertical-vozpy-2026-11-24"
     },
     {
-     "id": "md4-capas",
+     "id": "s08-capas",
      "tipo": "concepto",
      "titulo": "Las 4 capas de TCP/IP",
      "texto": "De arriba hacia abajo:\n\n**Aplicación** = OSI 5, 6 y 7\nHTTP, DNS, TLS, SSH\n\n**Transporte** = OSI 4\nTCP, UDP\n\n**Internet** = OSI 3\nIP, ICMP\n\n**Enlace** (acceso a la red) = OSI 1 y 2\nEthernet, Wi-Fi\n\nAlgunos libros usan 5 capas: separan la física del enlace."
     },
     {
-     "id": "md4-q1",
+     "id": "s08-q1",
      "tipo": "orden",
      "repaso": true,
      "pregunta": "Ordena las capas de TCP/IP, de abajo hacia arriba:",
@@ -596,23 +1627,25 @@
       "Transporte",
       "Aplicación"
      ],
-     "explica": "Enlace, internet, transporte y aplicación: 4 capas."
+     "explica": "Enlace, internet, transporte y aplicación: 4 capas.",
+     "concepto": "tcpip"
     },
     {
-     "id": "md4-q2",
+     "id": "s08-q2",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿Qué capas de OSI quedan dentro de la capa de aplicación de TCP/IP?",
      "opciones": [
-      "Sesión, presentación y aplicación (5, 6 y 7)",
-      "Solo aplicación (7)",
-      "Transporte y aplicación (4 y 7)"
+      "Sesión, presentación y aplicación",
+      "Solo la capa de aplicación",
+      "Transporte, sesión y aplicación"
      ],
      "correcta": 0,
-     "explica": "En TCP/IP, la propia aplicación (o protocolos como TLS) resuelve lo que OSI separa en 5, 6 y 7."
+     "explica": "En TCP/IP, la propia aplicación (o protocolos como TLS) resuelve lo que OSI separa en 5, 6 y 7.",
+     "concepto": "tcpip"
     },
     {
-     "id": "md4-q3",
+     "id": "s08-q3",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "En TCP/IP, ¿dónde quedan la capa física y la de enlace de OSI?",
@@ -622,8 +1655,63 @@
       "No existen en TCP/IP"
      ],
      "correcta": 0,
-     "explica": "TCP/IP las agrupa en una sola: enlace (o acceso a la red)."
+     "explica": "TCP/IP las agrupa en una sola: enlace (o acceso a la red).",
+     "concepto": "tcpip"
     },
+    {
+     "id": "s08-q4",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "tcpip",
+     "pregunta": "Une cada capa de TCP/IP con un protocolo suyo:",
+     "pares": [
+      [
+       "Aplicación",
+       "HTTP"
+      ],
+      [
+       "Transporte",
+       "TCP"
+      ],
+      [
+       "Internet",
+       "IP"
+      ],
+      [
+       "Enlace",
+       "Ethernet"
+      ]
+     ],
+     "explica": "Aplicación = HTTP, DNS · Transporte = TCP, UDP · Internet = IP, ICMP · Enlace = Ethernet, Wi-Fi."
+    },
+    {
+     "id": "s08-q5",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "tcpip",
+     "afirmacion": "TCP/IP separa en capas distintas la sesión, la presentación y la aplicación.",
+     "verdadera": false,
+     "explica": "Las junta en una sola: aplicación. Las resuelve la propia app o protocolos como TLS."
+    },
+    {
+     "id": "s08-mini",
+     "tipo": "explica",
+     "concepto": "tcpip",
+     "prompt": "¿Qué capas de OSI junta la capa de aplicación de TCP/IP?",
+     "puntos": [
+      "Sesión, presentación y aplicación (5, 6 y 7)"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s09",
+   "paso": "Exponer",
+   "titulo": "Diagnosticas con OSI, implementas con TCP/IP",
+   "minutos": 6,
+   "libro": "md4",
+   "tarjetas": [
     {
      "id": "video-v08",
      "tipo": "video",
@@ -635,21 +1723,60 @@
      "versionVideo": "vertical-vozpy-2026-11-24"
     },
     {
-     "id": "md4-comparar",
+     "id": "s09-comparar",
      "tipo": "concepto",
      "titulo": "Dos mapas del mismo territorio",
      "texto": "**OSI**: 7 capas. Norma de la ISO, diseñada **antes** de implementarse. Sirve para **pensar y diagnosticar**.\n\n**TCP/IP**: 4 capas. Protocolos que **ya funcionaban** y se documentaron después. Es lo que **de verdad corre** en internet.\n\nNo compiten: **diagnosticas con los números de OSI** (“es capa 2”) e **implementas con TCP/IP**."
     },
     {
-     "id": "md4-q4",
+     "id": "s09-q1",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "osi-vs-tcpip",
+     "pregunta": "¿OSI o TCP/IP?",
+     "grupos": [
+      "OSI",
+      "TCP/IP"
+     ],
+     "items": [
+      {
+       "texto": "7 capas",
+       "grupo": 0
+      },
+      {
+       "texto": "Norma de la ISO, diseñada antes de usarse",
+       "grupo": 0
+      },
+      {
+       "texto": "Sus números se usan para diagnosticar",
+       "grupo": 0
+      },
+      {
+       "texto": "4 capas",
+       "grupo": 1
+      },
+      {
+       "texto": "Protocolos que ya funcionaban y se documentaron",
+       "grupo": 1
+      },
+      {
+       "texto": "Lo que de verdad corre en internet",
+       "grupo": 1
+      }
+     ],
+     "explica": "OSI = mapa para pensar. TCP/IP = lo que corre."
+    },
+    {
+     "id": "s09-q2",
      "tipo": "vf",
      "repaso": true,
      "afirmacion": "OSI y TCP/IP compiten: hoy hay que elegir uno de los dos.",
      "verdadera": false,
-     "explica": "Se usan juntos: OSI para pensar y diagnosticar, TCP/IP para implementar."
+     "explica": "Se usan juntos: OSI para pensar y diagnosticar, TCP/IP para implementar.",
+     "concepto": "osi-vs-tcpip"
     },
     {
-     "id": "md4-q5",
+     "id": "s09-q3",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "Un compañero dice “es un problema de capa 3”. ¿Qué modelo está usando?",
@@ -659,10 +1786,20 @@
       "Ninguno de los dos"
      ],
      "correcta": 0,
-     "explica": "Los números de capa que se usan al diagnosticar vienen de OSI. En TCP/IP, la capa 3 equivale a la capa internet."
+     "explica": "Los números de capa que se usan al diagnosticar vienen de OSI. En TCP/IP, la capa 3 equivale a la capa internet.",
+     "concepto": "osi-vs-tcpip"
     },
     {
-     "id": "md4-corta1",
+     "id": "s09-q4",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "tcpip",
+     "afirmacion": "La capa internet de TCP/IP equivale a la capa 3 de OSI.",
+     "verdadera": true,
+     "explica": "Internet (TCP/IP) = red (OSI 3): IP e ICMP."
+    },
+    {
+     "id": "s09-corta1",
      "tipo": "corta",
      "repaso": true,
      "pregunta": "Si internet corre sobre TCP/IP, ¿para qué sigue sirviendo OSI?",
@@ -670,29 +1807,172 @@
      "puntos": [
       "Sirve para pensar y diagnosticar",
       "Da un lenguaje común con números de capa"
-     ]
+     ],
+     "concepto": "osi-vs-tcpip",
+     "pista": "Piensa en la frase «es un problema de capa 2»."
     },
     {
-     "id": "md4-mini",
+     "id": "s09-mini",
      "tipo": "explica",
-     "prompt": "¿Qué capas de OSI quedan dentro de la capa de aplicación de TCP/IP? ¿Por qué se siguen usando los dos modelos?",
+     "concepto": "osi-vs-tcpip",
+     "prompt": "En una frase: ¿por qué se siguen usando los dos modelos?",
      "puntos": [
-      "TCP/IP tiene 4 capas: aplicación, transporte, internet y enlace",
-      "La capa de aplicación de TCP/IP agrupa sesión, presentación y aplicación de OSI (5, 6 y 7)",
-      "OSI se usa para pensar y diagnosticar; TCP/IP es lo que se implementa",
-      "Son dos mapas del mismo territorio con distinto detalle; no compiten"
-     ]
+      "OSI sirve para pensar y diagnosticar; TCP/IP es lo que se implementa. No compiten"
+     ],
+     "segundos": 30
     }
    ]
   },
   {
-   "id": "md5a",
+   "id": "s10",
    "paso": "Exponer",
-   "titulo": "Encapsulación: bajando por las capas",
-   "minutos": 14,
+   "titulo": "La fuente: el RFC 1122",
+   "minutos": 9,
+   "libro": "md6",
    "tarjetas": [
     {
-     "id": "md5a-gancho",
+     "id": "s10-intro",
+     "tipo": "concepto",
+     "titulo": "Directo de la fuente",
+     "texto": "Lo que viste de TCP/IP no es una opinión de un libro: está escrito en los **RFC**, los documentos que definen cómo funciona internet. Los publica el IETF y cualquiera puede leerlos.\n\nEl **RFC 1122** (1989) dice lo que debe hacer **cualquier equipo conectado a internet** (el RFC lo llama *host*). Su sección 1.1.3 describe las capas. Aquí te la explicamos; no necesitas salir de la app."
+    },
+    {
+     "id": "s10-cuatro",
+     "tipo": "concepto",
+     "titulo": "Cuatro capas, con sus nombres",
+     "texto": "El RFC nombra cuatro capas, de arriba hacia abajo:\n\n**Application Layer** · aplicación\n**Transport Layer** · transporte\n**Internet Layer** · internet\n**Link Layer** · enlace\n\nY pide que un equipo implemente **al menos un protocolo de cada capa**."
+    },
+    {
+     "id": "s10-app",
+     "tipo": "concepto",
+     "titulo": "Aplicación",
+     "texto": "El RFC distingue dos tipos de protocolos de aplicación:\n\n**De usuario**: dan un servicio directo a la persona (la web, el correo, la terminal remota).\n\n**De soporte**: funciones comunes del sistema que las demás apps necesitan, como **DNS** (nombres) o la gestión de la red.",
+     "capa": 7
+    },
+    {
+     "id": "s10-transporte",
+     "tipo": "concepto",
+     "titulo": "Transporte",
+     "texto": "Da comunicación **de extremo a extremo** entre aplicaciones. El RFC nombra dos protocolos principales:\n\n**TCP**: confiable y orientado a conexión.\n**UDP**: sin conexión; manda datagramas sueltos.",
+     "capa": 4
+    },
+    {
+     "id": "s10-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "rfc1122",
+     "pregunta": "Según el RFC, ¿qué tipo de protocolo de aplicación es DNS?",
+     "opciones": [
+      "De soporte: una función común que otras apps usan",
+      "De usuario: un servicio directo a la persona",
+      "De transporte: lleva datos de extremo a extremo"
+     ],
+     "correcta": 0,
+     "explica": "Nadie «usa DNS» directamente: lo usan las demás apps para convertir nombres en IP."
+    },
+    {
+     "id": "s10-internet",
+     "tipo": "concepto",
+     "titulo": "Internet: la frase clave",
+     "texto": "Todos los protocolos de transporte usan **IP** para llevar los datos de un equipo a otro.\n\nLo importante: IP es **sin conexión** y **no garantiza la entrega**. Un datagrama puede llegar dañado, duplicado, desordenado… o no llegar.\n\nSi la app necesita confiabilidad, **la pone una capa de arriba** (TCP).\n\nEl RFC también dice que **ICMP** (el de `ping`) es **parte integral de IP**, aunque viaja dentro de IP igual que TCP o UDP.",
+     "capa": 3
+    },
+    {
+     "id": "s10-q2",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "rfc1122",
+     "afirmacion": "Según el RFC 1122, IP garantiza que los datos lleguen completos y en orden.",
+     "verdadera": false,
+     "explica": "IP no garantiza nada: los datagramas pueden perderse o llegar desordenados. Eso lo resuelve TCP cuando hace falta."
+    },
+    {
+     "id": "s10-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "rfc1122",
+     "pregunta": "Si IP no garantiza la entrega, ¿cómo llega completa una página web?",
+     "opciones": [
+      "TCP, arriba de IP, confirma y reordena",
+      "El router reenvía lo que se pierde",
+      "Ethernet repite cada trama hasta que llega"
+     ],
+     "correcta": 0,
+     "explica": "La confiabilidad la pone la capa de transporte (TCP), de extremo a extremo."
+    },
+    {
+     "id": "s10-enlace",
+     "tipo": "concepto",
+     "titulo": "Enlace",
+     "texto": "Para hablar con **su red directa**, el equipo usa el protocolo propio de esa red: Ethernet, Wi-Fi, etc. El RFC lo llama protocolo de enlace o de acceso al medio.\n\nHay muchos, porque hay muchos tipos de red. Es justo lo que permite cambiar cable por Wi-Fi sin tocar lo de arriba.",
+     "capa": 2
+    },
+    {
+     "id": "s10-q4",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "rfc1122",
+     "pregunta": "Une cada capa del RFC con lo que dice de ella:",
+     "pares": [
+      [
+       "Application",
+       "Servicios para usuarios y funciones de soporte como DNS"
+      ],
+      [
+       "Transport",
+       "Extremo a extremo: TCP confiable, UDP sin conexión"
+      ],
+      [
+       "Internet",
+       "IP lleva datos entre equipos, sin garantizar la entrega"
+      ],
+      [
+       "Link",
+       "El protocolo propio de la red directa"
+      ]
+     ],
+     "explica": "Las cuatro capas del RFC 1122, sección 1.1.3."
+    },
+    {
+     "id": "s10-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "rfc1122",
+     "pregunta": "¿Qué significa que IP «no garantiza la entrega»?",
+     "respuesta": "Que un datagrama puede perderse, llegar dañado, duplicado o desordenado; si hace falta confiabilidad, la pone TCP.",
+     "puntos": [
+      "Los datos pueden perderse o llegar desordenados",
+      "La confiabilidad la pone una capa de arriba (TCP)"
+     ],
+     "pista": "¿Qué le puede pasar a un datagrama en el camino? ¿Quién lo arregla?"
+    },
+    {
+     "id": "s10-mas",
+     "tipo": "concepto",
+     "titulo": "Para profundizar (opcional)",
+     "texto": "Si quieres leer el original en inglés, es la sección 1.1.3 (unos 8 minutos):\nhttps://www.rfc-editor.org/rfc/rfc1122#section-1.1.3\n\nNo hace falta para seguir: lo esencial ya está aquí."
+    },
+    {
+     "id": "s10-mini",
+     "tipo": "explica",
+     "concepto": "rfc1122",
+     "prompt": "¿Cómo llama el RFC 1122 a las cuatro capas de TCP/IP?",
+     "puntos": [
+      "Application, Transport, Internet y Link (aplicación, transporte, internet y enlace)"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s11",
+   "paso": "Exponer",
+   "titulo": "Encapsular: bajando por las capas",
+   "minutos": 10,
+   "libro": "md5a",
+   "tarjetas": [
+    {
+     "id": "s11-gancho",
      "tipo": "concepto",
      "titulo": "El mensaje nunca viaja desnudo",
      "texto": "Al bajar por las capas, **cada una agrega su propio encabezado** a lo que recibe de arriba. Eso es **encapsular**.\n\nAl llegar, el destino hace lo contrario: cada capa **quita** su encabezado. Eso es **desencapsular**.\n\nComo la paquetería de la segunda sesión:",
@@ -703,79 +1983,158 @@
      "tipo": "video",
      "video": "V09",
      "titulo": "Encapsulación: el mensaje nunca viaja desnudo",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/52ec147de23ed038ebd90b7e97c77885",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V09-encapsulacion-que-es.mp4",
+     "asset": "52ec147de23ed038ebd90b7e97c77885",
+     "versionVideo": "vertical-vozpy-2026-11-25"
     },
     {
-     "id": "md5a-escenario",
+     "id": "s11-escenario",
      "tipo": "concepto",
      "titulo": "El escenario",
      "texto": "Abres una página web. Supón que el DNS ya convirtió el nombre en IP.\n\n**Tu PC**: IP `192.168.1.10` · MAC `AA:AA…`\n**Tu router**: IP `192.168.1.1` · MAC `GG:GG…`\n**Servidor**: IP `203.0.113.10` · puerto `80`\n\nVamos a bajar capa por capa dentro de tu PC."
     },
     {
-     "id": "md5a-c7",
+     "id": "s11-c7",
      "tipo": "concepto",
      "titulo": "El navegador arma la petición",
      "texto": "La petición HTTP:\n`GET / HTTP/1.1`\n\nTodavía no lleva direcciones. Se llama **datos**.",
      "capa": 7
     },
     {
-     "id": "md5a-c4",
+     "id": "s11-c4",
      "tipo": "concepto",
      "titulo": "TCP agrega su encabezado",
      "texto": "Pone el **puerto de origen** (uno temporal que elige el sistema, por ejemplo `51514`) y el **puerto de destino** `80`.\n\n`[TCP 51514→80 | DATOS]`\n\nAhora es un **segmento**.",
      "capa": 4
     },
     {
-     "id": "md5a-c3",
+     "id": "s11-c3",
      "tipo": "concepto",
      "titulo": "IP agrega su encabezado",
      "texto": "Pone la **IP de origen**, la **IP de destino final** y el **TTL**: cuántos saltos puede dar antes de que lo descarten.\n\n`[IP .1.10→203.0.113.10 TTL 64 | TCP | DATOS]`\n\nAhora es un **paquete**.",
      "capa": 3
     },
     {
-     "id": "md5a-c2",
+     "id": "s11-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "Cuando IP agrega su encabezado en tu PC, ¿qué IP de destino pone?",
+     "opciones": [
+      "La del servidor (destino final)",
+      "La de tu router (gateway)",
+      "La de tu propia PC"
+     ],
+     "correcta": 0,
+     "explica": "La IP de destino siempre es la del destino final. Lo que apunta al router es la MAC de la trama, no la IP.",
+     "concepto": "mac-destino"
+    },
+    {
+     "id": "s11-c2",
      "tipo": "concepto",
      "titulo": "La parte clave: ¿a qué MAC?",
      "texto": "Tu PC ve que `203.0.113.10` **no está en su red**. Entonces la trama **no va al servidor: va a tu router**.\n\nSi no conoce la MAC del router, la pregunta con **ARP**: “¿quién tiene 192.168.1.1?”.\n\nArma la trama con la **MAC del router** como destino y agrega al final el **FCS**, un código para detectar errores.\n\n`[ETH AA→GG | IP | TCP | DATOS | FCS]`\n\nAhora es una **trama**.",
      "capa": 2
     },
     {
-     "id": "md5a-c1",
+     "id": "s11-c1",
      "tipo": "concepto",
      "titulo": "A la señal",
      "texto": "La trama se convierte en señales: eléctricas, de luz o de radio.\n\n`01001010 11100010 …`\n\nAhora son **bits**.",
      "capa": 1
     },
     {
-     "id": "md5a-q6",
+     "id": "s11-q4",
      "tipo": "opcion",
      "repaso": true,
-     "pregunta": "Cuando IP agrega su encabezado en tu PC, ¿qué IP de destino pone?",
+     "concepto": "encabezados",
+     "pregunta": "¿Qué pone TCP en su encabezado?",
      "opciones": [
-      "La del servidor, el destino final",
-      "La de tu router",
-      "La de tu propia PC"
+      "Los puertos de origen y destino",
+      "Las IP de origen y destino",
+      "Las MAC de origen y destino"
      ],
      "correcta": 0,
-     "explica": "La IP de destino siempre es la del destino final. Lo que apunta al router es la MAC de la trama, no la IP."
+     "explica": "TCP es capa 4: su dirección es el puerto. Las IP las pone IP (3) y las MAC, Ethernet (2)."
     },
+    {
+     "id": "s11-q2",
+     "tipo": "armar",
+     "repaso": true,
+     "concepto": "encapsular",
+     "pregunta": "Arma la trama que sale de tu PC, de izquierda a derecha. Sobran piezas:",
+     "piezas": [
+      "ETH AA→GG",
+      "IP .1.10→203.0.113.10",
+      "TCP 51514→80",
+      "DATOS",
+      "FCS"
+     ],
+     "distractores": [
+      "ETH AA→servidor",
+      "IP .1.10→router"
+     ],
+     "explica": "La trama va a la MAC del **router** (GG), pero la IP de destino es la del **servidor**."
+    },
+    {
+     "id": "s11-q3",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "encapsular",
+     "afirmacion": "Encapsular es cifrar los datos para protegerlos.",
+     "verdadera": false,
+     "explica": "Encapsular es **envolver**: cada capa agrega su encabezado. Cifrar es otra cosa (capa 6)."
+    },
+    {
+     "id": "s11-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "pregunta": "Tu PC manda una petición a un servidor de internet. ¿A qué MAC va la trama y por qué?",
+     "respuesta": "A la MAC del router (gateway), porque el servidor está en otra red y la MAC solo sirve dentro de la red local.",
+     "puntos": [
+      "Va a la MAC del router / gateway",
+      "Porque el destino está fuera de la red y la MAC solo vale localmente"
+     ],
+     "concepto": "mac-destino",
+     "pista": "¿El servidor está en tu red? ¿Hasta dónde sirve una MAC?"
+    },
+    {
+     "id": "s11-mini",
+     "tipo": "explica",
+     "concepto": "encapsular",
+     "prompt": "En una frase: ¿qué es encapsular?",
+     "puntos": [
+      "Que cada capa, al bajar, agregue su propio encabezado a lo que recibe de la de arriba"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s12",
+   "paso": "Exponer",
+   "titulo": "Cada envoltorio tiene nombre",
+   "minutos": 8,
+   "libro": "md5a",
+   "tarjetas": [
     {
      "id": "video-v10",
      "tipo": "video",
      "video": "V10",
      "titulo": "Cada envoltorio tiene nombre (y dirección)",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/818888a1c3ce0c95897ab6ee43631b19",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V10-nombres-de-cada-envoltorio.mp4",
+     "asset": "818888a1c3ce0c95897ab6ee43631b19",
+     "versionVideo": "vertical-vozpy-2026-11-25"
     },
     {
-     "id": "md5a-resumen",
+     "id": "s12-resumen",
      "tipo": "concepto",
      "titulo": "Cada envoltorio tiene nombre",
      "texto": "`DATOS` → datos\n`TCP | DATOS` → segmento\n`IP | TCP | DATOS` → paquete\n`ETH | IP | TCP | DATOS | FCS` → trama\n`0101…` → bits\n\nY cada capa pone **su** dirección: puerto (4), IP (3), MAC (2)."
     },
     {
-     "id": "md5a-q1",
+     "id": "s12-q1",
      "tipo": "orden",
      "repaso": true,
      "pregunta": "Ordena los nombres del mensaje, desde que lo crea la app hasta que sale por el cable:",
@@ -786,23 +2145,76 @@
       "Trama",
       "Bits"
      ],
-     "explica": "Datos → segmento (TCP) → paquete (IP) → trama (Ethernet) → bits."
+     "explica": "Datos → segmento (TCP) → paquete (IP) → trama (Ethernet) → bits.",
+     "concepto": "encapsular"
     },
     {
-     "id": "md5a-q2",
-     "tipo": "opcion",
+     "id": "s12-q2",
+     "tipo": "emparejar",
      "repaso": true,
-     "pregunta": "Tu PC pide una página a un servidor de internet. ¿Qué MAC de destino lleva la trama?",
-     "opciones": [
-      "La MAC de tu router",
-      "La MAC del servidor",
-      "La MAC de tu propia PC"
+     "concepto": "encapsular",
+     "pregunta": "Une cada envoltorio con su nombre:",
+     "pares": [
+      [
+       "TCP | DATOS",
+       "Segmento"
+      ],
+      [
+       "IP | TCP | DATOS",
+       "Paquete"
+      ],
+      [
+       "ETH | IP | TCP | DATOS | FCS",
+       "Trama"
+      ],
+      [
+       "0101…",
+       "Bits"
+      ]
      ],
-     "correcta": 0,
-     "explica": "El servidor está en otra red, así que la trama va al router. La MAC solo vale dentro de tu red."
+     "explica": "Datos → segmento → paquete → trama → bits."
     },
     {
-     "id": "md5a-q3",
+     "id": "s12-q3",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "encabezados",
+     "pregunta": "¿Qué capa lo pone en su encabezado?",
+     "grupos": [
+      "Capa 4 · TCP",
+      "Capa 3 · IP",
+      "Capa 2 · Ethernet"
+     ],
+     "items": [
+      {
+       "texto": "Puerto de destino",
+       "grupo": 0
+      },
+      {
+       "texto": "Puerto de origen",
+       "grupo": 0
+      },
+      {
+       "texto": "IP de destino",
+       "grupo": 1
+      },
+      {
+       "texto": "TTL",
+       "grupo": 1
+      },
+      {
+       "texto": "MAC de destino",
+       "grupo": 2
+      },
+      {
+       "texto": "FCS",
+       "grupo": 2
+      }
+     ],
+     "explica": "Cada capa pone **su** dirección: puerto (4), IP (3), MAC (2)."
+    },
+    {
+     "id": "s12-q4",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿Qué agrega la capa 2 que ninguna otra capa agrega?",
@@ -812,80 +2224,85 @@
       "El TTL"
      ],
      "correcta": 0,
-     "explica": "Ethernet pone encabezado al inicio y el FCS al final, para detectar errores."
+     "explica": "Ethernet pone encabezado al inicio y el FCS al final, para detectar errores.",
+     "concepto": "encabezados"
     },
     {
-     "id": "md5a-q4",
-     "tipo": "opcion",
-     "repaso": true,
-     "pregunta": "¿Para qué sirve ARP?",
-     "opciones": [
-      "Para averiguar la MAC que corresponde a una IP de tu red",
-      "Para averiguar la IP de un nombre de dominio",
-      "Para cifrar la trama"
-     ],
-     "correcta": 0,
-     "explica": "ARP traduce IP a MAC dentro de tu red. Traducir un nombre a IP es trabajo del DNS."
-    },
-    {
-     "id": "md5a-q5",
+     "id": "s12-q5",
      "tipo": "vf",
      "repaso": true,
      "afirmacion": "El TTL va en el encabezado TCP.",
      "verdadera": false,
-     "explica": "El TTL va en el encabezado IP (capa 3): limita cuántos saltos entre routers puede dar el paquete."
+     "explica": "El TTL va en el encabezado IP (capa 3): limita cuántos saltos entre routers puede dar el paquete.",
+     "concepto": "encabezados"
     },
     {
-     "id": "md5a-corta1",
+     "id": "s12-q6",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "¿Para qué sirve ARP?",
+     "opciones": [
+      "Averiguar la MAC de una IP de tu red",
+      "Averiguar la IP de un nombre de dominio",
+      "Detectar errores al final de la trama"
+     ],
+     "correcta": 0,
+     "explica": "ARP traduce IP a MAC dentro de tu red. Traducir un nombre a IP es trabajo del DNS; detectar errores, del FCS.",
+     "concepto": "mac-destino"
+    },
+    {
+     "id": "s12-q7",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "Tu PC pide una página a un servidor de internet. ¿Qué MAC de destino lleva la trama?",
+     "opciones": [
+      "La MAC de tu router",
+      "La MAC del servidor",
+      "La MAC de tu propia PC"
+     ],
+     "correcta": 0,
+     "explica": "El servidor está en otra red, así que la trama va al router. La MAC solo vale dentro de tu red.",
+     "concepto": "mac-destino"
+    },
+    {
+     "id": "s12-corta1",
      "tipo": "corta",
      "repaso": true,
-     "pregunta": "Tu PC manda una petición a un servidor de internet. ¿A qué MAC va la trama y por qué?",
-     "respuesta": "A la MAC del router (gateway), porque el servidor está en otra red y la MAC solo sirve dentro de la red local.",
+     "concepto": "encabezados",
+     "pregunta": "¿Por qué el TTL va en el encabezado IP y no en el de TCP?",
+     "respuesta": "Porque limita los saltos entre routers, y los routers trabajan con IP (capa 3); no leen TCP.",
      "puntos": [
-      "Va a la MAC del router / gateway",
-      "Porque el destino está fuera de la red y la MAC solo vale localmente"
-     ]
+      "Los routers trabajan en capa 3 / leen IP, no TCP"
+     ],
+     "pista": "¿Quién baja el TTL y qué encabezado lee?"
     },
     {
-     "id": "md5a-corta2",
-     "tipo": "corta",
-     "repaso": true,
-     "pregunta": "¿Qué agrega cada capa al encapsular una petición web, de la 4 a la 2?",
-     "respuesta": "Capa 4: TCP con los puertos (segmento). Capa 3: IP con las direcciones IP y el TTL (paquete). Capa 2: Ethernet con las MAC y el FCS al final (trama).",
-     "puntos": [
-      "Capa 4: puertos → segmento",
-      "Capa 3: IP origen/destino y TTL → paquete",
-      "Capa 2: MAC origen/destino y FCS → trama"
-     ]
-    },
-    {
-     "id": "md5a-mini",
+     "id": "s12-mini",
      "tipo": "explica",
-     "prompt": "Narra cómo se envuelve una petición web desde tu navegador hasta que sale por el cable: qué agrega cada capa, qué dirección pone y cómo se llama cada envoltorio.",
+     "concepto": "mac-destino",
+     "prompt": "¿A qué MAC va la trama que sale de tu PC hacia internet, y por qué?",
      "puntos": [
-      "Capa 7: el navegador genera los datos (la petición HTTP)",
-      "Capa 4: TCP agrega puertos de origen y destino → segmento",
-      "Capa 3: IP agrega IP de origen, IP de destino final y TTL → paquete",
-      "Capa 2: como el destino está fuera de la red, la trama va a la MAC del router (ARP si no la conoce) y lleva FCS → trama",
-      "Capa 1: se convierte en señales → bits"
-     ]
+      "A la MAC del router (gateway), porque el destino está fuera de la red y la MAC solo vale dentro de ella"
+     ],
+     "segundos": 45
     }
    ]
   },
   {
-   "id": "md5b",
+   "id": "s13",
    "paso": "Exponer",
-   "titulo": "Encapsulación: los saltos y la llegada",
-   "minutos": 12,
+   "titulo": "Qué cambia en cada salto",
+   "minutos": 8,
+   "libro": "md5b",
    "tarjetas": [
     {
-     "id": "md5b-gancho",
+     "id": "s13-gancho",
      "tipo": "concepto",
      "titulo": "La trama llegó al router. ¿Y ahora?",
      "texto": "Mismo escenario: tu PC `192.168.1.10`, tu router `192.168.1.1` y el servidor `203.0.113.10`.\n\nLa trama ya salió de tu PC rumbo al router. Veamos qué hace él."
     },
     {
-     "id": "md5b-router",
+     "id": "s13-router",
      "tipo": "concepto",
      "titulo": "En el router, paso a paso",
      "texto": "**1.** Recibe los bits y reconstruye la trama.\n**2.** Revisa el FCS, ve que la trama es para su MAC y **quita el encabezado Ethernet**.\n**3.** Lee la **IP de destino** y consulta su tabla de ruteo.\n**4.** **Baja el TTL en 1** (de 64 a 63).\n**5.** Arma una **trama nueva** para el siguiente tramo, con **MAC nuevas**.",
@@ -896,25 +2313,28 @@
      "tipo": "video",
      "video": "V11",
      "titulo": "Qué cambia y qué se queda en cada salto",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/66f8e7764014f8636cf02b1fc1bff2dc",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V11-que-cambia-en-cada-salto.mp4",
+     "asset": "66f8e7764014f8636cf02b1fc1bff2dc",
+     "versionVideo": "vertical-vozpy-2026-11-25"
     },
     {
-     "id": "md5b-regla",
+     "id": "s13-regla",
      "tipo": "concepto",
      "titulo": "La regla de oro",
      "texto": "En cada salto:\n\n**Cambian las MAC**: son de capa 2 y solo valen dentro de cada red.\n\n**Se mantienen las IP** de origen y destino: son de capa 3 y van de punta a punta.\n\n**El TTL baja 1** en cada router.\n\nExcepción común: el router de casa u oficina hace **NAT** y cambia tu IP privada por su IP pública. Lo verás en el Módulo 4."
     },
     {
-     "id": "md5b-q1",
+     "id": "s13-q1",
      "tipo": "vf",
      "repaso": true,
      "afirmacion": "En cada salto por un router cambian las IP de origen y destino.",
      "verdadera": false,
-     "explica": "Cambian las MAC; las IP se mantienen de punta a punta (salvo NAT)."
+     "explica": "Cambian las MAC; las IP se mantienen de punta a punta (salvo NAT).",
+     "concepto": "saltos"
     },
     {
-     "id": "md5b-q2",
+     "id": "s13-q2",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "Un paquete sale de tu PC con TTL 64 y pasa por 3 routers. ¿Con qué TTL llega al servidor?",
@@ -924,10 +2344,42 @@
       "67"
      ],
      "correcta": 0,
-     "explica": "Cada router lo baja en 1: 64 − 3 = 61."
+     "explica": "Cada router lo baja en 1: 64 − 3 = 61.",
+     "concepto": "saltos"
     },
     {
-     "id": "md5b-q3",
+     "id": "s13-q3",
+     "tipo": "orden",
+     "repaso": true,
+     "concepto": "saltos",
+     "pregunta": "Ordena lo que hace el router con la trama que recibe:",
+     "items": [
+      "Revisa el FCS y quita el encabezado Ethernet",
+      "Lee la IP de destino",
+      "Consulta su tabla de ruteo",
+      "Baja el TTL en 1",
+      "Arma una trama nueva con MAC nuevas"
+     ],
+     "explica": "Quita la trama, decide con la IP, baja el TTL y arma una trama nueva para el siguiente tramo."
+    },
+    {
+     "id": "s13-q4",
+     "tipo": "error",
+     "repaso": true,
+     "concepto": "saltos",
+     "pregunta": "En el router, toca el paso que está **mal**:",
+     "partes": [
+      "Quita el encabezado Ethernet.",
+      "Lee la IP de destino.",
+      "Cambia la IP de destino por la del siguiente router.",
+      "Baja el TTL en 1.",
+      "Arma una trama nueva."
+     ],
+     "incorrecta": 2,
+     "explica": "La IP de destino **no cambia**: es la del servidor de punta a punta. Lo que apunta al siguiente router es la MAC de la trama nueva."
+    },
+    {
+     "id": "s13-q5",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿Por qué el router arma una trama nueva en cada salto?",
@@ -937,24 +2389,68 @@
       "Porque así cifra los datos"
      ],
      "correcta": 0,
-     "explica": "Cada tramo es una red distinta, con sus propias MAC de origen y destino."
+     "explica": "Cada tramo es una red distinta, con sus propias MAC de origen y destino.",
+     "concepto": "saltos"
     },
+    {
+     "id": "s13-q6",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "saltos",
+     "afirmacion": "El router de tu casa suele cambiar tu IP privada por su IP pública.",
+     "verdadera": true,
+     "explica": "Eso es **NAT**, la excepción común a «las IP no cambian». Lo verás en el Módulo 4."
+    },
+    {
+     "id": "s13-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "saltos",
+     "pregunta": "En cada salto por un router, ¿qué cambia y qué se mantiene?",
+     "respuesta": "Cambian las MAC (y baja el TTL); las IP de origen y destino se mantienen, salvo NAT.",
+     "puntos": [
+      "Cambian las MAC",
+      "Se mantienen las IP"
+     ],
+     "pista": "Piensa en qué dirección vale solo dentro de cada red."
+    },
+    {
+     "id": "s13-mini",
+     "tipo": "explica",
+     "concepto": "saltos",
+     "prompt": "¿Por qué cambian las MAC en cada salto, pero no las IP?",
+     "puntos": [
+      "Las MAC solo valen dentro de cada red (cada tramo es otra red); las IP identifican los extremos de punta a punta"
+     ],
+     "segundos": 45
+    }
+   ]
+  },
+  {
+   "id": "s14",
+   "paso": "Exponer",
+   "titulo": "Desencapsular: el mensaje llega",
+   "minutos": 7,
+   "libro": "md5b",
+   "tarjetas": [
     {
      "id": "video-v12",
      "tipo": "video",
      "video": "V12",
      "titulo": "Desencapsulación: el viaje llega a su destino",
-     "src": "",
-     "archivo": ""
+     "src": "/_blob/cdac82773005bb3872fb8ecd0e605bfa",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-01-Modelos-OSI-TCPIP-encapsulacion/media/V12-desencapsulacion-y-cierre.mp4",
+     "asset": "cdac82773005bb3872fb8ecd0e605bfa",
+     "versionVideo": "vertical-vozpy-2026-11-25"
     },
     {
-     "id": "md5b-servidor",
+     "id": "s14-servidor",
      "tipo": "concepto",
      "titulo": "En el servidor: desencapsular",
      "texto": "Cada capa **quita su encabezado** y le pasa el resto a la de arriba:\n\nbits\n→ quita **Ethernet**\n→ quita **IP**\n→ quita **TCP** y ve el puerto `80`: es para el servidor web\n→ datos: `GET /`"
     },
     {
-     "id": "md5b-q4",
+     "id": "s14-q1",
      "tipo": "orden",
      "repaso": true,
      "pregunta": "Ordena lo que pasa en el servidor al recibir el mensaje:",
@@ -965,116 +2461,144 @@
       "Quita el encabezado TCP y ve el puerto",
       "Entrega los datos al servidor web"
      ],
-     "explica": "Al subir, cada capa quita su propio encabezado, en orden inverso a como se pusieron."
+     "explica": "Al subir, cada capa quita su propio encabezado, en orden inverso a como se pusieron.",
+     "concepto": "desencapsular"
     },
     {
-     "id": "md5b-preprueba",
-     "tipo": "concepto",
-     "titulo": "Califica tu preprueba",
-     "texto": "Al empezar el tema respondiste 5 preguntas. Estas eran las respuestas:\n\n**1.** Las capas sirven para cambiar una parte sin romper las demás.\n**2.** La trama que sale de tu PC hacia internet va a la MAC de **tu router**.\n**3.** El switch trabaja en la capa **2** y el router en la **3**.\n**4.** Encapsular es **envolver** los datos en encabezados.\n**5.** OSI es un **mapa**; TCP/IP es lo que se usa."
-    },
-    {
-     "id": "md5b-pp",
-     "tipo": "reflexion",
-     "pregunta": "¿Qué tanto cambió lo que sabías al empezar?",
+     "id": "s14-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "desencapsular",
+     "pregunta": "Ya en el servidor, ¿qué le dice a qué programa entregar los datos?",
      "opciones": [
-      "Mucho: varias respuestas las adiviné",
-      "Algo: tenía idea, pero no sabía por qué",
-      "Poco: ya lo sabía y ahora sé explicarlo"
+      "El puerto de destino",
+      "La IP de origen",
+      "La MAC de destino"
      ],
-     "nota": "Sirve para medir cuánto movió el tema tus ideas previas."
+     "correcta": 0,
+     "explica": "Al quitar el encabezado TCP, el puerto `80` indica que es para el servidor web."
     },
     {
-     "id": "md5b-corta1",
+     "id": "s14-q3",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "desencapsular",
+     "afirmacion": "Al desencapsular, el primer encabezado que se quita es el de TCP.",
+     "verdadera": false,
+     "explica": "Se quitan en orden inverso a como se pusieron: primero Ethernet, luego IP y al final TCP."
+    },
+    {
+     "id": "s14-q5",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "desencapsular",
+     "afirmacion": "Al desencapsular, el servidor quita los encabezados en el orden inverso a como se pusieron.",
+     "verdadera": true,
+     "explica": "Se pusieron TCP → IP → Ethernet; se quitan Ethernet → IP → TCP."
+    },
+    {
+     "id": "s14-q4",
+     "tipo": "armar",
+     "repaso": true,
+     "concepto": "desencapsular",
+     "pregunta": "Arma el viaje completo, en orden. Sobra una pieza:",
+     "piezas": [
+      "La app crea los datos",
+      "TCP, IP y Ethernet los envuelven",
+      "La trama va a la MAC del router",
+      "El router arma una trama nueva",
+      "El servidor quita Ethernet, IP y TCP",
+      "El puerto indica el programa"
+     ],
+     "distractores": [
+      "El router cambia la IP de destino"
+     ],
+     "explica": "Encapsular, saltar (cambian las MAC) y desencapsular. La IP de destino no cambia."
+    },
+    {
+     "id": "s14-corta1",
      "tipo": "corta",
      "repaso": true,
-     "pregunta": "En cada salto por un router, ¿qué cambia y qué se mantiene?",
-     "respuesta": "Cambian las MAC (cada tramo arma una trama nueva) y baja el TTL; las IP de origen y destino se mantienen (salvo NAT).",
+     "concepto": "desencapsular",
+     "pregunta": "¿Qué es desencapsular?",
+     "respuesta": "Que al recibir, cada capa quita su propio encabezado y le pasa el resto a la de arriba.",
      "puntos": [
-      "Cambian las MAC",
-      "Baja el TTL en 1",
-      "Las IP se mantienen (salvo NAT)"
-     ]
+      "Cada capa quita su encabezado al subir"
+     ],
+     "pista": "Es lo contrario de encapsular."
     },
     {
-     "id": "md5b-mini",
+     "id": "s14-mini",
      "tipo": "explica",
-     "prompt": "¿Qué MAC de destino lleva la trama que sale de tu PC hacia internet y por qué? ¿Qué cambia y qué se mantiene en cada salto? ¿Qué hace cada capa del servidor al recibir el mensaje?",
+     "concepto": "desencapsular",
+     "prompt": "¿En qué orden quita el servidor los encabezados, y qué ve al final?",
      "puntos": [
-      "La trama que sale de tu PC va a la MAC del router (gateway), porque el destino está en otra red",
-      "En cada salto cambian las MAC y baja el TTL; las IP de origen y destino se mantienen (salvo NAT)",
-      "El router quita la trama, lee la IP de destino, consulta su tabla y arma una trama nueva",
-      "En el servidor cada capa quita su encabezado y el puerto indica a qué programa entregar los datos"
-     ]
+      "Ethernet, IP y TCP; al final el puerto indica a qué programa entregar los datos"
+     ],
+     "segundos": 30
     }
    ]
   },
   {
-   "id": "md6",
+   "id": "s15",
    "paso": "Exponer",
-   "titulo": "Fuente primaria y tutor de IA",
-   "minutos": 15,
+   "titulo": "Repaso con el tutor",
+   "minutos": 8,
+   "libro": "md6",
    "tarjetas": [
     {
-     "id": "md6-intro",
+     "id": "s15-intro",
      "tipo": "concepto",
-     "titulo": "Directo de la fuente",
-     "texto": "Hasta ahora leíste explicaciones. Hoy vas a la fuente: el **RFC 1122**, el documento de 1989 que define lo que debe hacer un equipo conectado a internet.\n\nEstá en inglés y es técnico. Si una frase no se entiende, anótala y llévala al tutor en la parte B."
+     "titulo": "Una plática corta con el tutor",
+     "texto": "El tutor te va a hacer **5 preguntas cortas**, una por una, sobre encapsulación y la diferencia entre capa 2 y capa 3.\n\nSi te equivocas, te da una pista, no la respuesta. Al final te dice qué huecos vio."
     },
     {
-     "id": "md6-lectura",
-     "tipo": "concepto",
-     "titulo": "Parte A · Lee la sección 1.1.3",
-     "texto": "Ábrela aquí (8 minutos):\nhttps://www.rfc-editor.org/rfc/rfc1122#section-1.1.3\n\nMientras lees, busca:\n**1.** ¿Qué capas menciona y cómo las llama?\n**2.** ¿Qué dice que hace cada una?\n**3.** ¿Coincide con lo que viste de TCP/IP?"
-    },
-    {
-     "id": "md6-a1",
-     "tipo": "abierta",
-     "pregunta": "¿Cómo llama el RFC a las capas de TCP/IP y qué dice de cada una?"
-    },
-    {
-     "id": "md6-a2",
-     "tipo": "abierta",
-     "pregunta": "¿Algo no coincidió con lo que viste o alguna frase no se entendió?",
-     "opcional": true
-    },
-    {
-     "id": "md6-tutor",
-     "tipo": "concepto",
-     "titulo": "Parte B · Platica con un tutor de IA",
-     "texto": "Copia este mensaje en tu asistente de IA (7 minutos):\n\n“Estoy aprendiendo los modelos OSI y TCP/IP y la encapsulación. Actúa como tutor: NO me des explicaciones largas. Hazme 5 preguntas, una por una, para comprobar si entiendo la encapsulación y la diferencia entre capa 2 y capa 3. Espera mi respuesta antes de la siguiente pregunta. Si me equivoco, dame una pista, no la respuesta. Al final dime qué huecos detectaste.”\n\nSi te quedaron frases del RFC sin entender, pregúntaselas también."
-    },
-    {
-     "id": "md6-huecos",
-     "tipo": "abierta",
-     "pregunta": "¿Qué huecos te detectó el tutor?"
-    },
-    {
-     "id": "md6-mini",
-     "tipo": "explica",
-     "prompt": "¿Cómo llama el RFC 1122 a las capas de TCP/IP? ¿Qué hueco te encontró la IA y cómo lo entiendes ahora?",
+     "id": "s15-conversa",
+     "tipo": "conversa",
+     "preguntas": 5,
+     "objetivo": "Comprobar si entiende la encapsulación y la diferencia entre capa 2 y capa 3",
+     "conceptos": [
+      "encapsular",
+      "mac-destino",
+      "saltos",
+      "capa2",
+      "capa3"
+     ],
      "puntos": [
-      "El RFC 1122 nombra cuatro capas: Application, Transport, Internet y Link",
-      "Las relaciona con lo visto: aplicación, transporte (TCP y UDP), internet (IP) y enlace",
-      "Menciona al menos un hueco concreto que detectó el tutor y lo explica bien ahora"
+      "La trama hacia internet va a la MAC del router; la IP de destino es la del servidor",
+      "En cada salto cambian las MAC y baja el TTL; las IP se mantienen (salvo NAT)",
+      "Capa 2 = dentro de la red (MAC, switch); capa 3 = entre redes (IP, router)",
+      "Cada capa agrega su encabezado al bajar y lo quita al subir"
      ]
+    },
+    {
+     "id": "s15-mini",
+     "tipo": "explica",
+     "concepto": "mac-destino",
+     "prompt": "Elige el hueco que te marcó el tutor y explícalo bien ahora, en una frase.",
+     "puntos": [
+      "Nombra un hueco concreto de la plática",
+      "Lo explica correctamente"
+     ],
+     "segundos": 45
     }
    ]
   },
   {
-   "id": "md7",
+   "id": "s16",
    "paso": "Practicar",
-   "titulo": "Ejercicios: clasificar y ordenar",
-   "minutos": 15,
+   "titulo": "Ejercicio A: ¿en qué capa va?",
+   "minutos": 6,
+   "libro": "md7",
    "tarjetas": [
     {
-     "id": "md7-intro",
+     "id": "s16-intro",
      "tipo": "concepto",
      "titulo": "Ejercicio A · Clasifica",
      "texto": "Para cada elemento, elige su capa **OSI** (número) y su capa **TCP/IP** (nombre).\n\nResponde sin ver nada. Lo que falles es justo lo que más te conviene repasar."
     },
     {
-     "id": "md7-a1",
+     "id": "s16-q1",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué capas va **DNS**?",
@@ -1084,10 +2608,11 @@
       "OSI 3 · Internet"
      ],
      "correcta": 0,
-     "explica": "DNS es un protocolo de aplicación. Viaja sobre UDP (y a veces TCP) en el puerto 53."
+     "explica": "DNS es un protocolo de aplicación. Viaja sobre UDP (y a veces TCP) en el puerto 53.",
+     "concepto": "capas-altas"
     },
     {
-     "id": "md7-a2",
+     "id": "s16-q2",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué capas va **UDP**?",
@@ -1097,10 +2622,11 @@
       "OSI 7 · Aplicación"
      ],
      "correcta": 0,
-     "explica": "UDP, como TCP, es transporte: capa 4."
+     "explica": "UDP, como TCP, es transporte: capa 4.",
+     "concepto": "capa4"
     },
     {
-     "id": "md7-a3",
+     "id": "s16-q3",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué capas va **ICMP** (el que usa `ping`)?",
@@ -1110,10 +2636,11 @@
       "OSI 2 · Enlace"
      ],
      "correcta": 0,
-     "explica": "Viaja dentro de IP, pero se considera parte de la capa de red."
+     "explica": "Viaja dentro de IP, pero se considera parte de la capa de red.",
+     "concepto": "capa3"
     },
     {
-     "id": "md7-a4",
+     "id": "s16-q4",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué capas va **Ethernet**?",
@@ -1123,10 +2650,11 @@
       "OSI 4 · Transporte"
      ],
      "correcta": 0,
-     "explica": "El estándar Ethernet define la trama (capa 2) y también las señales (capa 1)."
+     "explica": "El estándar Ethernet define la trama (capa 2) y también las señales (capa 1).",
+     "concepto": "capa2"
     },
     {
-     "id": "md7-a5",
+     "id": "s16-q5",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué capas va el **cable UTP**?",
@@ -1136,10 +2664,11 @@
       "OSI 1 · Internet"
      ],
      "correcta": 0,
-     "explica": "Es capa 1 de OSI. En TCP/IP, la física queda dentro de la capa de enlace."
+     "explica": "Es capa 1 de OSI. En TCP/IP, la física queda dentro de la capa de enlace.",
+     "concepto": "capa1"
     },
     {
-     "id": "md7-a6",
+     "id": "s16-q6",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué capas va el **número de puerto**?",
@@ -1149,10 +2678,11 @@
       "OSI 7 · Aplicación"
      ],
      "correcta": 0,
-     "explica": "El puerto es la dirección de la capa de transporte."
+     "explica": "El puerto es la dirección de la capa de transporte.",
+     "concepto": "capa4"
     },
     {
-     "id": "md7-a7",
+     "id": "s16-q7",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué capas va un **hub**?",
@@ -1162,10 +2692,11 @@
       "OSI 3 · Internet"
      ],
      "correcta": 0,
-     "explica": "El hub solo repite señales; no entiende de MAC. El switch sí: capa 2."
+     "explica": "El hub solo repite señales; no entiende de MAC. El switch sí: capa 2.",
+     "concepto": "capa1"
     },
     {
-     "id": "md7-a8",
+     "id": "s16-q8",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué capas va un **router**?",
@@ -1175,25 +2706,81 @@
       "OSI 4 · Transporte"
      ],
      "correcta": 0,
-     "explica": "El router conecta redes distintas usando IP."
+     "explica": "El router conecta redes distintas usando IP.",
+     "concepto": "capa3"
     },
     {
-     "id": "md7-arp",
-     "tipo": "abierta",
-     "pregunta": "⚠️ Pregunta trampa: ¿en qué capa pondrías **ARP**? Explica por qué."
+     "id": "s16-q9",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "tcpip",
+     "pregunta": "Ahora en TCP/IP: ¿en qué capa va cada uno?",
+     "grupos": [
+      "Aplicación",
+      "Transporte",
+      "Internet",
+      "Enlace"
+     ],
+     "items": [
+      {
+       "texto": "DNS",
+       "grupo": 0
+      },
+      {
+       "texto": "HTTP",
+       "grupo": 0
+      },
+      {
+       "texto": "UDP",
+       "grupo": 1
+      },
+      {
+       "texto": "Número de puerto",
+       "grupo": 1
+      },
+      {
+       "texto": "ICMP",
+       "grupo": 2
+      },
+      {
+       "texto": "Router",
+       "grupo": 2
+      },
+      {
+       "texto": "Ethernet",
+       "grupo": 3
+      },
+      {
+       "texto": "Cable UTP",
+       "grupo": 3
+      }
+     ],
+     "explica": "En TCP/IP la física y el enlace de OSI quedan juntas en enlace; 5, 6 y 7 en aplicación."
     },
     {
-     "id": "md7-arp-sol",
-     "tipo": "concepto",
-     "titulo": "Por qué ARP es una trampa",
-     "texto": "ARP **sirve a la capa 3**: traduce una IP a una MAC.\n\nPero **viaja directo dentro de una trama Ethernet**, sin encabezado IP.\n\nNo encaja limpio en una sola capa: muchos lo ponen en la 2 y otros lo llaman “capa 2.5”. **Las dos respuestas valen si las justificas así.**\n\nLo importante: los modelos simplifican la realidad.",
-     "capa": 2
-    },
+     "id": "s16-mini",
+     "tipo": "explica",
+     "concepto": "capa1",
+     "prompt": "¿Por qué un hub es de capa 1 y un switch de capa 2?",
+     "puntos": [
+      "El hub solo repite señales, sin entender direcciones; el switch lee la MAC"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s17",
+   "paso": "Practicar",
+   "titulo": "Ejercicio B: encabezados y la trampa de ARP",
+   "minutos": 6,
+   "libro": "md7",
+   "tarjetas": [
     {
-     "id": "md7-b1",
+     "id": "s17-q1",
      "tipo": "orden",
      "repaso": true,
-     "pregunta": "Ejercicio B · Ordena lo que pasa en tu PC al enviar, de lo primero a lo último:",
+     "pregunta": "Ordena lo que pasa en tu PC al enviar, de lo primero a lo último:",
      "items": [
       "La app genera los datos",
       "Se agrega el encabezado TCP",
@@ -1201,10 +2788,11 @@
       "Se agregan el encabezado Ethernet y el FCS",
       "Se convierte en bits"
      ],
-     "explica": "Datos → TCP → IP → Ethernet + FCS → bits."
+     "explica": "Datos → TCP → IP → Ethernet + FCS → bits.",
+     "concepto": "encapsular"
     },
     {
-     "id": "md7-b2",
+     "id": "s17-q2",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué encabezado va la **MAC de origen**?",
@@ -1214,10 +2802,11 @@
       "TCP"
      ],
      "correcta": 0,
-     "explica": "Las MAC son de capa 2: encabezado Ethernet."
+     "explica": "Las MAC son de capa 2: encabezado Ethernet.",
+     "concepto": "encabezados"
     },
     {
-     "id": "md7-b3",
+     "id": "s17-q3",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿En qué encabezado va el **puerto de destino**?",
@@ -1227,10 +2816,11 @@
       "Ethernet"
      ],
      "correcta": 0,
-     "explica": "Los puertos son de capa 4: encabezado TCP (o UDP)."
+     "explica": "Los puertos son de capa 4: encabezado TCP (o UDP).",
+     "concepto": "encabezados"
     },
     {
-     "id": "md7-b4",
+     "id": "s17-q4",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "¿Dónde va el **FCS**?",
@@ -1240,10 +2830,41 @@
       "Dentro del encabezado TCP"
      ],
      "correcta": 0,
-     "explica": "El FCS es un tráiler: Ethernet lo pone al final de la trama para detectar errores."
+     "explica": "El FCS es un tráiler: Ethernet lo pone al final de la trama para detectar errores.",
+     "concepto": "encabezados"
     },
     {
-     "id": "md7-corta1",
+     "id": "s17-q5",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "mac-destino",
+     "pregunta": "⚠️ Pregunta trampa: ¿en qué capa pondrías ARP?",
+     "opciones": [
+      "En la 2 o «2.5»: sirve a la 3 pero viaja en Ethernet",
+      "En la 3, porque viaja dentro de un paquete IP",
+      "En la 7, porque es un servicio para las apps"
+     ],
+     "correcta": 0,
+     "explica": "ARP traduce IP a MAC (sirve a la capa 3), pero viaja directo en una trama Ethernet, **sin** encabezado IP."
+    },
+    {
+     "id": "s17-arp",
+     "tipo": "concepto",
+     "titulo": "Por qué ARP es una trampa",
+     "texto": "ARP **sirve a la capa 3**: traduce una IP a una MAC.\n\nPero **viaja directo dentro de una trama Ethernet**, sin encabezado IP.\n\nNo encaja limpio en una sola capa: muchos lo ponen en la 2 y otros lo llaman “capa 2.5”. **Las dos respuestas valen si las justificas así.**\n\nLo importante: los modelos simplifican la realidad.",
+     "capa": 2
+    },
+    {
+     "id": "s17-q6",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "mac-destino",
+     "afirmacion": "ARP viaja dentro de un paquete IP.",
+     "verdadera": false,
+     "explica": "Viaja directo en una trama Ethernet, sin encabezado IP. Por eso no encaja limpio en una capa."
+    },
+    {
+     "id": "s17-corta1",
      "tipo": "corta",
      "repaso": true,
      "pregunta": "¿Por qué ARP no encaja limpio en una sola capa?",
@@ -1251,35 +2872,37 @@
      "puntos": [
       "Traduce IP a MAC: sirve a la capa 3",
       "Viaja dentro de Ethernet sin encabezado IP"
-     ]
+     ],
+     "concepto": "mac-destino",
+     "pista": "¿A qué capa le sirve ARP y en qué viaja?"
     },
     {
-     "id": "md7-mini",
+     "id": "s17-mini",
      "tipo": "explica",
-     "prompt": "¿Por qué ARP es una pregunta trampa al clasificarlo en una capa?",
+     "concepto": "mac-destino",
+     "prompt": "En una frase: ¿para qué sirve ARP?",
      "puntos": [
-      "ARP traduce una IP a una MAC: sirve a la capa 3",
-      "Pero viaja directo dentro de una trama Ethernet, sin encabezado IP",
-      "Por eso no encaja limpio: se ubica en la capa 2 o “2.5”; cualquiera vale si se justifica",
-      "Muestra que los modelos simplifican la realidad"
-     ]
+      "Para averiguar la MAC que corresponde a una IP de tu red"
+     ],
+     "segundos": 30
     }
    ]
   },
   {
-   "id": "md8",
+   "id": "s18",
    "paso": "Practicar",
-   "titulo": "Ejercicios: diagnosticar y predecir",
-   "minutos": 15,
+   "titulo": "Ejercicio C: diagnostica por capas",
+   "minutos": 6,
+   "libro": "md8",
    "tarjetas": [
     {
-     "id": "md8-intro",
+     "id": "s18-intro",
      "tipo": "concepto",
      "titulo": "Ejercicio C · Diagnostica por capas",
      "texto": "Para cada síntoma, ¿en qué capa OSI está **probablemente** el problema?\n\nPiensa en qué funciona y qué no antes de elegir."
     },
     {
-     "id": "md8-c1",
+     "id": "s18-q1",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "El LED del puerto del switch donde está conectada la PC está apagado.",
@@ -1289,10 +2912,11 @@
       "Capa 3"
      ],
      "correcta": 0,
-     "explica": "No hay enlace físico: cable, puerto o tarjeta. Se diagnostica de abajo hacia arriba: si la capa 1 falla, no tiene caso revisar lo demás."
+     "explica": "No hay enlace físico: cable, puerto o tarjeta. Se diagnostica de abajo hacia arriba: si la capa 1 falla, no tiene caso revisar lo demás.",
+     "concepto": "diagnostico"
     },
     {
-     "id": "md8-c2",
+     "id": "s18-q2",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "La PC tiene IP, pero no responde ni el gateway. `arp -a` no muestra la MAC del gateway. El cable y el LED están bien.",
@@ -1302,10 +2926,11 @@
       "Capa 7"
      ],
      "correcta": 0,
-     "explica": "No se resuelve la MAC del gateway (ARP sin respuesta). Causas posibles: VLAN incorrecta o puerto del switch mal configurado."
+     "explica": "No se resuelve la MAC del gateway (ARP sin respuesta). Causas posibles: VLAN incorrecta o puerto del switch mal configurado.",
+     "concepto": "diagnostico"
     },
     {
-     "id": "md8-c3",
+     "id": "s18-q3",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "`ping 8.8.8.8` funciona, pero ninguna página abre por nombre y `nslookup` falla.",
@@ -1315,10 +2940,11 @@
       "Capa 1"
      ],
      "correcta": 0,
-     "explica": "Hasta la capa 3 todo está bien: el ping a una IP funciona. Falla la resolución de nombres (DNS)."
+     "explica": "Hasta la capa 3 todo está bien: el ping a una IP funciona. Falla la resolución de nombres (DNS).",
+     "concepto": "diagnostico"
     },
     {
-     "id": "md8-c4",
+     "id": "s18-q4",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "`ping` al servidor funciona, pero la web no carga: el firewall bloquea el puerto 443.",
@@ -1328,10 +2954,11 @@
       "Capa 2"
      ],
      "correcta": 0,
-     "explica": "Hay conectividad IP, pero el puerto está bloqueado: capa 4."
+     "explica": "Hay conectividad IP, pero el puerto está bloqueado: capa 4.",
+     "concepto": "diagnostico"
     },
     {
-     "id": "md8-c5",
+     "id": "s18-q5",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "Dos PCs en subredes distintas no se comunican y no hay ningún router entre ellas.",
@@ -1341,10 +2968,11 @@
       "Capa 1"
      ],
      "correcta": 0,
-     "explica": "Para comunicar redes distintas hace falta ruteo: capa 3."
+     "explica": "Para comunicar redes distintas hace falta ruteo: capa 3.",
+     "concepto": "diagnostico"
     },
     {
-     "id": "md8-c6",
+     "id": "s18-q6",
      "tipo": "opcion",
      "repaso": true,
      "pregunta": "Un `ping` responde “TTL expired in transit”.",
@@ -1354,68 +2982,26 @@
       "Capa 1"
      ],
      "correcta": 0,
-     "explica": "El TTL llegó a 0 antes del destino: un bucle de ruteo o demasiados saltos."
+     "explica": "El TTL llegó a 0 antes del destino: un bucle de ruteo o demasiados saltos.",
+     "concepto": "diagnostico"
     },
     {
-     "id": "md8-d-intro",
-     "tipo": "concepto",
-     "titulo": "Ejercicio D · Predice el viaje",
-     "texto": "`PC ── R1 ── R2 ── Servidor`\n\nMAC de cada interfaz:\nPC `AA` · R1 `B1` y `B2` · R2 `C1` y `C2` · Servidor `SS`\n(`B1` mira hacia la PC; `B2`, hacia R2. Lo mismo con R2.)\n\nIP de la PC: `10.0.0.10`\nIP del servidor: `203.0.113.10`\n\nLos routers **no hacen NAT**. La PC empieza con TTL 64."
-    },
-    {
-     "id": "md8-d1",
-     "tipo": "opcion",
+     "id": "s18-q7",
+     "tipo": "orden",
      "repaso": true,
-     "pregunta": "Tramo **PC → R1**: ¿a qué MAC va la trama?",
-     "opciones": [
-      "B1",
-      "SS",
-      "C1"
+     "concepto": "diagnostico",
+     "pregunta": "«No hay internet». Ordena qué revisas, de lo primero a lo último:",
+     "items": [
+      "Cable, Wi-Fi o LED (capa 1)",
+      "La MAC del gateway con `arp -a` (capa 2)",
+      "`ping` a una IP de internet (capa 3)",
+      "El puerto o el firewall (capa 4)",
+      "El DNS o la página (capa 7)"
      ],
-     "correcta": 0,
-     "explica": "La PC manda la trama a la interfaz del router que tiene enfrente: B1."
+     "explica": "De abajo hacia arriba: si una capa falla, no tiene caso revisar las de arriba."
     },
     {
-     "id": "md8-d2",
-     "tipo": "opcion",
-     "repaso": true,
-     "pregunta": "Tramo **R1 → R2**: ¿qué MAC de origen y de destino lleva la trama?",
-     "opciones": [
-      "B2 → C1",
-      "AA → SS",
-      "B1 → C2"
-     ],
-     "correcta": 0,
-     "explica": "Cada tramo arma una trama nueva entre los dos equipos de ese tramo: sale por B2 de R1 y entra por C1 de R2."
-    },
-    {
-     "id": "md8-d3",
-     "tipo": "opcion",
-     "repaso": true,
-     "pregunta": "Tramo **R2 → Servidor**: ¿qué IP de origen y de destino lleva el paquete?",
-     "opciones": [
-      "10.0.0.10 → 203.0.113.10",
-      "La IP de R2 → 203.0.113.10",
-      "10.0.0.10 → la IP de R2"
-     ],
-     "correcta": 0,
-     "explica": "Las IP van de punta a punta: sin NAT, no cambian en ningún tramo."
-    },
-    {
-     "id": "md8-d4",
-     "tipo": "opcion",
-     "repaso": true,
-     "pregunta": "¿Con qué TTL llega el paquete al servidor?",
-     "opciones": [
-      "62",
-      "64",
-      "63"
-     ],
-     "correcta": 0,
-     "explica": "Cada router lo baja en 1: 64 → 63 (R1) → 62 (R2)."
-    },
-    {
-     "id": "md8-noint",
+     "id": "s18-noint",
      "tipo": "reflexion",
      "pregunta": "Al empezar el tema te preguntamos: alguien dice “no hay internet”. ¿Por dónde empiezas ahora?",
      "opciones": [
@@ -1427,7 +3013,7 @@
      "nota": "Compara con lo que respondiste en la primera sesión. Revisar de abajo hacia arriba evita perder tiempo."
     },
     {
-     "id": "md8-corta1",
+     "id": "s18-corta1",
      "tipo": "corta",
      "repaso": true,
      "pregunta": "El ping a 8.8.8.8 funciona, pero ninguna página abre por nombre. ¿Qué capa sospechas y por qué?",
@@ -1435,26 +3021,163 @@
      "puntos": [
       "Capa 7 / aplicación, DNS",
       "El ping a una IP demuestra que hasta la capa 3 funciona"
-     ]
+     ],
+     "concepto": "diagnostico",
+     "pista": "¿Qué demuestra que el ping a una IP sí funcione?"
     },
     {
-     "id": "md8-mini",
+     "id": "s18-mini",
      "tipo": "explica",
-     "prompt": "¿Qué cambia y qué se mantiene en cada salto entre routers? ¿Por qué?",
+     "concepto": "diagnostico",
+     "prompt": "¿Por qué conviene diagnosticar de abajo hacia arriba?",
      "puntos": [
-      "Cambian las MAC de origen y destino: cada tramo arma una trama nueva entre los dos equipos de ese tramo",
-      "El TTL baja 1 en cada router",
-      "Las IP de origen y destino se mantienen porque identifican los extremos (sin NAT)",
-      "Las MAC solo valen dentro de cada red; las IP, de punta a punta"
-     ]
+      "Porque cada capa depende de la de abajo: si una falla, las de arriba no pueden funcionar"
+     ],
+     "segundos": 30
     }
    ]
   },
   {
-   "id": "bl1",
+   "id": "s19",
+   "paso": "Practicar",
+   "titulo": "Ejercicio D: predice el viaje",
+   "minutos": 5,
+   "libro": "md8",
+   "tarjetas": [
+    {
+     "id": "s19-intro",
+     "tipo": "concepto",
+     "titulo": "Ejercicio D · Predice el viaje",
+     "texto": "`PC ── R1 ── R2 ── Servidor`\n\nMAC de cada interfaz:\nPC `AA` · R1 `B1` y `B2` · R2 `C1` y `C2` · Servidor `SS`\n(`B1` mira hacia la PC; `B2`, hacia R2. Lo mismo con R2.)\n\nIP de la PC: `10.0.0.10`\nIP del servidor: `203.0.113.10`\n\nLos routers **no hacen NAT**. La PC empieza con TTL 64."
+    },
+    {
+     "id": "s19-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "Tramo **PC → R1**: ¿a qué MAC va la trama?",
+     "opciones": [
+      "B1",
+      "SS",
+      "C1"
+     ],
+     "correcta": 0,
+     "explica": "La PC manda la trama a la interfaz del router que tiene enfrente: B1.",
+     "concepto": "mac-destino"
+    },
+    {
+     "id": "s19-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "Tramo **R1 → R2**: ¿qué MAC de origen y de destino lleva la trama?",
+     "opciones": [
+      "B2 → C1",
+      "AA → SS",
+      "B1 → C2"
+     ],
+     "correcta": 0,
+     "explica": "Cada tramo arma una trama nueva entre los dos equipos de ese tramo: sale por B2 de R1 y entra por C1 de R2.",
+     "concepto": "saltos"
+    },
+    {
+     "id": "s19-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "Tramo **R2 → Servidor**: ¿qué IP de origen y de destino lleva el paquete?",
+     "opciones": [
+      "10.0.0.10 → 203.0.113.10",
+      "La IP de R2 → 203.0.113.10",
+      "10.0.0.10 → la IP de R2"
+     ],
+     "correcta": 0,
+     "explica": "Las IP van de punta a punta: sin NAT, no cambian en ningún tramo.",
+     "concepto": "saltos"
+    },
+    {
+     "id": "s19-q4",
+     "tipo": "opcion",
+     "repaso": true,
+     "pregunta": "¿Con qué TTL llega el paquete al servidor?",
+     "opciones": [
+      "62",
+      "64",
+      "63"
+     ],
+     "correcta": 0,
+     "explica": "Cada router lo baja en 1: 64 → 63 (R1) → 62 (R2).",
+     "concepto": "saltos"
+    },
+    {
+     "id": "s19-q5",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "saltos",
+     "pregunta": "Del primer tramo al último, ¿qué cambia y qué no?",
+     "grupos": [
+      "Cambia en cada tramo",
+      "No cambia en ningún tramo"
+     ],
+     "items": [
+      {
+       "texto": "MAC de origen",
+       "grupo": 0
+      },
+      {
+       "texto": "MAC de destino",
+       "grupo": 0
+      },
+      {
+       "texto": "TTL",
+       "grupo": 0
+      },
+      {
+       "texto": "IP de origen",
+       "grupo": 1
+      },
+      {
+       "texto": "IP de destino",
+       "grupo": 1
+      },
+      {
+       "texto": "Puerto de destino",
+       "grupo": 1
+      }
+     ],
+     "explica": "Sin NAT: cambian las MAC y el TTL; las IP y los puertos van de punta a punta."
+    },
+    {
+     "id": "s19-q6",
+     "tipo": "error",
+     "repaso": true,
+     "concepto": "saltos",
+     "pregunta": "Tramo R1 → R2. Toca el dato que está **mal**:",
+     "partes": [
+      "MAC de origen: B2",
+      "MAC de destino: C1",
+      "IP de origen: la IP de R1",
+      "IP de destino: 203.0.113.10",
+      "TTL: 63"
+     ],
+     "incorrecta": 2,
+     "explica": "La IP de origen sigue siendo la de la PC (`10.0.0.10`): sin NAT, las IP no cambian."
+    },
+    {
+     "id": "s19-mini",
+     "tipo": "explica",
+     "concepto": "mac-destino",
+     "prompt": "Tramo PC → R1: ¿por qué la trama va a B1 y no a SS?",
+     "puntos": [
+      "Porque el servidor está en otra red: la trama va a la interfaz del router que la PC tiene enfrente"
+     ],
+     "segundos": 45
+    }
+   ]
+  },
+  {
+   "id": "s20",
    "paso": "Practicar",
    "titulo": "Laboratorio: la encapsulación en Wireshark",
    "minutos": 100,
+   "libro": "bl1",
    "tarjetas": [
     {
      "id": "bl1-intro",
@@ -1503,35 +3226,35 @@
     {
      "id": "bl1-concl",
      "tipo": "abierta",
-     "pregunta": "Escribe 3 conclusiones del laboratorio, con tus palabras."
+     "pregunta": "Escribe la conclusión que más te sorprendió del laboratorio, en 1 o 2 frases."
     },
     {
      "id": "bl1-mini",
      "tipo": "explica",
-     "prompt": "¿Qué demostraron las partes 2, 3 y 4 sobre cómo se elige la MAC de destino?",
+     "concepto": "mac-destino",
+     "prompt": "¿Qué decide a qué MAC va la trama?",
      "puntos": [
-      "Si el destino está fuera de tu red, la trama va a la MAC del gateway (partes 2 y 4b)",
-      "Si el destino está en tu red, la trama va directo a la MAC de esa máquina (parte 3)",
-      "Sin la MAC de destino no se puede armar la trama: con una IP libre de tu red solo sale ARP y nunca sale TCP (parte 4a)",
-      "La decisión de capa 3 (¿está en mi red?) define el destino de capa 2"
-     ]
+      "Si el destino está en tu red, la trama va a su MAC; si está fuera, a la MAC del gateway"
+     ],
+     "segundos": 45
     }
    ]
   },
   {
-   "id": "md9",
+   "id": "s21",
    "paso": "Explicar",
    "titulo": "La prueba de Feynman",
    "minutos": 15,
+   "libro": "md9",
    "tarjetas": [
     {
-     "id": "md9-intro",
+     "id": "s21-intro",
      "tipo": "concepto",
      "titulo": "La prueba grande",
      "texto": "Cierra todo: notas, el Libro, Wireshark y la IA.\n\nVas a explicar el tema completo **a alguien que no sabe nada de redes**, en 3 a 5 minutos. Díctalo o escríbelo.\n\nDebe cubrir:\n**Qué es** · OSI y TCP/IP\n**Por qué existe** · qué resuelven las capas\n**Cómo funciona** · la encapsulación y qué cambia en cada salto\n**Cuándo falla o no aplica** · dónde no encaja el modelo y cómo se diagnostica\n**Un ejemplo tuyo** · de tu trabajo, tu casa o el laboratorio, no el del material"
     },
     {
-     "id": "md9-feynman",
+     "id": "s21-feynman",
      "tipo": "explica",
      "prompt": "Explica qué son los modelos OSI y TCP/IP y qué le pasa, capa por capa, a una petición web desde que sale de tu navegador hasta que llega al servidor.",
      "puntos": [
@@ -1547,114 +3270,78 @@
    ]
   },
   {
-   "id": "md10",
+   "id": "s22",
    "paso": "Consolidar",
    "titulo": "Tus propias tarjetas",
-   "minutos": 15,
+   "minutos": 9,
+   "libro": "md10",
    "tarjetas": [
     {
-     "id": "md10-intro",
+     "id": "s22-intro",
      "tipo": "concepto",
      "titulo": "Tus propias tarjetas",
      "texto": "La app ya te repasa lo que viste. Ahora tú escribes **tus** tarjetas sobre lo que más te costó.\n\n**1.** Una idea por tarjeta.\n**2.** Mejor “¿por qué?” y “¿qué pasa si…?” que definiciones.\n**3.** Empieza por tus huecos: los que te marcó el tutor.\n**4.** Respuesta de 1 o 2 líneas.\n**5.** No copies: reformula."
     },
     {
-     "id": "md10-formas",
+     "id": "s22-formas",
      "tipo": "concepto",
      "titulo": "Formas que funcionan",
      "texto": "**¿Por qué?** ¿Por qué ___ y no ___?\n**¿Qué pasa si…?** ¿Qué pasa si ___ falla en la capa ___?\n**Comparar** ¿Qué diferencia hay entre ___ y ___?\n**Diagnóstico** Si veo ___, ¿en qué capa busco primero?\n**Predicción** En el salto de ___ a ___, ¿qué campo cambia?"
     },
     {
-     "id": "md10-t1",
+     "id": "s22-t1",
      "tipo": "abierta",
      "pregunta": "Tarjeta 1 · Escribe la pregunta y su respuesta."
     },
     {
-     "id": "md10-t2",
+     "id": "s22-t2",
      "tipo": "abierta",
      "pregunta": "Tarjeta 2 · Pregunta y respuesta."
     },
     {
-     "id": "md10-t3",
+     "id": "s22-t3",
      "tipo": "abierta",
      "pregunta": "Tarjeta 3 · Pregunta y respuesta."
     },
     {
-     "id": "md10-t4",
-     "tipo": "abierta",
-     "pregunta": "Tarjeta 4 · Pregunta y respuesta."
-    },
-    {
-     "id": "md10-t5",
-     "tipo": "abierta",
-     "pregunta": "Tarjeta 5 · Pregunta y respuesta."
-    },
-    {
-     "id": "md10-t6",
+     "id": "s22-t4",
      "tipo": "abierta",
      "pregunta": "¿Más tarjetas? Escribe hasta 5 más, una por línea.",
      "opcional": true
-    },
-    {
-     "id": "md10-mini",
-     "tipo": "explica",
-     "prompt": "Elige tu tarjeta más difícil y respóndela sin verla. Escribe primero la pregunta y luego tu respuesta.",
-     "puntos": [
-      "Escribe la pregunta de la tarjeta y una respuesta técnicamente correcta",
-      "La respuesta es breve (1 o 2 líneas) y con palabras propias"
-     ],
-     "repaso": false
     }
    ]
   },
   {
-   "id": "md11",
+   "id": "s23",
    "paso": "Registrar",
    "titulo": "Tu nota del tema",
-   "minutos": 10,
+   "minutos": 7,
+   "libro": "md11",
    "tarjetas": [
     {
-     "id": "md11-intro",
+     "id": "s23-intro",
      "tipo": "concepto",
      "titulo": "Tu nota del tema",
      "texto": "Una nota **privada**, con tus palabras. Es la materia prima del proyecto integrador del Módulo 1.\n\nNo busques que quede bonita: busca que sea tuya."
     },
     {
-     "id": "md11-n1",
+     "id": "s23-n1",
      "tipo": "abierta",
-     "pregunta": "Lo esencial del tema en 5 líneas."
+     "pregunta": "Lo esencial del tema en 3 líneas."
     },
     {
-     "id": "md11-n2",
+     "id": "s23-n2",
      "tipo": "abierta",
-     "pregunta": "Dibuja de memoria, en papel, la encapsulación o el viaje de un paquete. ¿Qué te costó recordar?",
-     "opcional": true
+     "pregunta": "¿Qué error cometiste más y cómo lo entiendes ahora?"
     },
     {
-     "id": "md11-n3",
-     "tipo": "abierta",
-     "pregunta": "¿Qué errores cometiste y cómo los entendiste al final?"
-    },
-    {
-     "id": "md11-n4",
-     "tipo": "abierta",
-     "pregunta": "¿Qué viste en el laboratorio que no esperabas?",
-     "opcional": true
-    },
-    {
-     "id": "md11-n5",
-     "tipo": "abierta",
-     "pregunta": "¿Qué de este tema podría formar parte de tu proyecto del Módulo 1?",
-     "opcional": true
-    },
-    {
-     "id": "md11-n6",
+     "id": "s23-n3",
      "tipo": "abierta",
      "pregunta": "¿Qué preguntas te quedaron abiertas?",
      "opcional": true
     },
     {
-     "id": "md11-cierre",
+     "id": "s23-cierre",
      "tipo": "concepto",
      "titulo": "Cerraste el tema 1.1",
      "texto": "Ya puedes explicar por qué la red se organiza en capas y qué le pasa a un mensaje en su viaje.\n\nTus repasos seguirán apareciendo en **Hoy** para que no se te olvide.",

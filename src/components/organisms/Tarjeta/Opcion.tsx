@@ -16,7 +16,7 @@ export function Opcion({ tarjeta: c, kicker, onNext, stats }: CardProps<Extract<
   const elegir = (k: number) => {
     const bien = k === c.correcta;
     setElegida(k);
-    stats.responder(bien);
+    stats.responder(bien, c.opciones[k]);
     if (c.repaso) calificar(c.id, bien);
   };
 

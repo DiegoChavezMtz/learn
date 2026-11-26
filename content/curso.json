@@ -18,106 +18,297 @@
      "academia": "piloto",
      "leccion": {
       "mapa": [
-       "md1",
-       "md2",
-       "md3a",
-       "md3b",
-       "md4",
-       "md5a",
-       "md5b",
-       "md6",
-       "md7",
-       "md8",
-       "bl1",
-       "md9",
-       "md10",
-       "md11"
+       "s01",
+       "s02",
+       "s03",
+       "s04",
+       "s05",
+       "s06",
+       "s07",
+       "s08",
+       "s09",
+       "s10",
+       "s11",
+       "s12",
+       "s13",
+       "s14",
+       "s15",
+       "s16",
+       "s17",
+       "s18",
+       "s19",
+       "s20",
+       "s21",
+       "s22",
+       "s23"
       ],
       "sesiones": [
        {
-        "id": "md1",
+        "id": "s01",
         "paso": "Orientar",
-        "titulo": "¿Qué sabes ya?",
-        "minutos": 5
+        "titulo": "Un mensaje va a hacer un viaje",
+        "minutos": 3
        },
        {
-        "id": "md2",
+        "id": "s02",
         "paso": "Exponer",
         "titulo": "¿Por qué capas?",
         "minutos": 8
        },
        {
-        "id": "md3a",
+        "id": "s03",
         "paso": "Exponer",
-        "titulo": "El mapa OSI y las capas 1 a 3",
+        "titulo": "OSI: el mapa de siete capas",
+        "minutos": 7
+       },
+       {
+        "id": "s04",
+        "paso": "Exponer",
+        "titulo": "Capas 1 y 2: dentro de tu red",
+        "minutos": 7
+       },
+       {
+        "id": "s05",
+        "paso": "Exponer",
+        "titulo": "Capa 3: llegar a otra red",
+        "minutos": 8
+       },
+       {
+        "id": "s06",
+        "paso": "Exponer",
+        "titulo": "Capa 4: ¿a qué programa va?",
+        "minutos": 7
+       },
+       {
+        "id": "s07",
+        "paso": "Exponer",
+        "titulo": "Capas 5, 6 y 7: lo que ve la app",
+        "minutos": 8
+       },
+       {
+        "id": "s08",
+        "paso": "Exponer",
+        "titulo": "TCP/IP: las cuatro capas de internet",
+        "minutos": 6
+       },
+       {
+        "id": "s09",
+        "paso": "Exponer",
+        "titulo": "Diagnosticas con OSI, implementas con TCP/IP",
+        "minutos": 6
+       },
+       {
+        "id": "s10",
+        "paso": "Exponer",
+        "titulo": "La fuente: el RFC 1122",
+        "minutos": 9
+       },
+       {
+        "id": "s11",
+        "paso": "Exponer",
+        "titulo": "Encapsular: bajando por las capas",
         "minutos": 10
        },
        {
-        "id": "md3b",
+        "id": "s12",
         "paso": "Exponer",
-        "titulo": "Las capas 4 a 7",
-        "minutos": 10
+        "titulo": "Cada envoltorio tiene nombre",
+        "minutos": 8
        },
        {
-        "id": "md4",
+        "id": "s13",
         "paso": "Exponer",
-        "titulo": "TCP/IP y su relación con OSI",
-        "minutos": 12
+        "titulo": "Qué cambia en cada salto",
+        "minutos": 8
        },
        {
-        "id": "md5a",
+        "id": "s14",
         "paso": "Exponer",
-        "titulo": "Encapsulación: bajando por las capas",
-        "minutos": 14
+        "titulo": "Desencapsular: el mensaje llega",
+        "minutos": 7
        },
        {
-        "id": "md5b",
+        "id": "s15",
         "paso": "Exponer",
-        "titulo": "Encapsulación: los saltos y la llegada",
-        "minutos": 12
+        "titulo": "Repaso con el tutor",
+        "minutos": 8
        },
        {
-        "id": "md6",
-        "paso": "Exponer",
-        "titulo": "Fuente primaria y tutor de IA",
-        "minutos": 15
-       },
-       {
-        "id": "md7",
+        "id": "s16",
         "paso": "Practicar",
-        "titulo": "Ejercicios: clasificar y ordenar",
-        "minutos": 15
+        "titulo": "Ejercicio A: ¿en qué capa va?",
+        "minutos": 6
        },
        {
-        "id": "md8",
+        "id": "s17",
         "paso": "Practicar",
-        "titulo": "Ejercicios: diagnosticar y predecir",
-        "minutos": 15
+        "titulo": "Ejercicio B: encabezados y la trampa de ARP",
+        "minutos": 6
        },
        {
-        "id": "bl1",
+        "id": "s18",
+        "paso": "Practicar",
+        "titulo": "Ejercicio C: diagnostica por capas",
+        "minutos": 6
+       },
+       {
+        "id": "s19",
+        "paso": "Practicar",
+        "titulo": "Ejercicio D: predice el viaje",
+        "minutos": 5
+       },
+       {
+        "id": "s20",
         "paso": "Practicar",
         "titulo": "Laboratorio: la encapsulación en Wireshark",
         "minutos": 100
        },
        {
-        "id": "md9",
+        "id": "s21",
         "paso": "Explicar",
         "titulo": "La prueba de Feynman",
         "minutos": 15
        },
        {
-        "id": "md10",
+        "id": "s22",
         "paso": "Consolidar",
         "titulo": "Tus propias tarjetas",
-        "minutos": 15
+        "minutos": 9
        },
        {
-        "id": "md11",
+        "id": "s23",
         "paso": "Registrar",
         "titulo": "Tu nota del tema",
-        "minutos": 10
+        "minutos": 7
        }
+      ],
+      "repasables": [
+       "s02-q1",
+       "s02-q2",
+       "s02-q3",
+       "s02-q4",
+       "s02-q5",
+       "s02-corta1",
+       "s02-mini",
+       "s03-q1",
+       "s03-q2",
+       "s03-q3",
+       "s03-q4",
+       "s03-q5",
+       "s03-mini",
+       "s04-q1",
+       "s04-q2",
+       "s04-q3",
+       "s04-q4",
+       "s04-q5",
+       "s04-corta1",
+       "s04-mini",
+       "s05-q1",
+       "s05-q2",
+       "s05-q3",
+       "s05-q4",
+       "s05-q5",
+       "s05-q6",
+       "s05-q7",
+       "s05-corta1",
+       "s05-mini",
+       "s06-q1",
+       "s06-q2",
+       "s06-q3",
+       "s06-q4",
+       "s06-q5",
+       "s06-corta1",
+       "s06-mini",
+       "s07-q1",
+       "s07-q2",
+       "s07-q3",
+       "s07-q4",
+       "s07-corta1",
+       "s07-mini",
+       "s08-q1",
+       "s08-q2",
+       "s08-q3",
+       "s08-q4",
+       "s08-q5",
+       "s08-mini",
+       "s09-q1",
+       "s09-q2",
+       "s09-q3",
+       "s09-q4",
+       "s09-corta1",
+       "s09-mini",
+       "s10-q1",
+       "s10-q2",
+       "s10-q3",
+       "s10-q4",
+       "s10-corta1",
+       "s10-mini",
+       "s11-q1",
+       "s11-q4",
+       "s11-q2",
+       "s11-q3",
+       "s11-corta1",
+       "s11-mini",
+       "s12-q1",
+       "s12-q2",
+       "s12-q3",
+       "s12-q4",
+       "s12-q5",
+       "s12-q6",
+       "s12-q7",
+       "s12-corta1",
+       "s12-mini",
+       "s13-q1",
+       "s13-q2",
+       "s13-q3",
+       "s13-q4",
+       "s13-q5",
+       "s13-q6",
+       "s13-corta1",
+       "s13-mini",
+       "s14-q1",
+       "s14-q2",
+       "s14-q3",
+       "s14-q5",
+       "s14-q4",
+       "s14-corta1",
+       "s14-mini",
+       "s15-mini",
+       "s16-q1",
+       "s16-q2",
+       "s16-q3",
+       "s16-q4",
+       "s16-q5",
+       "s16-q6",
+       "s16-q7",
+       "s16-q8",
+       "s16-q9",
+       "s16-mini",
+       "s17-q1",
+       "s17-q2",
+       "s17-q3",
+       "s17-q4",
+       "s17-q5",
+       "s17-q6",
+       "s17-corta1",
+       "s17-mini",
+       "s18-q1",
+       "s18-q2",
+       "s18-q3",
+       "s18-q4",
+       "s18-q5",
+       "s18-q6",
+       "s18-q7",
+       "s18-corta1",
+       "s18-mini",
+       "s19-q1",
+       "s19-q2",
+       "s19-q3",
+       "s19-q4",
+       "s19-q5",
+       "s19-q6",
+       "s19-mini",
+       "bl1-mini"
       ]
      }
     },
@@ -128,7 +319,275 @@
      "pregunta": "¿Cómo encuentra una tarjeta de red a otra dentro de la misma red local?",
      "practica": "Capturar ARP, limpiar la caché y observar la resolución",
      "academia": "listo",
-     "leccion": null
+     "leccion": {
+      "mapa": [
+       "s01",
+       "s02",
+       "s03",
+       "s04",
+       "s05",
+       "s06",
+       "s07",
+       "s08",
+       "s09",
+       "s10",
+       "s11",
+       "s12",
+       "s13",
+       "s14",
+       "s15",
+       "s16",
+       "s17",
+       "s18",
+       "s19",
+       "s20",
+       "s21",
+       "s22",
+       "s23"
+      ],
+      "sesiones": [
+       {
+        "id": "s01",
+        "paso": "Orientar",
+        "titulo": "Dentro de la red local",
+        "minutos": 3
+       },
+       {
+        "id": "s02",
+        "paso": "Exponer",
+        "titulo": "¿Por dónde viajan los bits?",
+        "minutos": 6
+       },
+       {
+        "id": "s03",
+        "paso": "Exponer",
+        "titulo": "Leer lo que dice un cable",
+        "minutos": 5
+       },
+       {
+        "id": "s04",
+        "paso": "Exponer",
+        "titulo": "Dúplex y autonegociación",
+        "minutos": 6
+       },
+       {
+        "id": "s05",
+        "paso": "Exponer",
+        "titulo": "La trama Ethernet, campo por campo",
+        "minutos": 8
+       },
+       {
+        "id": "s06",
+        "paso": "Exponer",
+        "titulo": "EtherType y FCS",
+        "minutos": 6
+       },
+       {
+        "id": "s07",
+        "paso": "Exponer",
+        "titulo": "La MAC: 48 bits y un fabricante",
+        "minutos": 4
+       },
+       {
+        "id": "s08",
+        "paso": "Exponer",
+        "titulo": "Unicast, multicast y broadcast",
+        "minutos": 4
+       },
+       {
+        "id": "s09",
+        "paso": "Exponer",
+        "titulo": "MAC local y aleatoria",
+        "minutos": 6
+       },
+       {
+        "id": "s10",
+        "paso": "Exponer",
+        "titulo": "ARP: de una IP a una MAC",
+        "minutos": 8
+       },
+       {
+        "id": "s11",
+        "paso": "Exponer",
+        "titulo": "ARP: la respuesta por unicast",
+        "minutos": 7
+       },
+       {
+        "id": "s12",
+        "paso": "Exponer",
+        "titulo": "ARP fuera de la red: el gateway",
+        "minutos": 6
+       },
+       {
+        "id": "s13",
+        "paso": "Exponer",
+        "titulo": "ARP no tiene autenticación",
+        "minutos": 4
+       },
+       {
+        "id": "s14",
+        "paso": "Exponer",
+        "titulo": "La fuente: el RFC 826",
+        "minutos": 7
+       },
+       {
+        "id": "s15",
+        "paso": "Exponer",
+        "titulo": "Repaso con el tutor",
+        "minutos": 8
+       },
+       {
+        "id": "s16",
+        "paso": "Practicar",
+        "titulo": "Ejercicio A: lee una trama en hexadecimal",
+        "minutos": 4
+       },
+       {
+        "id": "s17",
+        "paso": "Practicar",
+        "titulo": "Ejercicio B: clasifica direcciones MAC",
+        "minutos": 5
+       },
+       {
+        "id": "s18",
+        "paso": "Practicar",
+        "titulo": "Ejercicio C: elige el medio",
+        "minutos": 4
+       },
+       {
+        "id": "s19",
+        "paso": "Practicar",
+        "titulo": "Ejercicio D: predice el tráfico",
+        "minutos": 4
+       },
+       {
+        "id": "s20",
+        "paso": "Practicar",
+        "titulo": "Laboratorio: ARP y tramas en vivo",
+        "minutos": 90
+       },
+       {
+        "id": "s21",
+        "paso": "Explicar",
+        "titulo": "La prueba de Feynman",
+        "minutos": 3
+       },
+       {
+        "id": "s22",
+        "paso": "Consolidar",
+        "titulo": "Tus propias tarjetas",
+        "minutos": 9
+       },
+       {
+        "id": "s23",
+        "paso": "Registrar",
+        "titulo": "Tu nota del tema",
+        "minutos": 7
+       }
+      ],
+      "repasables": [
+       "s02-q1",
+       "s02-q2",
+       "s02-q3",
+       "s02-q4",
+       "s02-corta1",
+       "s02-mini",
+       "s03-q1",
+       "s03-q2",
+       "s03-q3",
+       "s03-q4",
+       "s03-mini",
+       "s04-q1",
+       "s04-q2",
+       "s04-q3",
+       "s04-q4",
+       "s04-corta1",
+       "s04-mini",
+       "s05-q1",
+       "s05-q2",
+       "s05-q3",
+       "s05-q4",
+       "s05-q5",
+       "s05-corta1",
+       "s05-mini",
+       "s06-q1",
+       "s06-q2",
+       "s06-q3",
+       "s06-q4",
+       "s06-corta1",
+       "s06-mini",
+       "s07-q1",
+       "s07-q2",
+       "s07-q3",
+       "s07-q4",
+       "s07-mini",
+       "s08-q1",
+       "s08-q2",
+       "s08-q3",
+       "s08-mini",
+       "s09-q1",
+       "s09-q2",
+       "s09-q3",
+       "s09-corta1",
+       "s09-mini",
+       "s10-q1",
+       "s10-q2",
+       "s10-q3",
+       "s10-q4",
+       "s10-q5",
+       "s10-corta1",
+       "s10-mini",
+       "s11-q1",
+       "s11-q2",
+       "s11-q3",
+       "s11-q4",
+       "s11-q5",
+       "s11-corta1",
+       "s11-mini",
+       "s12-q1",
+       "s12-q2",
+       "s12-q3",
+       "s12-corta1",
+       "s12-mini",
+       "s13-q1",
+       "s13-q2",
+       "s13-q3",
+       "s13-mini",
+       "s14-q1",
+       "s14-q2",
+       "s14-q3",
+       "s14-q4",
+       "s14-corta1",
+       "s14-mini",
+       "s15-mini",
+       "s16-q1",
+       "s16-q2",
+       "s16-q3",
+       "s16-q4",
+       "s16-q5",
+       "s16-mini",
+       "s17-q1",
+       "s17-q2",
+       "s17-q3",
+       "s17-q4",
+       "s17-q5",
+       "s17-mini",
+       "s18-q1",
+       "s18-q2",
+       "s18-q3",
+       "s18-q4",
+       "s18-q5",
+       "s18-q6",
+       "s18-mini",
+       "s19-q1",
+       "s19-q2",
+       "s19-q3",
+       "s19-q4",
+       "s19-q5",
+       "s19-mini",
+       "bl1-mini"
+      ]
+     }
     },
     {
      "id": "1.3",

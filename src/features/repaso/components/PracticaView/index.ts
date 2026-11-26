@@ -1,0 +1,1 @@
+export { PracticaView } from './PracticaView';

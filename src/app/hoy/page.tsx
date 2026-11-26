@@ -1,6 +1,6 @@
-import { HoyView } from "@/features/hoy";
-import { contentService } from "@/services/content.service";
+import { redirect } from "next/navigation";
 
-export default async function Page() {
-  return <HoyView curso={await contentService.getCurso()} />;
+// La vista principal ahora es el Mapa (/).
+export default function Page() {
+  redirect("/");
 }

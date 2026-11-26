@@ -23,8 +23,11 @@ export const siguienteSesion = (l: Leccion, hechas: Record<string, { terminada: 
 /** Los videos solo aparecen si ya están publicados (C1/C2). Las URLs `/_blob/…` eran del artefacto y no existen en la web. */
 export const esVideoPublicado = (t: Tarjeta) => t.tipo !== 'video' || (!!t.src && !t.src.startsWith('/_blob/'));
 
+/** `conversa` (tutor conversacional) aún no la reproduce la web: se omite en vez de dejar la sesión trabada. */
+export const esSoportada = (t: Tarjeta) => t.tipo !== 'conversa';
+
 export const itemsDeSesion = (s: Sesion): ItemTarjeta[] =>
-  s.tarjetas.filter(esVideoPublicado).map((tarjeta) => ({ tarjeta, paso: s.paso }));
+  s.tarjetas.filter((t) => esVideoPublicado(t) && esSoportada(t)).map((tarjeta) => ({ tarjeta, paso: s.paso, sesion: s.id }));
 
 export function idsPendientes(l: Leccion, repaso: Record<string, EstadoRepaso>, hoy: string): string[] {
   return vencidos(repaso, hoy).filter((id) => buscarTarjeta(l, id));
@@ -34,7 +37,7 @@ export function idsPendientes(l: Leccion, repaso: Record<string, EstadoRepaso>, 
 export function colaRepaso(l: Leccion, ids: string[]): ItemTarjeta[] {
   return shuffle(ids).slice(0, 12).flatMap((id) => {
     const f = buscarTarjeta(l, id);
-    return f ? [{ tarjeta: f.tarjeta, paso: f.sesion.paso, repaso: true }] : [];
+    return f ? [{ tarjeta: f.tarjeta, paso: f.sesion.paso, sesion: f.sesion.id, repaso: true }] : [];
   });
 }
 

@@ -1,168 +1,558 @@
 'use client';
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import Link from 'next/link';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import clsx from 'clsx';
-import { Button } from '@/components/atoms/Button';
 import { Flame } from '@/components/atoms/Flame';
 import { Screen } from '@/components/atoms/Screen';
 import { useProgresoCurso } from '@/context/ProgresoContext';
 import { useOfflineWarm } from '@/hooks/useOfflineWarm';
-import type { Curso, ModuloCurso, TemaCurso } from '@/types/curso';
-import { avanceModulo, colorModulo, estadoTema, moduloDeTema, siguientePaso } from '@/utils/curso';
+import type { Curso, TemaCurso } from '@/types/curso';
+import { colorModulo, moduloDeTema, repasosVencidos, siguientePaso } from '@/utils/curso';
 import { rutasOffline } from '@/utils/offline';
 import { nivel } from '@/utils/xp';
+import { ModuloSelectorModal } from '../ModuloSelectorModal';
+import { LeccionPopup, type PopupSeleccion } from '../LeccionPopup';
+import {
+  COLORES_TIPO_LECCION,
+  calcularEstadoLeccion,
+  colorDeTema,
+  colorPorPaso,
+  leccionesDeTema,
+  type EstadoLeccion,
+  type LeccionItem,
+} from '../../utils/mapa';
 import styles from './CursoView.module.css';
 
-const SEP = 112;          // separación vertical entre nodos
-const TARJETA = 214;      // espacio extra que ocupa la tarjeta del tema actual
-const ZONA = 88;          // alto de la franja de cada módulo
-const x = (i: number) => 50 + 25 * Math.sin(i * 1.15);
+const SEP = 92;          // Separación vertical entre nodos
+const BANNER_TEMA = 96;   // Espacio vertical para el encabezado de cada tema
+const xPos = (i: number) => 50 + 26 * Math.sin(i * 1.15);
 
-type Item =
-  | { k: 'zona'; m: ModuloCurso; y: number }
-  | { k: 'nodo'; t: TemaCurso; m: ModuloCurso; j: number; x: number; y: number };
+type ItemMapa =
+  | { k: 'banner'; t: TemaCurso; indiceTema: number; y: number; bloqueado: boolean; nRepasos: number }
+  | {
+      k: 'repaso';
+      t: TemaCurso;
+      indiceTema: number;
+      nRepasos: number;
+      indiceNodo: number;
+      x: number;
+      y: number;
+    }
+  | {
+      k: 'leccion';
+      s: LeccionItem;
+      t: TemaCurso;
+      indiceTema: number;
+      indiceLeccion: number;
+      estado: EstadoLeccion;
+      x: number;
+      y: number;
+    };
 
-function Banda({ m, todos, onBloqueado }: { m: ModuloCurso; todos: Parameters<typeof avanceModulo>[1]; onBloqueado: (msg: string) => void }) {
-  const a = avanceModulo(m, todos);
-  const pronto = a.disponibles === 0;
-  return (
-    <button type="button" className={clsx(styles.banda, styles.pronto)} style={{ '--mc': colorModulo(m.n) } as CSSProperties} onClick={() => onBloqueado(pronto ? 'Este módulo se abre cuando se publique' : 'Se abre cuando llegues a este módulo')}>
-      <span className={styles.n}>🔒</span>
-      <span className={styles.t}>{m.titulo}</span>
-      <span className={styles.e}>{pronto ? 'pronto' : 'más adelante'}</span>
-    </button>
-  );
-}
+type NodoRuta = Extract<ItemMapa, { k: 'leccion' | 'repaso' }>;
+type NodoLeccion = Extract<ItemMapa, { k: 'leccion' }>;
+type NodoRepaso = Extract<ItemMapa, { k: 'repaso' }>;
 
-/**
- * Pantalla de inicio: el curso como un solo mapa que arranca donde vas.
- * Hacia atrás todo está abierto (módulos y temas ya hechos, para volver a ellos); hacia adelante, bloqueado.
- */
 export function CursoView({ curso }: { curso: Curso }) {
-  const { todos, listo, xpTotal, racha } = useProgresoCurso();
+  const { todos, listo, xpTotal, racha, hoy } = useProgresoCurso();
   const [aviso, setAviso] = useState('');
+  const [modalAbierto, setModalAbierto] = useState(false);
+  const [popupSeleccion, setPopupSeleccion] = useState<PopupSeleccion | null>(null);
+  const [moduloElegido, setModuloElegido] = useState<number | null>(null);
   const anclaRef = useRef<HTMLDivElement>(null);
+  const primerRepasoRef = useRef<HTMLDivElement>(null);
   useOfflineWarm(rutasOffline(curso), []);
 
   const paso = listo ? siguientePaso(curso, todos) : null;
-  // Módulo actual: el del siguiente paso; si ya se terminó todo lo publicado, el último que tiene contenido.
   const conContenido = curso.modulos.filter((m) => m.temas.some((t) => t.leccion));
   const nActual = paso ? moduloDeTema(paso.tema.id) : (conContenido[conContenido.length - 1]?.n ?? 1);
-  const hasta = curso.modulos.filter((m) => m.n <= nActual);       // se dibujan completos
-  const despues = curso.modulos.filter((m) => m.n > nActual);      // bloqueados
+
+  // Módulo a mostrar: el seleccionado por el usuario o donde va
+  const moduloSeleccionado = moduloElegido ?? nActual;
+
+  const moduloActivo = useMemo(() => {
+    return curso.modulos.find((m) => m.n === moduloSeleccionado) ?? curso.modulos[0];
+  }, [curso.modulos, moduloSeleccionado]);
+
   const nv = nivel(xpTotal);
 
-  // Un solo camino con todos los módulos hasta el actual. Las posiciones se calculan sin reasignar variables.
-  const items = hasta.reduce<{ lista: Item[]; y: number; j: number }>((acc, m) => {
-    let { y, j } = acc;
-    const lista = [...acc.lista, { k: 'zona', m, y } as Item];
-    y += ZONA;
-    for (const t of m.temas) {
-      lista.push({ k: 'nodo', t, m, j, x: x(j), y: y + 46 });
-      y += SEP + (paso?.tema.id === t.id ? TARJETA : 0);
-      j++;
-    }
-    return { lista, y, j };
-  }, { lista: [], y: 8, j: 0 });
-  const nodos = items.lista.filter((i): i is Extract<Item, { k: 'nodo' }> => i.k === 'nodo');
-  const alto = items.y + 24;
+  // Repasos obligatorios pendientes en todo el curso
+  const totalPendientes = useMemo(() => {
+    if (!listo) return 0;
+    return curso.modulos.flatMap((m) => m.temas).reduce((s, t) => s + repasosVencidos(t, todos[t.id]?.repaso ?? {}, hoy), 0);
+  }, [listo, todos, hoy, curso.modulos]);
 
-  const iActual = paso ? nodos.findIndex((n) => n.t.id === paso.tema.id) : -1;
-  // Si no hay un tema "actual" (todo lo publicado está hecho), el ancla es el último tema hecho.
-  const iAncla = iActual >= 0 ? iActual : nodos.reduce((u, n, i) => (estadoTema(n.t, todos[n.t.id]) === 'hecho' ? i : u), -1);
-  const iCorte = iActual >= 0 ? iActual : iAncla;
-  const trazo = (a: (typeof nodos)[number], b: (typeof nodos)[number]) => {
-    const dy = (b.y - a.y) * 0.5;
-    return `M ${a.x} ${a.y} C ${a.x} ${a.y + dy}, ${b.x} ${b.y - dy}, ${b.x} ${b.y}`;
-  };
-  const tramos = nodos.slice(1).map((b, k) => ({ d: trazo(nodos[k], b), hecho: k + 1 <= iCorte }));
-  const completo = listo && !paso && conContenido.length > 0;
+  // Construcción de los items del mapa para el módulo seleccionado
+  const { items, nodosRuta, alto, indexAncla, nodoActual, nodoPrimerRepaso } = useMemo(() => {
+    let y = 12;
+    let j = 0;
+    const lista: ItemMapa[] = [];
+    const nodos: NodoRuta[] = [];
+    let idxActual = -1;
+    let idxUltimoHecho = -1;
+    let nAct: NodoLeccion | null = null;
+    let nPrimerRepaso: NodoRepaso | null = null;
 
-  // Al abrir, el mapa se coloca en tu posición.
+    moduloActivo.temas.forEach((t, indiceTema) => {
+      const lecciones = leccionesDeTema(t).map((s) => ({
+        s,
+        estado: calcularEstadoLeccion(s, t, moduloActivo, nActual, paso, todos[t.id]),
+      }));
+      const temaBloqueado = moduloActivo.n > nActual || !t.leccion;
+      const nRepasos = listo ? repasosVencidos(t, todos[t.id]?.repaso ?? {}, hoy) : 0;
+
+      lista.push({
+        k: 'banner',
+        t,
+        indiceTema,
+        y,
+        bloqueado: temaBloqueado,
+        nRepasos,
+      });
+      y += BANNER_TEMA;
+
+      // Repaso obligatorio: solo existe mientras hay tarjetas vencidas, y va justo después de lo ya hecho,
+      // donde toca en la ruta (no al principio del tema). Cuando ya no hay vencidas, desaparece.
+      const mostrarRepaso = !!t.leccion && nRepasos > 0;
+      const posRepaso = lecciones.reduce((acc, e, idx) => (e.estado === 'hecho' ? idx + 1 : acc), 0);
+      const pintarRepaso = () => {
+        const nodoRepaso: NodoRepaso = {
+          k: 'repaso',
+          t,
+          indiceTema,
+          nRepasos,
+          indiceNodo: j,
+          x: xPos(j),
+          y: y + 36,
+        };
+        if (!nPrimerRepaso) nPrimerRepaso = nodoRepaso;
+        lista.push(nodoRepaso);
+        nodos.push(nodoRepaso);
+        y += SEP;
+        j++;
+      };
+
+      lecciones.forEach(({ s, estado }, idx) => {
+        if (mostrarRepaso && idx === posRepaso) pintarRepaso();
+        const nx = xPos(j);
+        const ny = y + 36;
+        const nodo: NodoLeccion = {
+          k: 'leccion',
+          s,
+          t,
+          indiceTema,
+          indiceLeccion: j,
+          estado,
+          x: nx,
+          y: ny,
+        };
+
+        if (estado === 'actual') {
+          idxActual = j;
+          nAct = nodo;
+        }
+        if (estado === 'hecho') idxUltimoHecho = j;
+
+        lista.push(nodo);
+        nodos.push(nodo);
+
+        y += SEP;
+        j++;
+      });
+      if (mostrarRepaso && posRepaso >= lecciones.length) pintarRepaso();
+    });
+
+    const altoTotal = y + 40;
+    const ancla = idxActual >= 0 ? idxActual : idxUltimoHecho;
+
+    return {
+      items: lista,
+      nodosRuta: nodos,
+      alto: altoTotal,
+      indexAncla: ancla,
+      nodoActual: nAct as NodoLeccion | null,
+      nodoPrimerRepaso: nPrimerRepaso as NodoRepaso | null,
+    };
+  }, [moduloActivo, nActual, paso, todos, listo, hoy]);
+
+  // Curvas SVG conectando los nodos en el camino
+  const tramos = useMemo(() => {
+    const trazo = (a: NodoRuta, b: NodoRuta) => {
+      const dy = (b.y - a.y) * 0.5;
+      return `M ${a.x} ${a.y} C ${a.x} ${a.y + dy}, ${b.x} ${b.y - dy}, ${b.x} ${b.y}`;
+    };
+
+    return nodosRuta.slice(1).map((b, k) => {
+      const a = nodosRuta[k];
+      const aHecho = a.k === 'repaso' ? a.nRepasos === 0 : a.estado === 'hecho';
+      const bHechoOActual = b.k === 'repaso' ? true : b.estado === 'hecho' || b.estado === 'actual';
+      const hecho = aHecho && bHechoOActual;
+      return { d: trazo(a, b), hecho };
+    });
+  }, [nodosRuta]);
+
+  // Auto-scroll a la lección activa o repaso al abrir
   useEffect(() => {
-    if (listo) anclaRef.current?.scrollIntoView({ block: 'center' });
-  }, [listo]);
+    if (listo) {
+      if (nodoPrimerRepaso && primerRepasoRef.current) {
+        primerRepasoRef.current.scrollIntoView({ block: 'center' });
+      } else {
+        anclaRef.current?.scrollIntoView({ block: 'center' });
+      }
+    }
+  }, [listo, moduloSeleccionado, nodoPrimerRepaso]);
 
-  const dondeVoy = () => anclaRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  const avisar = (m: string) => { setAviso(m); setTimeout(() => setAviso(''), 2400); };
-  const queFalta = paso ? `Primero termina el tema ${paso.tema.id}` : 'Se abre cuando se publique';
+  const dondeVoy = () => {
+    if (anclaRef.current) {
+      anclaRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    if (nodoActual && nodoActual.k === 'leccion') {
+      const infoTipo = colorPorPaso(nodoActual.s.paso);
+      setPopupSeleccion({
+        tipo: 'leccion',
+        s: nodoActual.s,
+        t: nodoActual.t,
+        estado: nodoActual.estado,
+        color: {
+          primario: infoTipo.color,
+          fondo: infoTipo.fondo,
+          borde: infoTipo.borde,
+        },
+        linkHref: !nodoActual.s.placeholder
+          ? `/tema/${nodoActual.t.id}/sesion/${nodoActual.s.id}`
+          : `/tema/${nodoActual.t.id}`,
+        enProgreso: !!todos[nodoActual.t.id]?.sesiones[nodoActual.s.id],
+      });
+    }
+  };
+
+  const irAlPrimerRepaso = () => {
+    if (primerRepasoRef.current) {
+      primerRepasoRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+    if (nodoPrimerRepaso) {
+      const infoRepaso = COLORES_TIPO_LECCION.Repaso;
+      setPopupSeleccion({
+        tipo: 'repaso',
+        t: nodoPrimerRepaso.t,
+        nRepasos: nodoPrimerRepaso.nRepasos,
+        color: {
+          primario: infoRepaso.color,
+          fondo: infoRepaso.fondo,
+          borde: infoRepaso.borde,
+        },
+        linkHref: `/tema/${nodoPrimerRepaso.t.id}/repaso`,
+      });
+    }
+  };
+
+  const avisar = (msg: string) => {
+    setAviso(msg);
+    setTimeout(() => setAviso(''), 2500);
+  };
 
   return (
     <Screen>
       <div className={styles.col}>
+        {/* Barra superior de métricas */}
         <div className={styles.top}>
           <div className={styles.pills}>
             <span className={styles.pill} aria-label={`Nivel ${nv.nivel}`}>⚡ {nv.nivel}</span>
             <span className={styles.pill} aria-label="Racha"><Flame size={18} />{racha}</span>
+            {totalPendientes > 0 && (
+              <button
+                type="button"
+                className={styles.pillRepaso}
+                onClick={irAlPrimerRepaso}
+                aria-label={`${totalPendientes} repasos obligatorios pendientes`}
+              >
+                🔁 {totalPendientes} {totalPendientes === 1 ? 'repaso' : 'repasos'}
+              </button>
+            )}
           </div>
           <div className={styles.acciones}>
-            {iAncla >= 0 && <button type="button" className={styles.loc} onClick={dondeVoy}>📍 Dónde voy</button>}
+            <button type="button" className={styles.loc} onClick={dondeVoy}>
+              📍 Dónde voy
+            </button>
           </div>
         </div>
 
+        {/* Cuadro selector del módulo activo */}
+        <button
+          type="button"
+          className={styles.selectorModulo}
+          style={{ '--mc': colorModulo(moduloActivo.n) } as CSSProperties}
+          onClick={() => setModalAbierto(true)}
+          aria-haspopup="dialog"
+          aria-expanded={modalAbierto}
+        >
+          <div className={styles.moduloInfo}>
+            <span className={styles.moduloKicker}>
+              Módulo {moduloActivo.n} · Cambiar módulo ▾
+            </span>
+            <h1 className={styles.moduloTitulo}>{moduloActivo.titulo}</h1>
+          </div>
+          <span className={styles.moduloBadge}>{moduloActivo.n}</span>
+        </button>
+
+        {/* Leyenda visual de tipos de lección */}
+        <div className={styles.leyenda} aria-label="Tipos de lección">
+          <span className={styles.leyendaItem}>
+            <i className={styles.leyendaDot} style={{ background: COLORES_TIPO_LECCION.Orientar.color }} />
+            Exploración
+          </span>
+          <span className={styles.leyendaItem}>
+            <i className={styles.leyendaDot} style={{ background: COLORES_TIPO_LECCION.Exponer.color }} />
+            Contenido
+          </span>
+          <span className={styles.leyendaItem}>
+            <i className={styles.leyendaDot} style={{ background: COLORES_TIPO_LECCION.Practicar.color }} />
+            Práctica
+          </span>
+          <span className={styles.leyendaItem}>
+            <i className={styles.leyendaDot} style={{ background: COLORES_TIPO_LECCION.Explicar.color }} />
+            Explicar
+          </span>
+          <span className={styles.leyendaItem}>
+            <i className={styles.leyendaDot} style={{ background: COLORES_TIPO_LECCION.Consolidar.color }} />
+            Consolidar
+          </span>
+          <span className={styles.leyendaItem}>
+            <i className={styles.leyendaDot} style={{ background: COLORES_TIPO_LECCION.Repaso.color }} />
+            Repaso
+          </span>
+        </div>
+
+        {/* Mapa con lecciones y temas */}
         <div className={styles.mapa} style={{ height: alto }}>
           <svg viewBox={`0 0 100 ${alto}`} preserveAspectRatio="none" aria-hidden="true">
-            {tramos.filter((t) => !t.hecho).map((t, i) => <path key={`p${i}`} d={t.d} fill="none" stroke="var(--line)" strokeWidth="5" strokeDasharray="1 11" strokeLinecap="round" vectorEffect="non-scaling-stroke" />)}
-            {tramos.filter((t) => t.hecho).map((t, i) => <path key={`h${i}`} d={t.d} fill="none" stroke="var(--g2)" strokeWidth="6" strokeLinecap="round" vectorEffect="non-scaling-stroke" />)}
+            {tramos.filter((t) => !t.hecho).map((t, i) => (
+              <path
+                key={`p${i}`}
+                d={t.d}
+                fill="none"
+                stroke="var(--line)"
+                strokeWidth="5"
+                strokeDasharray="2 10"
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            ))}
+            {tramos.filter((t) => t.hecho).map((t, i) => (
+              <path
+                key={`h${i}`}
+                d={t.d}
+                fill="none"
+                stroke="#10b981"
+                strokeWidth="6"
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            ))}
           </svg>
 
-          {items.lista.map((it) => {
-            if (it.k === 'zona') {
-              const a = avanceModulo(it.m, todos);
+          {items.map((it) => {
+            if (it.k === 'banner') {
+              const { t, indiceTema, y, bloqueado, nRepasos } = it;
+              const colorTema = colorDeTema(indiceTema);
+
               return (
-                <Link key={`z${it.m.n}`} href={`/curso/${it.m.n}`} className={styles.zona} style={{ top: it.y, '--mc': colorModulo(it.m.n) } as CSSProperties}>
-                  <span><span className={styles.k}>Módulo {it.m.n}{a.disponibles > 0 && a.hechos === a.disponibles ? ' · ✓ completo' : ''}</span><h2>{it.m.titulo}</h2></span>
-                  <span className={styles.ver}>Ver ›</span>
-                </Link>
+                <button
+                  type="button"
+                  key={`b-${t.id}`}
+                  className={clsx(styles.temaBanner, bloqueado && styles.temaBloqueado)}
+                  style={{
+                    top: y,
+                    '--tc': colorTema.primario,
+                  } as CSSProperties}
+                  onClick={() =>
+                    setPopupSeleccion({
+                      tipo: 'tema',
+                      t,
+                      bloqueado,
+                      nRepasos,
+                      color: colorTema,
+                      linkHref: nRepasos > 0 ? `/tema/${t.id}/repaso` : `/tema/${t.id}`,
+                    })
+                  }
+                  aria-label={`Tema ${t.id}: ${t.titulo}`}
+                >
+                  <div>
+                    <span className={styles.k}>Tema {t.id}</span>
+                    <h3>{t.titulo}</h3>
+                  </div>
+                  <span className={styles.ver}>
+                    {nRepasos > 0 ? (
+                      <span className={styles.tagRepasoBanner}>🔁 {nRepasos} pendientes</span>
+                    ) : bloqueado ? (
+                      '🔒 Bloqueado'
+                    ) : (
+                      `${t.leccion?.sesiones.length ?? 0} lecciones`
+                    )}
+                  </span>
+                </button>
               );
             }
-            const { t, j, x: nx, y: ny } = it;
-            const estado = estadoTema(t, todos[t.id]);
-            const actual = j === iActual;
-            const abierto = actual || estado === 'hecho'; // hacia atrás, abierto; hacia adelante, bloqueado
-            const cercano = iActual >= 0 && j > iActual && j <= iActual + 2;
-            const cls = clsx(styles.nodo, actual ? styles.actual : estado === 'hecho' ? styles.hecho : styles.pronto, nx >= 50 && styles.izq);
-            const pos = { left: `${nx}%`, top: ny } as CSSProperties;
-            const cuerpo = (
+
+            if (it.k === 'repaso') {
+              const { t, nRepasos, indiceNodo, x, y } = it;
+              const infoRepaso = COLORES_TIPO_LECCION.Repaso;
+              const pos = {
+                left: `${x}%`,
+                top: y,
+                '--tc': infoRepaso.color,
+              } as CSSProperties;
+              const tienePendientes = nRepasos > 0;
+              const cls = clsx(
+                styles.nodo,
+                tienePendientes ? styles.repasoNodo : styles.repasoAlDia,
+                x >= 50 && styles.izq
+              );
+
+              const esPrimerRepaso = nodoPrimerRepaso?.t.id === t.id;
+
+              return (
+                <div key={`rep-${t.id}-${indiceNodo}`}>
+                  {esPrimerRepaso && (
+                    <div
+                      ref={primerRepasoRef}
+                      style={{ position: 'absolute', top: y, left: 0, width: 1, height: 1 }}
+                    />
+                  )}
+
+                  <button
+                    type="button"
+                    className={cls}
+                    style={pos}
+                    onClick={() =>
+                      setPopupSeleccion({
+                        tipo: 'repaso',
+                        t,
+                        nRepasos,
+                        color: {
+                          primario: infoRepaso.color,
+                          fondo: infoRepaso.fondo,
+                          borde: infoRepaso.borde,
+                        },
+                        linkHref: `/tema/${t.id}/repaso`,
+                      })
+                    }
+                    aria-label={`Repaso de Tema ${t.id}, ${tienePendientes ? `${nRepasos} pendientes` : 'al día'}`}
+                  >
+                    <span className={styles.circ}>
+                      {tienePendientes ? '🔁' : '✓'}
+                      {tienePendientes && <span className={styles.badgeContador}>{nRepasos}</span>}
+                    </span>
+                    <span className={styles.cap}>
+                      <b>Repaso obligatorio</b>
+                      <span style={{ color: infoRepaso.color }}>
+                        {tienePendientes ? `🔁 ${nRepasos} tarjetas para hoy` : '✓ Tarjetas al día'}
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              );
+            }
+
+            const { s, t, indiceLeccion, estado, x, y } = it;
+            const infoTipo = colorPorPaso(s.paso);
+            const actual = estado === 'actual';
+            const hecho = estado === 'hecho';
+            const bloqueado = estado === 'bloqueado';
+            const pos = {
+              left: `${x}%`,
+              top: y,
+              '--tc': infoTipo.color,
+            } as CSSProperties;
+            const cls = clsx(
+              styles.nodo,
+              actual && styles.actual,
+              hecho && styles.hecho,
+              bloqueado && styles.bloqueado,
+              x >= 50 && styles.izq
+            );
+
+            const contenidoNodo = (
               <>
-                <span className={styles.circ}>{actual ? '▶' : estado === 'hecho' ? '✓' : '🔒'}</span>
-                <span className={styles.cap}><b>{t.id}</b>{cercano || (estado === 'hecho' && !actual) ? t.titulo : ''}</span>
+                <span className={styles.circ}>
+                  {actual ? '▶' : hecho ? '✓' : infoTipo.icono}
+                </span>
+                <span className={styles.cap}>
+                  <b>{s.titulo}</b>
+                  <span style={{ color: infoTipo.color }}>
+                    {infoTipo.icono} {infoTipo.nombre} · {s.minutos} min
+                  </span>
+                </span>
               </>
             );
-            const ancla = j === iAncla ? <div ref={anclaRef} style={{ position: 'absolute', top: ny, left: 0, width: 1, height: 1 }} /> : null;
+
+            const esAncla = indiceLeccion === indexAncla;
+            const linkHref = !s.placeholder ? `/tema/${t.id}/sesion/${s.id}` : `/tema/${t.id}`;
+
             return (
-              <div key={t.id}>
-                {ancla}
-                {abierto ? (
-                  <Link href={actual && paso ? `/tema/${t.id}/sesion/${paso.sesion.id}` : `/tema/${t.id}`} className={cls} style={pos} aria-label={`Tema ${t.id}: ${t.titulo}${estado === 'hecho' ? ', completado' : ''}`}>{cuerpo}</Link>
-                ) : (
-                  <button type="button" className={cls} style={pos} onClick={() => avisar(t.leccion ? queFalta : 'Se abre cuando se publique')} aria-label={`Tema ${t.id}, bloqueado`}>{cuerpo}</button>
+              <div key={`lec-${t.id}-${s.id}-${indiceLeccion}`}>
+                {esAncla && (
+                  <div
+                    ref={anclaRef}
+                    style={{ position: 'absolute', top: y, left: 0, width: 1, height: 1 }}
+                  />
                 )}
-                {actual && paso && (
-                  <div className={styles.tarjeta} style={{ top: ny + 62 }}>
-                    <span className={styles.k}>{Object.keys(todos[paso.tema.id]?.sesiones ?? {}).length ? 'Estás aquí' : 'Empieza aquí'} · {paso.tema.id}</span>
-                    <h3>{paso.tema.titulo}</h3>
-                    <p className={styles.paso}>Siguiente paso: <strong>{paso.sesion.titulo}</strong> · {paso.sesion.minutos} min</p>
-                    <Button href={`/tema/${paso.tema.id}/sesion/${paso.sesion.id}`}>{Object.keys(todos[paso.tema.id]?.sesiones ?? {}).length ? 'Seguir' : 'Empezar'}</Button>
-                    <Link href={`/tema/${paso.tema.id}`} className={styles.link}>Ver el tema</Link>
-                  </div>
-                )}
+
+                <button
+                  type="button"
+                  className={cls}
+                  style={pos}
+                  onClick={() =>
+                    setPopupSeleccion({
+                      tipo: 'leccion',
+                      s,
+                      t,
+                      estado,
+                      color: {
+                        primario: infoTipo.color,
+                        fondo: infoTipo.fondo,
+                        borde: infoTipo.borde,
+                      },
+                      linkHref,
+                      enProgreso: !!todos[t.id]?.sesiones[s.id],
+                    })
+                  }
+                  aria-label={`${infoTipo.nombre}: ${s.titulo}, ${estado === 'hecho' ? 'completada' : estado === 'actual' ? 'en curso' : 'bloqueada'}`}
+                >
+                  {contenidoNodo}
+                </button>
               </div>
             );
           })}
         </div>
-
-        {completo && <div className={styles.fin}>¡Llegaste al final de lo publicado! 🏆<br /><span style={{ fontSize: '0.85rem', fontWeight: 600 }}>Se abren más pasos conforme llegue contenido. Lo que ya hiciste sigue abierto: sube por el mapa.</span></div>}
-
-        {despues.slice(0, 2).map((m) => <Banda key={m.n} m={m} todos={todos} onBloqueado={avisar} />)}
-        {despues.length > 2 && (
-          <details className={styles.mas}>
-            <summary>Más adelante</summary>
-            <div className={styles.lista}>{despues.slice(2).map((m) => <Banda key={m.n} m={m} todos={todos} onBloqueado={avisar} />)}</div>
-          </details>
-        )}
       </div>
-      {aviso && <div className={styles.aviso} role="status">{aviso}</div>}
+
+      {/* Modal selector de los 12 módulos */}
+      <ModuloSelectorModal
+        abierto={modalAbierto}
+        onCerrar={() => setModalAbierto(false)}
+        modulos={curso.modulos}
+        moduloSeleccionado={moduloActivo.n}
+        moduloActual={nActual}
+        onSeleccionarModulo={(n) => setModuloElegido(n)}
+        onModuloBloqueado={avisar}
+        todos={todos}
+      />
+
+      {/* Popup de información de la lección / tema / repaso seleccionado */}
+      <LeccionPopup
+        seleccion={popupSeleccion}
+        onCerrar={() => setPopupSeleccion(null)}
+      />
+
+      {/* Toast de aviso */}
+      {aviso && (
+        <div className={styles.aviso} role="status">
+          {aviso}
+        </div>
+      )}
     </Screen>
   );
 }

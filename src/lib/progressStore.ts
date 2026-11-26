@@ -1,6 +1,6 @@
 // Almacén externo del progreso del curso (un Progreso por microtema). La app siempre lee y escribe aquí (offline primero).
 // La sincronización con Supabase (services/sync.service.ts) lee y escribe este mismo almacén.
-import type { Progreso, Registro } from '@/types/progreso';
+import type { Intento, Progreso, Registro } from '@/types/progreso';
 import { mergeProgreso } from '@/utils/mergeProgreso';
 import { readJson, writeJson } from './localStorage';
 
@@ -9,6 +9,7 @@ export type Todos = Record<string, Progreso>;
 const key = (tema: string) => `app-${tema}`;
 const keyRegs = (tema: string) => `${key(tema)}-registros`;   // todos los registros C3 de este dispositivo, por sesión
 const keyPend = (tema: string) => `${key(tema)}-pendientes`;  // sesiones cuyo registro aún no se envía a la nube
+const keyIntentos = (tema: string) => `${key(tema)}-intentos`; // historial C3: una fila por respuesta (solo se agrega)
 export const vacio = (): Progreso => ({ sesiones: {}, repaso: {}, dias: [], preprueba: {}, actualizado: null });
 
 let state: Todos | null = null;
@@ -83,5 +84,25 @@ export const progressStore = {
   },
   marcarEnviado(tema: string, sesion: string) {
     writeJson(keyPend(tema), progressStore.pendientes(tema).filter((s) => s !== sesion));
+  },
+
+  /** Reinicio (D40): borra un tema en este dispositivo (estado, registros, pendientes e historial). Se llama después del respaldo y de borrar en la nube. */
+  borrarTema(tema: string) {
+    for (const k of [key(tema), keyRegs(tema), keyPend(tema), keyIntentos(tema)]) {
+      try { window.localStorage.removeItem(k); } catch { /* sin acceso a almacenamiento: queda en memoria */ }
+    }
+    const cur = progressStore.getSnapshot();
+    if (cur) {
+      const resto = { ...cur };
+      delete resto[tema];
+      state = resto;
+    }
+    emit(false);
+  },
+
+  // ---- historial de intentos (C3, D39) ----
+  intentos: (tema: string): Intento[] => readJson<Intento[]>(keyIntentos(tema), []),
+  guardarIntento(fila: Intento) {
+    writeJson(keyIntentos(fila.tema), [...progressStore.intentos(fila.tema), fila]);
   },
 };

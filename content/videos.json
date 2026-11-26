@@ -46,5 +46,29 @@
   "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V08-4a9b704d85f4.vtt",
   "huella": "4a9b704d85f4",
   "fuente": "V08-diagnosticar-con-osi-implementar-con-tcpip.mp4"
+ },
+ "V09": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V09-0e16f1914d32.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V09-0e16f1914d32.vtt",
+  "huella": "0e16f1914d32",
+  "fuente": "V09-encapsulacion-que-es.mp4"
+ },
+ "V12": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V12-03e232ad3788.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V12-03e232ad3788.vtt",
+  "huella": "03e232ad3788",
+  "fuente": "V12-desencapsulacion-y-cierre.mp4"
+ },
+ "V11": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V11-f2087e330353.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V11-f2087e330353.vtt",
+  "huella": "f2087e330353",
+  "fuente": "V11-que-cambia-en-cada-salto.mp4"
+ },
+ "V10": {
+  "src": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V10-5489f67ab23e.mp4",
+  "subs": "https://pub-1e8a6152ffb545ecb07395ccb99d7393.r2.dev/videos/V10-5489f67ab23e.vtt",
+  "huella": "5489f67ab23e",
+  "fuente": "V10-nombres-de-cada-envoltorio.mp4"
  }
 }

@@ -1,4 +1,4 @@
-import type { Mini, Progreso } from '@/types/progreso';
+import type { Mini, Progreso, ResultadoCorta } from '@/types/progreso';
 
 /** Puntos de experiencia: premian el esfuerzo (intentar suma algo) pero más acertar y terminar. */
 export const XP = {
@@ -7,6 +7,8 @@ export const XP = {
   sesion: 30,
   /** Explicación revisada por el tutor: la escala premia lo que de verdad se explicó. */
   explica: { ok: 20, huecos: 10, no: 5 } as Record<Mini, number>,
+  /** Respuesta corta revisada por el tutor: bien a la primera vale más que bien tras la pista. */
+  corta: { ok: 20, ayuda: 15, huecos: 10, no: 5 } as Record<ResultadoCorta, number>,
   /** Explicación autocalificada: XP fijo, para que decir "Salió" no rinda más que ser honesto (D24). */
   explicaAuto: 15,
   /** Preprueba: mismo XP con cualquier respuesta, incluida "No sé" (no hay respuesta correcta que premiar). */

@@ -19,7 +19,8 @@ export function Player({ items, onExit, onFinish, evaluar }: Props) {
   const stats = useRef<StatsSesion>({ xp: 0, aciertos: 0, total: 0, mini: null, ia: null, texto: {} });
   const k = useRef(0);
 
-  const api = useMemo<StatsApi>(() => {
+  // `intento` (historial) lo añade Tarjeta; aquí van los contadores y el XP de la sesión.
+  const api = useMemo<Omit<StatsApi, 'intento'>>(() => {
     const premio = (n: number, nota?: string) => { sumarXp(n); stats.current.xp += n; setGanado({ n, k: ++k.current, nota }); };
     return {
       responder: (bien) => {
@@ -33,8 +34,8 @@ export function Player({ items, onExit, onFinish, evaluar }: Props) {
       participar: () => premio(XP.preprueba),
       corta: (resultado, tutor) => {
         stats.current.total++;
-        if (resultado === 'ok') stats.current.aciertos++;
-        if (tutor) premio(XP.explica[resultado]);
+        if (resultado === 'ok') stats.current.aciertos++; // «ayuda» no es acierto pleno (C1 v0.13)
+        if (tutor) premio(XP.corta[resultado]);
         else premio(XP.explicaAuto, resultado === 'ok' ? undefined : 'Gracias por ser honesto 💛');
       },
       guardarMini: (mini, ia) => {

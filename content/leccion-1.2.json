@@ -1,0 +1,2783 @@
+{
+ "tema": "1.2",
+ "titulo": "Capa física y enlace: medios, Ethernet, MAC y ARP",
+ "modulo": "Módulo 1 · Fundamentos de redes",
+ "pregunta": "¿Cómo encuentra una tarjeta de red a otra dentro de la misma red local?",
+ "version": "v0.13",
+ "mapa": [
+  "s01",
+  "s02",
+  "s03",
+  "s04",
+  "s05",
+  "s06",
+  "s07",
+  "s08",
+  "s09",
+  "s10",
+  "s11",
+  "s12",
+  "s13",
+  "s14",
+  "s15",
+  "s16",
+  "s17",
+  "s18",
+  "s19",
+  "s20",
+  "s21",
+  "s22",
+  "s23"
+ ],
+ "conceptos": [
+  {
+   "id": "medios",
+   "nombre": "Medio según la distancia"
+  },
+  {
+   "id": "cable-nombres",
+   "nombre": "Nombres de Ethernet y categorías UTP"
+  },
+  {
+   "id": "duplex",
+   "nombre": "Dúplex y autonegociación"
+  },
+  {
+   "id": "trama",
+   "nombre": "Los campos de la trama Ethernet"
+  },
+  {
+   "id": "switch",
+   "nombre": "Cómo usa el switch las MAC"
+  },
+  {
+   "id": "ethertype-fcs",
+   "nombre": "EtherType, MTU y FCS"
+  },
+  {
+   "id": "mac-oui",
+   "nombre": "La MAC: 48 bits y OUI"
+  },
+  {
+   "id": "mac-tipos",
+   "nombre": "Unicast, multicast y broadcast"
+  },
+  {
+   "id": "mac-local",
+   "nombre": "MAC universal, local y aleatoria"
+  },
+  {
+   "id": "arp",
+   "nombre": "Para qué sirve ARP"
+  },
+  {
+   "id": "arp-solicitud",
+   "nombre": "La solicitud ARP por broadcast"
+  },
+  {
+   "id": "arp-respuesta",
+   "nombre": "La respuesta ARP y la caché"
+  },
+  {
+   "id": "arp-gateway",
+   "nombre": "ARP hacia fuera de la red: el gateway"
+  },
+  {
+   "id": "arp-riesgo",
+   "nombre": "ARP sin autenticación"
+  },
+  {
+   "id": "rfc826",
+   "nombre": "Lo que dice el RFC 826"
+  }
+ ],
+ "diagnostico": {
+  "inicial": [
+   {
+    "id": "di-01",
+    "tipo": "preprueba",
+    "concepto": "medios",
+    "pregunta": "¿Hasta qué distancia llega un tramo de cable UTP en Ethernet?",
+    "opciones": [
+     "500 m",
+     "2 km",
+     "100 m",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-02",
+    "tipo": "preprueba",
+    "concepto": "cable-nombres",
+    "pregunta": "¿Qué significa la «T» de `1000BASE-T`?",
+    "opciones": [
+     "Tiempo de espera",
+     "Par trenzado (cobre)",
+     "Transmisión por fibra",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-03",
+    "tipo": "preprueba",
+    "concepto": "duplex",
+    "pregunta": "¿Qué es full dúplex?",
+    "opciones": [
+     "Enviar y recibir al mismo tiempo",
+     "Enviar por dos cables a la vez",
+     "Turnarse para enviar",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "di-04",
+    "tipo": "preprueba",
+    "concepto": "trama",
+    "pregunta": "¿Qué campo va primero en la trama, después del preámbulo?",
+    "opciones": [
+     "La MAC de origen",
+     "El EtherType",
+     "La MAC de destino",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-05",
+    "tipo": "preprueba",
+    "concepto": "switch",
+    "pregunta": "¿Qué diferencia hay entre un hub y un switch?",
+    "opciones": [
+     "Ninguna: son el mismo equipo",
+     "El switch envía según la MAC; el hub repite a todos",
+     "El hub envía según la MAC; el switch repite a todos",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-06",
+    "tipo": "preprueba",
+    "concepto": "ethertype-fcs",
+    "pregunta": "¿Para qué sirve el FCS de una trama?",
+    "opciones": [
+     "Para detectar errores",
+     "Para indicar el protocolo de adentro",
+     "Para cifrar los datos",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "di-07",
+    "tipo": "preprueba",
+    "concepto": "mac-oui",
+    "pregunta": "¿Cuántos bits tiene una dirección MAC?",
+    "opciones": [
+     "32",
+     "128",
+     "48",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-08",
+    "tipo": "preprueba",
+    "concepto": "mac-tipos",
+    "pregunta": "¿Qué es `FF:FF:FF:FF:FF:FF`?",
+    "opciones": [
+     "La MAC del router",
+     "El broadcast de la red local",
+     "Una MAC de fabricante",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-09",
+    "tipo": "preprueba",
+    "concepto": "mac-local",
+    "pregunta": "¿Por qué un celular puede tener una MAC distinta en cada red Wi-Fi?",
+    "opciones": [
+     "Usa una MAC aleatoria por privacidad",
+     "El router le asigna otra al conectarse",
+     "La tarjeta se reprograma al encender",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "di-10",
+    "tipo": "preprueba",
+    "concepto": "arp",
+    "pregunta": "¿Qué hace ARP?",
+    "opciones": [
+     "Traduce un nombre a una IP",
+     "Asigna una IP a cada equipo",
+     "Traduce una IP a una MAC",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-11",
+    "tipo": "preprueba",
+    "concepto": "arp-solicitud",
+    "pregunta": "¿Cómo se envía una solicitud ARP?",
+    "opciones": [
+     "Por multicast al router",
+     "Por broadcast",
+     "Por unicast al destino",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-12",
+    "tipo": "preprueba",
+    "concepto": "arp-respuesta",
+    "pregunta": "¿Cómo se envía la respuesta ARP?",
+    "opciones": [
+     "Por unicast a quien preguntó",
+     "Por broadcast a todos",
+     "No hay respuesta",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "di-13",
+    "tipo": "preprueba",
+    "concepto": "arp-gateway",
+    "pregunta": "Tu PC quiere llegar a `8.8.8.8`. ¿De quién busca la MAC con ARP?",
+    "opciones": [
+     "De 8.8.8.8",
+     "Del servidor DNS",
+     "Del gateway",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "di-14",
+    "tipo": "preprueba",
+    "concepto": "arp-riesgo",
+    "pregunta": "¿ARP verifica que quien responde diga la verdad?",
+    "opciones": [
+     "Sí, con la contraseña del Wi-Fi",
+     "No, no tiene autenticación",
+     "Sí, con un certificado",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "di-15",
+    "tipo": "preprueba",
+    "concepto": "rfc826",
+    "pregunta": "¿Cuándo aprende B la MAC de A en un ping con caché vacía?",
+    "opciones": [
+     "Al recibir la solicitud ARP de A",
+     "Al recibir el ping",
+     "Cuando B hace su propio ARP",
+     "No sé"
+    ],
+    "correcta": 0
+   }
+  ],
+  "final": [
+   {
+    "id": "df-01",
+    "tipo": "preprueba",
+    "concepto": "medios",
+    "pregunta": "¿Qué medio usarías para unir dos edificios a 2 km?",
+    "opciones": [
+     "Fibra multimodo",
+     "UTP Cat 6a",
+     "Fibra monomodo",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-02",
+    "tipo": "preprueba",
+    "concepto": "cable-nombres",
+    "pregunta": "¿Qué categoría de UTP da 10 Gbps hasta 100 m?",
+    "opciones": [
+     "Cat 5e",
+     "Cat 6a",
+     "Cat 6",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-03",
+    "tipo": "preprueba",
+    "concepto": "duplex",
+    "pregunta": "Un extremo fijo y otro en automático: el enlace va lento y con errores. ¿Qué es?",
+    "opciones": [
+     "Desajuste de dúplex",
+     "Cable demasiado largo",
+     "MAC duplicada",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "df-04",
+    "tipo": "preprueba",
+    "concepto": "trama",
+    "pregunta": "¿Cuántos bytes mide el encabezado Ethernet?",
+    "opciones": [
+     "20",
+     "8",
+     "14",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-05",
+    "tipo": "preprueba",
+    "concepto": "switch",
+    "pregunta": "¿Qué campo usa el switch para aprender dónde está cada equipo?",
+    "opciones": [
+     "El EtherType",
+     "La MAC de origen",
+     "La MAC de destino",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-06",
+    "tipo": "preprueba",
+    "concepto": "ethertype-fcs",
+    "pregunta": "¿Qué EtherType indica ARP?",
+    "opciones": [
+     "0x0806",
+     "0x0800",
+     "0x86DD",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "df-07",
+    "tipo": "preprueba",
+    "concepto": "mac-oui",
+    "pregunta": "¿Qué indican los primeros 24 bits de una MAC?",
+    "opciones": [
+     "La red local",
+     "El tipo de dirección",
+     "El fabricante (OUI)",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-08",
+    "tipo": "preprueba",
+    "concepto": "mac-tipos",
+    "pregunta": "`01:00:5E:00:00:FB`, ¿qué tipo de MAC es?",
+    "opciones": [
+     "Broadcast",
+     "Multicast",
+     "Unicast",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-09",
+    "tipo": "preprueba",
+    "concepto": "mac-local",
+    "pregunta": "`3A:4B:5C:6D:7E:8F`, ¿universal o local?",
+    "opciones": [
+     "Local",
+     "Universal",
+     "No se puede saber",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "df-10",
+    "tipo": "preprueba",
+    "concepto": "arp",
+    "pregunta": "¿Dónde guarda un equipo lo que aprende con ARP?",
+    "opciones": [
+     "En el servidor DHCP",
+     "En la tabla de ruteo",
+     "En su caché ARP",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-11",
+    "tipo": "preprueba",
+    "concepto": "arp-solicitud",
+    "pregunta": "En la solicitud ARP, ¿qué MAC de destino va dentro del paquete ARP?",
+    "opciones": [
+     "La del gateway",
+     "00:00:00:00:00:00",
+     "FF:FF:FF:FF:FF:FF",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-12",
+    "tipo": "preprueba",
+    "concepto": "arp-respuesta",
+    "pregunta": "¿Por qué B no hace su propio ARP para responder el ping?",
+    "opciones": [
+     "Aprendió la MAC de A en la solicitud",
+     "El switch le pasó la MAC de A al vuelo",
+     "El ping de respuesta no usa la MAC",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "df-13",
+    "tipo": "preprueba",
+    "concepto": "arp-gateway",
+    "pregunta": "Gateway `192.168.1.1`. Haces `ping 10.0.0.5` desde `192.168.1.10/24`. ¿Por qué IP pregunta ARP?",
+    "opciones": [
+     "10.0.0.5",
+     "192.168.1.255",
+     "192.168.1.1",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "df-14",
+    "tipo": "preprueba",
+    "concepto": "arp-riesgo",
+    "pregunta": "¿Qué es el ARP gratuito?",
+    "opciones": [
+     "Una solicitud sin respuesta",
+     "Un equipo anuncia su propia IP y MAC",
+     "Un ataque para robar tráfico",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "df-15",
+    "tipo": "preprueba",
+    "concepto": "rfc826",
+    "pregunta": "Según el RFC 826, ¿qué hace primero el receptor de una solicitud?",
+    "opciones": [
+     "Guarda los datos del emisor",
+     "Responde a quien preguntó",
+     "Descarta la solicitud",
+     "No sé"
+    ],
+    "correcta": 0
+   }
+  ],
+  "retencion": [
+   {
+    "id": "dr-01",
+    "tipo": "preprueba",
+    "concepto": "medios",
+    "pregunta": "Dos racks a 250 m en el mismo edificio. ¿Qué medio?",
+    "opciones": [
+     "UTP Cat 6a",
+     "Wi-Fi",
+     "Fibra multimodo",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-02",
+    "tipo": "preprueba",
+    "concepto": "cable-nombres",
+    "pregunta": "¿Qué indica `10GBASE-SR`?",
+    "opciones": [
+     "Cobre de par trenzado",
+     "Fibra multimodo, alcance corto",
+     "Fibra monomodo, alcance largo",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-03",
+    "tipo": "preprueba",
+    "concepto": "duplex",
+    "pregunta": "¿Cómo corriges un desajuste de dúplex?",
+    "opciones": [
+     "Configurar los dos extremos igual",
+     "Cambiar a un cable de mayor categoría",
+     "Reiniciar solo la PC",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "dr-04",
+    "tipo": "preprueba",
+    "concepto": "trama",
+    "pregunta": "¿Qué campo va justo antes de los datos en la trama?",
+    "opciones": [
+     "La MAC de origen",
+     "El FCS",
+     "El EtherType",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-05",
+    "tipo": "preprueba",
+    "concepto": "switch",
+    "pregunta": "¿Qué hace un hub con la señal que recibe?",
+    "opciones": [
+     "La descarta si tiene errores",
+     "La repite por todos sus puertos",
+     "La manda al puerto del destino",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-06",
+    "tipo": "preprueba",
+    "concepto": "ethertype-fcs",
+    "pregunta": "Muchos errores CRC en un puerto. ¿Qué capa revisas primero?",
+    "opciones": [
+     "Capa 1",
+     "Capa 3",
+     "Capa 7",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "dr-07",
+    "tipo": "preprueba",
+    "concepto": "mac-oui",
+    "pregunta": "¿Quién asigna los OUI a los fabricantes?",
+    "opciones": [
+     "La IETF",
+     "El proveedor de internet",
+     "El IEEE",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-08",
+    "tipo": "preprueba",
+    "concepto": "mac-tipos",
+    "pregunta": "¿Qué bit del primer byte dice si una MAC es multicast?",
+    "opciones": [
+     "El penúltimo (bit L)",
+     "El último (bit M)",
+     "El primero",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-09",
+    "tipo": "preprueba",
+    "concepto": "mac-local",
+    "pregunta": "Si el segundo dígito de una MAC es 2, 6, A o E, ¿qué es?",
+    "opciones": [
+     "Una MAC local",
+     "Una MAC multicast",
+     "Una MAC de broadcast",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "dr-10",
+    "tipo": "preprueba",
+    "concepto": "arp",
+    "pregunta": "¿Qué pasa con el ping mientras A espera la respuesta ARP?",
+    "opciones": [
+     "Sale de inmediato hacia el gateway",
+     "Sale por broadcast a toda la red",
+     "Espera: no puede armar la trama",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-11",
+    "tipo": "preprueba",
+    "concepto": "arp-solicitud",
+    "pregunta": "¿Por qué la solicitud ARP va por broadcast?",
+    "opciones": [
+     "Porque el switch no acepta unicast de ARP",
+     "Porque aún no se conoce la MAC del destino",
+     "Porque así llega más rápido al destino",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-12",
+    "tipo": "preprueba",
+    "concepto": "arp-respuesta",
+    "pregunta": "¿Las entradas de la caché ARP son permanentes?",
+    "opciones": [
+     "No, caducan después de un tiempo",
+     "Sí, hasta reiniciar el router",
+     "Sí, siempre",
+     "No sé"
+    ],
+    "correcta": 0
+   },
+   {
+    "id": "dr-13",
+    "tipo": "preprueba",
+    "concepto": "arp-gateway",
+    "pregunta": "¿ARP puede averiguar la MAC de un servidor en internet?",
+    "opciones": [
+     "Sí, preguntando al gateway",
+     "Sí, con un broadcast global",
+     "No, solo dentro de la red local",
+     "No sé"
+    ],
+    "correcta": 2
+   },
+   {
+    "id": "dr-14",
+    "tipo": "preprueba",
+    "concepto": "arp-riesgo",
+    "pregunta": "La MAC de tu gateway cambia sola en tu caché ARP. ¿Qué sospechas?",
+    "opciones": [
+     "Un error de FCS",
+     "ARP spoofing",
+     "Un desajuste de dúplex",
+     "No sé"
+    ],
+    "correcta": 1
+   },
+   {
+    "id": "dr-15",
+    "tipo": "preprueba",
+    "concepto": "rfc826",
+    "pregunta": "¿Por qué el paquete ARP dice el tipo y el tamaño de las direcciones?",
+    "opciones": [
+     "Porque sirve para cualquier red y protocolo",
+     "Porque las MAC cambian de tamaño en cada red",
+     "Para que el switch pueda leer la IP de adentro",
+     "No sé"
+    ],
+    "correcta": 0
+   }
+  ]
+ },
+ "sesiones": [
+  {
+   "id": "s01",
+   "paso": "Orientar",
+   "titulo": "Dentro de la red local",
+   "minutos": 3,
+   "libro": "md1",
+   "tarjetas": [
+    {
+     "id": "s01-intro",
+     "tipo": "concepto",
+     "titulo": "Dentro de la red local",
+     "texto": "En el tema 1.1 seguiste a un mensaje por todo internet. Ahora haces zoom en **un solo tramo**: dos equipos de la misma red, A y B.\n\n¿Por qué cable viajan los bits? ¿Qué lleva la trama? ¿Cómo sabe A la MAC de B?\n\nAcabas de hacer el **diagnóstico inicial**: al final del tema lo repites y comparas."
+    },
+    {
+     "id": "s01-reflexion",
+     "tipo": "reflexion",
+     "pregunta": "¿Dónde te has topado con esto?",
+     "opciones": [
+      "Cables o puertos que fallan",
+      "Direcciones MAC (filtros, inventario, DHCP)",
+      "IP duplicadas o equipos que no se ven",
+      "Todavía en ningún lado"
+     ],
+     "nota": "No hay respuesta incorrecta: sirve para conectar el tema con lo que ya viviste."
+    }
+   ]
+  },
+  {
+   "id": "s02",
+   "paso": "Exponer",
+   "titulo": "¿Por dónde viajan los bits?",
+   "minutos": 6,
+   "libro": "md2",
+   "tarjetas": [
+    {
+     "id": "video-v01",
+     "tipo": "video",
+     "video": "V01",
+     "titulo": "Qué medio elegir según la distancia",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V01-medios-segun-distancia.mp4",
+     "src": ""
+    },
+    {
+     "id": "s02-medios",
+     "tipo": "concepto",
+     "titulo": "Tres familias de medios",
+     "texto": "La capa 1 solo transporta **bits como señales**. El medio decide hasta dónde llegan:\n\n**Cobre (UTP)** · señal eléctrica · **100 m** por tramo\n**Fibra multimodo** · luz, núcleo ancho · **cientos de metros**\n**Fibra monomodo** · luz, núcleo muy delgado · **kilómetros**\n**Wi-Fi** · ondas de radio · decenas de metros, compartido",
+     "capa": 1
+    },
+    {
+     "id": "s02-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "medios",
+     "pregunta": "¿Cuál es la distancia máxima de un tramo de cable UTP en Ethernet?",
+     "opciones": [
+      "100 m",
+      "500 m",
+      "2 km"
+     ],
+     "correcta": 0,
+     "explica": "El cobre llega a 100 m por tramo; más lejos hace falta fibra."
+    },
+    {
+     "id": "s02-q2",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "medios",
+     "pregunta": "¿Qué medio usarías?",
+     "grupos": [
+      "Cobre UTP",
+      "Fibra multimodo",
+      "Fibra monomodo"
+     ],
+     "items": [
+      {
+       "texto": "Escritorio a 40 m",
+       "grupo": 0
+      },
+      {
+       "texto": "Servidor a 90 m",
+       "grupo": 0
+      },
+      {
+       "texto": "Dos racks a 250 m",
+       "grupo": 1
+      },
+      {
+       "texto": "Pisos de un edificio a 400 m",
+       "grupo": 1
+      },
+      {
+       "texto": "Dos edificios a 2 km",
+       "grupo": 2
+      },
+      {
+       "texto": "Enlace con el proveedor a 10 km",
+       "grupo": 2
+      }
+     ],
+     "explica": "Hasta 100 m cobre; cientos de metros, multimodo; kilómetros, monomodo."
+    },
+    {
+     "id": "s02-q3",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "medios",
+     "afirmacion": "La fibra monomodo tiene el núcleo más ancho que la multimodo.",
+     "verdadera": false,
+     "explica": "Al revés: la **mono**modo tiene el núcleo muy delgado, por eso llega a kilómetros."
+    },
+    {
+     "id": "s02-q4",
+     "tipo": "error",
+     "repaso": true,
+     "concepto": "medios",
+     "pregunta": "Toca la elección que está **mal**:",
+     "partes": [
+      "UTP para un escritorio a 30 m",
+      "Multimodo entre racks a 200 m",
+      "UTP entre dos edificios a 1 km",
+      "Monomodo a 5 km"
+     ],
+     "incorrecta": 2,
+     "explica": "El cobre no pasa de 100 m: entre edificios va fibra monomodo."
+    },
+    {
+     "id": "s02-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "medios",
+     "pregunta": "¿Por qué no puedes unir dos edificios a 2 km con cable UTP?",
+     "respuesta": "Porque el cobre solo llega a 100 m por tramo; a esa distancia se usa fibra monomodo.",
+     "puntos": [
+      "El UTP llega a 100 m",
+      "Para kilómetros se usa fibra monomodo"
+     ],
+     "pista": "¿Hasta dónde llega el cobre?"
+    },
+    {
+     "id": "s02-mini",
+     "tipo": "explica",
+     "concepto": "medios",
+     "prompt": "¿Qué medio usarías a 80 m, a 300 m y a 2 km?",
+     "puntos": [
+      "UTP a 80 m, fibra multimodo a 300 m y fibra monomodo a 2 km"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s03",
+   "paso": "Exponer",
+   "titulo": "Leer lo que dice un cable",
+   "minutos": 5,
+   "libro": "md2",
+   "tarjetas": [
+    {
+     "id": "video-v02",
+     "tipo": "video",
+     "video": "V02",
+     "titulo": "Leer lo que dice un cable",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V02-leer-el-nombre-del-cable.mp4",
+     "src": ""
+    },
+    {
+     "id": "s03-nombre",
+     "tipo": "concepto",
+     "titulo": "El nombre de Ethernet",
+     "texto": "`1000BASE-T` se lee en tres partes:\n\n**1000** · velocidad en Mbps (1 Gbps)\n**BASE** · banda base\n**T** · par trenzado (*twisted pair*), o sea, cobre\n\nCon fibra: `10GBASE-SR` = multimodo, alcance **corto** · `10GBASE-LR` = monomodo, alcance **largo**.",
+     "capa": 1
+    },
+    {
+     "id": "s03-q1",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "cable-nombres",
+     "pregunta": "Une cada parte del nombre con lo que dice:",
+     "pares": [
+      [
+       "1000",
+       "Velocidad: 1000 Mbps"
+      ],
+      [
+       "BASE",
+       "Banda base"
+      ],
+      [
+       "T",
+       "Par trenzado (cobre)"
+      ],
+      [
+       "SR / LR",
+       "Fibra de alcance corto / largo"
+      ]
+     ],
+     "explica": "1000BASE-T = 1 Gbps, banda base, par trenzado."
+    },
+    {
+     "id": "s03-cat",
+     "tipo": "concepto",
+     "titulo": "Las categorías del cable UTP",
+     "texto": "**Cat 5e** · 1 Gbps hasta 100 m · 10 Gbps no especificado\n**Cat 6** · 1 Gbps hasta 100 m · 10 Gbps solo hasta **~55 m**\n**Cat 6a** · 1 y 10 Gbps hasta **100 m**",
+     "capa": 1
+    },
+    {
+     "id": "s03-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "cable-nombres",
+     "pregunta": "Un servidor a 90 m del switch necesita 10 Gbps por cobre. ¿Qué categoría usas?",
+     "opciones": [
+      "Cat 6a",
+      "Cat 6",
+      "Cat 5e"
+     ],
+     "correcta": 0,
+     "explica": "Cat 6 solo llega a ~55 m en 10 Gbps; Cat 6a llega a 100 m."
+    },
+    {
+     "id": "s03-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "cable-nombres",
+     "pregunta": "¿Qué medio indica `10GBASE-LR`?",
+     "opciones": [
+      "Fibra monomodo, alcance largo",
+      "Fibra multimodo, alcance corto",
+      "Cobre de par trenzado"
+     ],
+     "correcta": 0,
+     "explica": "LR = *long reach*: monomodo, kilómetros."
+    },
+    {
+     "id": "s03-q4",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "cable-nombres",
+     "afirmacion": "Un cable Cat 6 da 10 Gbps hasta 100 m.",
+     "verdadera": false,
+     "explica": "Cat 6 solo llega a ~55 m en 10 Gbps. Para 100 m hace falta Cat 6a."
+    },
+    {
+     "id": "s03-mini",
+     "tipo": "explica",
+     "concepto": "cable-nombres",
+     "prompt": "¿Qué significa cada parte de `1000BASE-T`?",
+     "puntos": [
+      "1000 Mbps, banda base y par trenzado (cobre)"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s04",
+   "paso": "Exponer",
+   "titulo": "Dúplex y autonegociación",
+   "minutos": 6,
+   "libro": "md2",
+   "tarjetas": [
+    {
+     "id": "video-v03",
+     "tipo": "video",
+     "video": "V03",
+     "titulo": "Dúplex y autonegociación",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V03-duplex-y-autonegociacion.mp4",
+     "src": ""
+    },
+    {
+     "id": "s04-duplex",
+     "tipo": "concepto",
+     "titulo": "Hablar al mismo tiempo o por turnos",
+     "texto": "**Full dúplex:** se envía y recibe **al mismo tiempo**. Es lo normal con switches.\n\n**Half dúplex:** se **turnan**. Pasaba con los hubs y genera colisiones.\n\n**Autonegociación:** los dos extremos acuerdan velocidad y dúplex.\n\n⚠️ Si un extremo está **fijo** y el otro en **automático**, aparece un **desajuste de dúplex**: el enlace sube, pero va **lento y con errores**.",
+     "capa": 1
+    },
+    {
+     "id": "s04-q1",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "duplex",
+     "pregunta": "Une cada término con lo que significa:",
+     "pares": [
+      [
+       "Full dúplex",
+       "Envía y recibe al mismo tiempo"
+      ],
+      [
+       "Half dúplex",
+       "Se turnan para enviar"
+      ],
+      [
+       "Autonegociación",
+       "Los extremos acuerdan velocidad y dúplex"
+      ]
+     ],
+     "explica": "Full = a la vez · half = por turnos · autonegociación = acuerdo."
+    },
+    {
+     "id": "s04-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "duplex",
+     "pregunta": "Un enlace funciona, pero lento y con muchos errores. Un extremo está fijo en 100/full y el otro en automático. ¿Qué pasa?",
+     "opciones": [
+      "Desajuste de dúplex",
+      "El cable superó los 100 m",
+      "La MAC está duplicada"
+     ],
+     "correcta": 0,
+     "explica": "El extremo automático no logra negociar y suele caer en half dúplex."
+    },
+    {
+     "id": "s04-q3",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "duplex",
+     "afirmacion": "Con un desajuste de dúplex el enlace no levanta.",
+     "verdadera": false,
+     "explica": "Sí levanta: por eso engaña. Funciona, pero lento y con errores."
+    },
+    {
+     "id": "s04-q4",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "duplex",
+     "pregunta": "¿Cómo se corrige un desajuste de dúplex?",
+     "opciones": [
+      "Los dos extremos en automático, o los dos fijos igual",
+      "Cambiando el cable por uno de categoría mayor",
+      "Reiniciando solo el switch"
+     ],
+     "correcta": 0,
+     "explica": "El problema es que no coinciden: hay que configurarlos igual."
+    },
+    {
+     "id": "s04-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "duplex",
+     "pregunta": "¿Por qué un desajuste de dúplex es difícil de detectar?",
+     "respuesta": "Porque el enlace sí levanta y funciona; solo va lento y con errores.",
+     "puntos": [
+      "El enlace funciona, solo lento y con errores"
+     ],
+     "pista": "¿Se cae el enlace o sigue arriba?"
+    },
+    {
+     "id": "s04-mini",
+     "tipo": "explica",
+     "concepto": "duplex",
+     "prompt": "En una frase: ¿qué es un desajuste de dúplex?",
+     "puntos": [
+      "Cuando los extremos no coinciden en dúplex (uno fijo y otro automático): el enlace funciona, pero lento y con errores"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s05",
+   "paso": "Exponer",
+   "titulo": "La trama Ethernet, campo por campo",
+   "minutos": 8,
+   "libro": "md3",
+   "tarjetas": [
+    {
+     "id": "video-v04",
+     "tipo": "video",
+     "video": "V04",
+     "titulo": "La trama Ethernet, campo por campo",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V04-trama-ethernet-campos.mp4",
+     "src": ""
+    },
+    {
+     "id": "s05-campos",
+     "tipo": "concepto",
+     "titulo": "Los campos, en orden",
+     "texto": "`Preámbulo+SFD | MAC destino | MAC origen | EtherType | Datos | FCS`\n\n**Preámbulo + SFD** (8 B) · sincroniza y marca el inicio\n**MAC destino** (6 B) · para quién es\n**MAC origen** (6 B) · quién la envía\n**EtherType** (2 B) · qué protocolo viene dentro\n**Datos** (46 a 1500 B) · el paquete de capa 3\n**FCS** (4 B) · detecta errores\n\nEl encabezado Ethernet mide **14 bytes**.",
+     "capa": 2
+    },
+    {
+     "id": "s05-q1",
+     "tipo": "orden",
+     "repaso": true,
+     "concepto": "trama",
+     "pregunta": "Ordena los campos de la trama Ethernet:",
+     "items": [
+      "Preámbulo y SFD",
+      "MAC de destino",
+      "MAC de origen",
+      "EtherType",
+      "Datos",
+      "FCS"
+     ],
+     "explica": "La MAC de destino va primero para que el switch decida rápido."
+    },
+    {
+     "id": "s05-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "trama",
+     "pregunta": "¿Por qué la MAC de destino va antes que la de origen?",
+     "opciones": [
+      "Para que el switch decida rápido a dónde enviarla",
+      "Porque es más importante que la de origen",
+      "Para que el FCS la pueda verificar"
+     ],
+     "correcta": 0,
+     "explica": "El switch empieza a decidir en cuanto lee los primeros bytes."
+    },
+    {
+     "id": "s05-switch",
+     "tipo": "concepto",
+     "titulo": "Lo que el switch lee",
+     "texto": "El switch usa **dos** campos:\n\n**MAC de destino** · para decidir **por qué puerto** sale la trama.\n**MAC de origen** · para **aprender** en qué puerto está cada equipo.\n\nEl **hub**, en cambio, no lee nada: repite la señal por todos sus puertos (capa 1).",
+     "capa": 2
+    },
+    {
+     "id": "s05-q3",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "switch",
+     "pregunta": "Une cada campo con lo que el switch hace con él:",
+     "pares": [
+      [
+       "MAC de destino",
+       "Decidir por qué puerto sale"
+      ],
+      [
+       "MAC de origen",
+       "Aprender dónde está cada equipo"
+      ]
+     ],
+     "explica": "Destino = a dónde va · origen = dónde estás."
+    },
+    {
+     "id": "s05-q4",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "switch",
+     "afirmacion": "Un hub reenvía cada trama solo al puerto del destino.",
+     "verdadera": false,
+     "explica": "El hub repite la señal por **todos** sus puertos; el que elige el puerto es el switch."
+    },
+    {
+     "id": "s05-q5",
+     "tipo": "armar",
+     "repaso": true,
+     "concepto": "trama",
+     "pregunta": "Arma la trama en orden. Sobran piezas:",
+     "piezas": [
+      "Preámbulo+SFD",
+      "MAC destino",
+      "MAC origen",
+      "EtherType",
+      "Datos",
+      "FCS"
+     ],
+     "distractores": [
+      "TTL",
+      "Puerto destino"
+     ],
+     "explica": "TTL y puerto no son de Ethernet: van en IP y TCP."
+    },
+    {
+     "id": "s05-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "switch",
+     "pregunta": "¿Cómo aprende un switch en qué puerto está cada equipo?",
+     "respuesta": "Leyendo la MAC de origen de cada trama que recibe y anotando el puerto por donde entró.",
+     "puntos": [
+      "Lee la MAC de origen",
+      "La asocia al puerto de entrada"
+     ],
+     "pista": "¿Qué campo de la trama dice quién la envió?"
+    },
+    {
+     "id": "s05-mini",
+     "tipo": "explica",
+     "concepto": "trama",
+     "prompt": "Nombra los campos de la trama Ethernet en orden.",
+     "puntos": [
+      "Preámbulo y SFD, MAC de destino, MAC de origen, EtherType, datos y FCS"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s06",
+   "paso": "Exponer",
+   "titulo": "EtherType y FCS",
+   "minutos": 6,
+   "libro": "md3",
+   "tarjetas": [
+    {
+     "id": "video-v05",
+     "tipo": "video",
+     "video": "V05",
+     "titulo": "EtherType y FCS: qué hay dentro y si llegó sana",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V05-ethertype-y-fcs.mp4",
+     "src": ""
+    },
+    {
+     "id": "s06-et",
+     "tipo": "concepto",
+     "titulo": "Qué viene dentro y si llegó sana",
+     "texto": "**EtherType** dice qué protocolo viene en los datos:\n`0x0800` IPv4 · `0x86DD` IPv6 · `0x0806` ARP\n\n**Datos**: máximo **1500 bytes**, la **MTU** de Ethernet. Si son menos de 46, se rellena (*padding*).\n\n**FCS**: un código CRC. Si no coincide, la trama se **descarta sin avisar**. Muchos errores CRC casi siempre indican un problema de **capa 1**: cable, conector, interferencia o dúplex.",
+     "capa": 2
+    },
+    {
+     "id": "s06-q1",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "ethertype-fcs",
+     "pregunta": "Une cada EtherType con su protocolo:",
+     "pares": [
+      [
+       "0x0800",
+       "IPv4"
+      ],
+      [
+       "0x86DD",
+       "IPv6"
+      ],
+      [
+       "0x0806",
+       "ARP"
+      ]
+     ],
+     "explica": "0800 IPv4 · 86DD IPv6 · 0806 ARP."
+    },
+    {
+     "id": "s06-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "ethertype-fcs",
+     "pregunta": "¿Qué pasa con una trama cuyo FCS no coincide?",
+     "opciones": [
+      "Se descarta sin avisar",
+      "Se reenvía de inmediato",
+      "Se corrige y se entrega"
+     ],
+     "correcta": 0,
+     "explica": "Ethernet solo detecta el error; no lo corrige ni avisa. Si hace falta, TCP retransmite."
+    },
+    {
+     "id": "s06-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "ethertype-fcs",
+     "pregunta": "Un switch muestra muchos errores CRC en un puerto. ¿Dónde buscas primero?",
+     "opciones": [
+      "En la capa 1: cable, conector o dúplex",
+      "En la tabla de ruteo del router",
+      "En el servidor DNS"
+     ],
+     "correcta": 0,
+     "explica": "El FCS falla cuando los bits llegan alterados: casi siempre es físico."
+    },
+    {
+     "id": "s06-q4",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "ethertype-fcs",
+     "afirmacion": "La MTU estándar de Ethernet es de 1500 bytes de datos.",
+     "verdadera": true,
+     "explica": "Es el máximo del campo de datos de una trama estándar."
+    },
+    {
+     "id": "s06-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "ethertype-fcs",
+     "pregunta": "¿Para qué sirve el EtherType?",
+     "respuesta": "Para decir qué protocolo viene dentro de los datos de la trama (por ejemplo, IPv4, IPv6 o ARP).",
+     "puntos": [
+      "Indica el protocolo que va dentro"
+     ],
+     "pista": "¿Cómo sabe el receptor qué hay en los datos?"
+    },
+    {
+     "id": "s06-mini",
+     "tipo": "explica",
+     "concepto": "ethertype-fcs",
+     "prompt": "¿Qué indica un error de FCS y dónde lo buscarías?",
+     "puntos": [
+      "Que la trama llegó alterada; casi siempre es un problema de capa 1 (cable, conector, interferencia o dúplex)"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s07",
+   "paso": "Exponer",
+   "titulo": "La MAC: 48 bits y un fabricante",
+   "minutos": 4,
+   "libro": "md4",
+   "tarjetas": [
+    {
+     "id": "video-v06",
+     "tipo": "video",
+     "video": "V06",
+     "titulo": "La MAC: 48 bits y un fabricante",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V06-mac-48-bits-y-oui.mp4",
+     "src": ""
+    },
+    {
+     "id": "s07-mac",
+     "tipo": "concepto",
+     "titulo": "Cómo se lee una MAC",
+     "texto": "Una MAC tiene **48 bits** (6 bytes) en hexadecimal:\n\n`00:1A:2B` `:3C:4D:5E`\n\nLa **primera mitad** (24 bits) es el **OUI**: el identificador que el IEEE asigna a cada **fabricante**.\nLa **segunda mitad** identifica al equipo dentro de ese fabricante.",
+     "capa": 2
+    },
+    {
+     "id": "s07-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "mac-oui",
+     "pregunta": "¿Cuántos bits tiene una dirección MAC?",
+     "opciones": [
+      "48",
+      "32",
+      "64"
+     ],
+     "correcta": 0,
+     "explica": "48 bits = 6 bytes. (32 bits es una IPv4.)"
+    },
+    {
+     "id": "s07-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "mac-oui",
+     "pregunta": "¿Qué indica la primera mitad de una MAC?",
+     "opciones": [
+      "El fabricante (OUI)",
+      "La red a la que pertenece",
+      "El puerto del switch"
+     ],
+     "correcta": 0,
+     "explica": "Los primeros 24 bits son el OUI del fabricante."
+    },
+    {
+     "id": "s07-q3",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "mac-oui",
+     "afirmacion": "El OUI de cada fabricante lo asigna el IEEE.",
+     "verdadera": true,
+     "explica": "El IEEE reparte los OUI para que no se repitan."
+    },
+    {
+     "id": "s07-q4",
+     "tipo": "error",
+     "repaso": true,
+     "concepto": "mac-oui",
+     "pregunta": "Toca la afirmación que está **mal**:",
+     "partes": [
+      "Una MAC mide 6 bytes.",
+      "Se escribe en hexadecimal.",
+      "Los primeros 24 bits identifican la red local.",
+      "El OUI identifica al fabricante."
+     ],
+     "incorrecta": 2,
+     "explica": "Los primeros 24 bits son el **fabricante** (OUI), no la red. La MAC no dice en qué red está."
+    },
+    {
+     "id": "s07-mini",
+     "tipo": "explica",
+     "concepto": "mac-oui",
+     "prompt": "En una frase: ¿qué es el OUI?",
+     "puntos": [
+      "Los primeros 24 bits de la MAC, que identifican al fabricante (los asigna el IEEE)"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s08",
+   "paso": "Exponer",
+   "titulo": "Unicast, multicast y broadcast",
+   "minutos": 4,
+   "libro": "md4",
+   "tarjetas": [
+    {
+     "id": "video-v07",
+     "tipo": "video",
+     "video": "V07",
+     "titulo": "Unicast, multicast y broadcast",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V07-unicast-multicast-broadcast.mp4",
+     "src": ""
+    },
+    {
+     "id": "s08-bitm",
+     "tipo": "concepto",
+     "titulo": "El bit M",
+     "texto": "El **bit menos significativo del primer byte** (bit M) dice a cuántos va:\n\n**M = 0** · **unicast**: a un solo equipo · `00:1A:…`\n**M = 1** · **multicast**: a un grupo · `01:00:5E:…` (IPv4) · `33:33:…` (IPv6)\n**Todos los bits en 1** · **broadcast**: a todos en la red local · `FF:FF:FF:FF:FF:FF`",
+     "capa": 2
+    },
+    {
+     "id": "s08-q1",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "mac-tipos",
+     "pregunta": "¿A cuántos va cada una?",
+     "grupos": [
+      "Unicast",
+      "Multicast",
+      "Broadcast"
+     ],
+     "items": [
+      {
+       "texto": "00:1A:2B:3C:4D:5E",
+       "grupo": 0
+      },
+      {
+       "texto": "3A:4B:5C:6D:7E:8F",
+       "grupo": 0
+      },
+      {
+       "texto": "01:00:5E:00:00:FB",
+       "grupo": 1
+      },
+      {
+       "texto": "33:33:00:00:00:01",
+       "grupo": 1
+      },
+      {
+       "texto": "FF:FF:FF:FF:FF:FF",
+       "grupo": 2
+      }
+     ],
+     "explica": "Mira el primer byte: impar = multicast; todo en F = broadcast."
+    },
+    {
+     "id": "s08-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "mac-tipos",
+     "pregunta": "¿Qué es `FF:FF:FF:FF:FF:FF`?",
+     "opciones": [
+      "Un broadcast: llega a todos en la red local",
+      "Un multicast: llega a un grupo de equipos",
+      "Una MAC vacía: aún no se conoce el destino"
+     ],
+     "correcta": 0,
+     "explica": "Todos los bits en 1: todos los equipos de la red la reciben."
+    },
+    {
+     "id": "s08-q3",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "mac-tipos",
+     "afirmacion": "Si el primer byte de una MAC es impar, es multicast.",
+     "verdadera": true,
+     "explica": "Impar = el último bit vale 1 = bit M en 1."
+    },
+    {
+     "id": "s08-mini",
+     "tipo": "explica",
+     "concepto": "mac-tipos",
+     "prompt": "¿Cómo distingues una MAC unicast de una multicast?",
+     "puntos": [
+      "Por el bit M, el último del primer byte: 0 es unicast y 1 es multicast"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s09",
+   "paso": "Exponer",
+   "titulo": "MAC local y aleatoria",
+   "minutos": 6,
+   "libro": "md4",
+   "tarjetas": [
+    {
+     "id": "video-v08",
+     "tipo": "video",
+     "video": "V08",
+     "titulo": "MAC local y aleatoria",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V08-mac-local-y-aleatoria.mp4",
+     "src": ""
+    },
+    {
+     "id": "s09-bitl",
+     "tipo": "concepto",
+     "titulo": "El bit L",
+     "texto": "El **penúltimo bit del primer byte** (bit L) dice quién la asignó:\n\n**L = 0** · **universal**: la puso el fabricante\n**L = 1** · **local**: la asignó el software\n\nMuchos celulares y laptops usan una **MAC aleatoria** (local) por privacidad.\n\n**Truco:** si el **segundo dígito** es **2, 6, A o E**, es una MAC local unicast.",
+     "capa": 2
+    },
+    {
+     "id": "s09-q1",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "mac-local",
+     "pregunta": "¿Universal o local?",
+     "grupos": [
+      "Universal (fabricante)",
+      "Local (software)"
+     ],
+     "items": [
+      {
+       "texto": "00:1A:2B:3C:4D:5E",
+       "grupo": 0
+      },
+      {
+       "texto": "08:00:27:12:34:56",
+       "grupo": 0
+      },
+      {
+       "texto": "3A:4B:5C:6D:7E:8F",
+       "grupo": 1
+      },
+      {
+       "texto": "F6:12:34:56:78:9A",
+       "grupo": 1
+      },
+      {
+       "texto": "02:00:00:00:00:01",
+       "grupo": 1
+      }
+     ],
+     "explica": "Segundo dígito 2, 6, A o E = local."
+    },
+    {
+     "id": "s09-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "mac-local",
+     "pregunta": "¿Por qué tu celular muestra una MAC distinta en cada red Wi-Fi?",
+     "opciones": [
+      "Usa una MAC aleatoria (local) por privacidad",
+      "El router le cambia la MAC al conectarse",
+      "La tarjeta se reprograma en cada arranque"
+     ],
+     "correcta": 0,
+     "explica": "Así no se le puede rastrear de red en red."
+    },
+    {
+     "id": "s09-q3",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "mac-local",
+     "afirmacion": "Una MAC local siempre tiene un fabricante registrado en el OUI.",
+     "verdadera": false,
+     "explica": "Las locales las inventa el software: no aparecen en la base del OUI."
+    },
+    {
+     "id": "s09-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "mac-local",
+     "pregunta": "Buscas el OUI de una MAC y no aparece ningún fabricante. ¿Qué es lo más probable?",
+     "respuesta": "Que sea una MAC local, por ejemplo aleatoria por privacidad: la asignó el software, no el fabricante.",
+     "puntos": [
+      "Es una MAC local / aleatoria"
+     ],
+     "pista": "Mira el segundo dígito."
+    },
+    {
+     "id": "s09-mini",
+     "tipo": "explica",
+     "concepto": "mac-local",
+     "prompt": "¿Cómo reconoces una MAC local a simple vista?",
+     "puntos": [
+      "Si el segundo dígito es 2, 6, A o E (el bit L vale 1)"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "paso": "Exponer",
+   "titulo": "ARP: de una IP a una MAC",
+   "minutos": 8,
+   "libro": "md5a",
+   "tarjetas": [
+    {
+     "id": "video-v09",
+     "tipo": "video",
+     "video": "V09",
+     "titulo": "ARP: de una IP a una MAC",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V09-por-que-arp.mp4",
+     "src": ""
+    },
+    {
+     "id": "s10-problema",
+     "tipo": "concepto",
+     "titulo": "El problema",
+     "texto": "Para armar la trama, A necesita la **MAC** de B, pero solo conoce su **IP**.\n\n**ARP** (*Address Resolution Protocol*) traduce una **IP** en una **MAC** dentro de la red local. Lo que aprende lo guarda en su **caché ARP**: una tabla temporal IP → MAC.\n\n**A**: `192.168.1.10` · MAC `AA:AA:AA:AA:AA:AA`\n**B**: `192.168.1.20` · MAC `BB:BB:BB:BB:BB:BB`",
+     "capa": 2
+    },
+    {
+     "id": "s10-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp",
+     "pregunta": "¿Qué traduce ARP?",
+     "opciones": [
+      "Una IP en una MAC",
+      "Un nombre en una IP",
+      "Una MAC en un puerto"
+     ],
+     "correcta": 0,
+     "explica": "Nombre → IP es DNS. IP → MAC es ARP."
+    },
+    {
+     "id": "s10-q2",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "arp",
+     "afirmacion": "ARP funciona dentro de la red local.",
+     "verdadera": true,
+     "explica": "Solo traduce IP de tu propia red: la MAC solo vale ahí."
+    },
+    {
+     "id": "video-v10",
+     "tipo": "video",
+     "video": "V10",
+     "titulo": "ARP: la pregunta por broadcast",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V10-arp-la-pregunta.mp4",
+     "src": ""
+    },
+    {
+     "id": "s10-pregunta",
+     "tipo": "concepto",
+     "titulo": "La pregunta, por broadcast",
+     "texto": "A hace `ping 192.168.1.20` y su caché está vacía:\n\n**1.** Revisa su caché: no hay entrada. **El ping espera.**\n**2.** Envía una **solicitud ARP** por **broadcast**:\n\n`AA:AA… → FF:FF:FF:FF:FF:FF · EtherType 0x0806`\n«¿Quién tiene 192.168.1.20? Díselo a 192.168.1.10»\n\nTodos la reciben; **solo responde** quien tiene esa IP.",
+     "capa": 2
+    },
+    {
+     "id": "s10-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp-solicitud",
+     "pregunta": "¿Por qué la solicitud ARP va por broadcast?",
+     "opciones": [
+      "Porque A todavía no sabe la MAC de B",
+      "Porque así es más rápida que un unicast",
+      "Porque el switch no acepta unicast de ARP"
+     ],
+     "correcta": 0,
+     "explica": "Si supiera la MAC, no tendría que preguntar."
+    },
+    {
+     "id": "s10-q4",
+     "tipo": "armar",
+     "repaso": true,
+     "concepto": "arp-solicitud",
+     "pregunta": "Arma la solicitud ARP de A. Sobran piezas:",
+     "piezas": [
+      "Origen AA:AA…",
+      "Destino FF:FF:FF:FF:FF:FF",
+      "EtherType 0x0806",
+      "¿Quién tiene 192.168.1.20?"
+     ],
+     "distractores": [
+      "Destino BB:BB…",
+      "EtherType 0x0800"
+     ],
+     "explica": "Va a todos (FF…) porque aún no conoce BB, y el EtherType de ARP es 0x0806."
+    },
+    {
+     "id": "s10-q5",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "arp-solicitud",
+     "afirmacion": "Mientras A espera la respuesta ARP, el ping ya salió hacia B.",
+     "verdadera": false,
+     "explica": "Sin la MAC de B no se puede armar la trama: el ping espera."
+    },
+    {
+     "id": "s10-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "arp",
+     "pregunta": "¿Por qué hace falta ARP si A ya sabe la IP de B?",
+     "respuesta": "Porque para armar la trama necesita la MAC de B, y la IP no sirve en la capa 2.",
+     "puntos": [
+      "La trama necesita la MAC de destino"
+     ],
+     "pista": "¿Qué dirección lleva la trama?"
+    },
+    {
+     "id": "s10-mini",
+     "tipo": "explica",
+     "concepto": "arp",
+     "prompt": "En una frase: ¿qué problema resuelve ARP?",
+     "puntos": [
+      "Averiguar la MAC que corresponde a una IP de la red local, para poder armar la trama"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s11",
+   "paso": "Exponer",
+   "titulo": "ARP: la respuesta por unicast",
+   "minutos": 7,
+   "libro": "md5b",
+   "tarjetas": [
+    {
+     "id": "video-v11",
+     "tipo": "video",
+     "video": "V11",
+     "titulo": "ARP: la respuesta por unicast",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V11-arp-la-respuesta.mp4",
+     "src": ""
+    },
+    {
+     "id": "s11-pasos",
+     "tipo": "concepto",
+     "titulo": "B aprende y responde",
+     "texto": "**3.** Al recibir la solicitud, **B guarda** que `192.168.1.10` es `AA:AA…`: venía en la solicitud. Luego responde **directo** (unicast):\n\n`BB:BB… → AA:AA…` «192.168.1.20 está en BB:BB…»\n\n**4.** A guarda la respuesta y **por fin envía el ping**:\n\n`AA:AA… → BB:BB… · EtherType 0x0800 (IPv4)`\n\nB responde el ping **sin hacer ARP**: ya conoce la MAC de A.",
+     "capa": 2
+    },
+    {
+     "id": "s11-q1",
+     "tipo": "orden",
+     "repaso": true,
+     "concepto": "arp-respuesta",
+     "pregunta": "Ordena lo que pasa en un ping de A a B con la caché vacía:",
+     "items": [
+      "A revisa su caché y no encuentra a B",
+      "A pregunta por broadcast quién tiene la IP de B",
+      "B guarda la MAC de A y responde por unicast",
+      "A guarda la MAC de B",
+      "A envía el ping a la MAC de B"
+     ],
+     "explica": "Pregunta por broadcast, respuesta por unicast, y entonces sale el ping."
+    },
+    {
+     "id": "s11-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp-respuesta",
+     "pregunta": "¿Por qué B no necesita hacer su propio ARP para responder el ping?",
+     "opciones": [
+      "Porque aprendió la MAC de A en la solicitud",
+      "Porque el switch le pasó la MAC de A",
+      "Porque el ping no necesita MAC"
+     ],
+     "correcta": 0,
+     "explica": "La solicitud traía la IP y la MAC de A como emisor."
+    },
+    {
+     "id": "s11-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp-respuesta",
+     "pregunta": "¿Por qué la respuesta ARP va por unicast?",
+     "opciones": [
+      "Porque B ya sabe la MAC de A",
+      "Porque solo el switch puede leer broadcast",
+      "Porque ARP prohíbe dos broadcast seguidos"
+     ],
+     "correcta": 0,
+     "explica": "B ya conoce a quién le responde: no hace falta molestar a todos."
+    },
+    {
+     "id": "s11-q4",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "arp-respuesta",
+     "pregunta": "Une cada trama con su origen y destino:",
+     "pares": [
+      [
+       "Solicitud ARP",
+       "AA → FF:FF:FF:FF:FF:FF"
+      ],
+      [
+       "Respuesta ARP",
+       "BB → AA"
+      ],
+      [
+       "Ping de A",
+       "AA → BB"
+      ]
+     ],
+     "explica": "Solo la solicitud va a todos."
+    },
+    {
+     "id": "s11-q5",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "arp-respuesta",
+     "afirmacion": "Las entradas de la caché ARP duran para siempre.",
+     "verdadera": false,
+     "explica": "Caducan después de un tiempo (de segundos a minutos, según el sistema)."
+    },
+    {
+     "id": "s11-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "arp-respuesta",
+     "pregunta": "¿Por qué la solicitud ARP va por broadcast y la respuesta por unicast?",
+     "respuesta": "Porque quien pregunta aún no sabe la MAC del otro; quien responde ya la aprendió de la solicitud.",
+     "puntos": [
+      "Solicitud: no se conoce la MAC",
+      "Respuesta: ya se conoce la MAC de quien preguntó"
+     ],
+     "pista": "¿Quién sabe qué MAC en cada momento?"
+    },
+    {
+     "id": "s11-mini",
+     "tipo": "explica",
+     "concepto": "arp-respuesta",
+     "prompt": "¿Qué aprende B al recibir la solicitud ARP?",
+     "puntos": [
+      "La IP y la MAC de A, que venían como emisor en la solicitud"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s12",
+   "paso": "Exponer",
+   "titulo": "ARP fuera de la red: el gateway",
+   "minutos": 6,
+   "libro": "md5b",
+   "tarjetas": [
+    {
+     "id": "video-v12",
+     "tipo": "video",
+     "video": "V12",
+     "titulo": "ARP fuera de la red: el gateway",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V12-arp-fuera-de-la-red.mp4",
+     "src": ""
+    },
+    {
+     "id": "s12-gw",
+     "tipo": "concepto",
+     "titulo": "Si el destino está en internet",
+     "texto": "A hace `ping 8.8.8.8`. Esa IP **no está en su red**, así que la trama no va al destino: va al **gateway** (`192.168.1.1`).\n\nPor eso A hace ARP **por la IP del gateway**, nunca por `8.8.8.8`.\n\nEs lo mismo que viste en el tema 1.1: la trama hacia internet va a la MAC del router.",
+     "capa": 2
+    },
+    {
+     "id": "s12-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp-gateway",
+     "pregunta": "A (gateway `192.168.1.1`) hace `ping 8.8.8.8`. ¿Por qué IP pregunta en ARP?",
+     "opciones": [
+      "192.168.1.1, la del gateway",
+      "8.8.8.8, la del destino",
+      "192.168.1.255, la de broadcast"
+     ],
+     "correcta": 0,
+     "explica": "8.8.8.8 está fuera de la red: solo necesita la MAC del gateway."
+    },
+    {
+     "id": "s12-q2",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "arp-gateway",
+     "afirmacion": "ARP puede averiguar la MAC de un servidor en internet.",
+     "verdadera": false,
+     "explica": "ARP solo funciona dentro de la red local. Para salir, basta la MAC del gateway."
+    },
+    {
+     "id": "s12-q3",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "arp-gateway",
+     "pregunta": "A es `192.168.1.10/24`, gateway `192.168.1.1`. ¿Por qué IP pregunta en ARP?",
+     "grupos": [
+      "Por la IP del destino",
+      "Por la IP del gateway"
+     ],
+     "items": [
+      {
+       "texto": "ping 192.168.1.20",
+       "grupo": 0
+      },
+      {
+       "texto": "ping 192.168.1.1",
+       "grupo": 0
+      },
+      {
+       "texto": "ping 8.8.8.8",
+       "grupo": 1
+      },
+      {
+       "texto": "ping 10.0.0.5",
+       "grupo": 1
+      }
+     ],
+     "explica": "Si el destino está en tu red, ARP por su IP; si no, por la del gateway."
+    },
+    {
+     "id": "s12-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "arp-gateway",
+     "pregunta": "¿Por qué ARP siempre pregunta por una IP de tu propia red, aunque el destino esté en internet?",
+     "respuesta": "Porque la trama solo viaja dentro de la red local: si el destino está fuera, va al gateway y solo hace falta su MAC.",
+     "puntos": [
+      "La trama solo llega dentro de la red local",
+      "Para salir basta la MAC del gateway"
+     ],
+     "pista": "¿Hasta dónde viaja una trama?"
+    },
+    {
+     "id": "s12-mini",
+     "tipo": "explica",
+     "concepto": "arp-gateway",
+     "prompt": "Para un destino en internet, ¿de quién necesitas la MAC?",
+     "puntos": [
+      "Del gateway (el router), porque el destino está fuera de la red"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s13",
+   "paso": "Exponer",
+   "titulo": "ARP no tiene autenticación",
+   "minutos": 4,
+   "libro": "md5b",
+   "tarjetas": [
+    {
+     "id": "video-v13",
+     "tipo": "video",
+     "video": "V13",
+     "titulo": "ARP no tiene autenticación",
+     "archivo": "Contenido/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP/media/V13-arp-sin-autenticacion.mp4",
+     "src": ""
+    },
+    {
+     "id": "s13-riesgo",
+     "tipo": "concepto",
+     "titulo": "Cualquiera puede contestar",
+     "texto": "ARP **no verifica** quién responde. Un atacante puede contestar «yo soy 192.168.1.1» con su propia MAC: es el **ARP spoofing**. Así se pone en medio del tráfico.\n\nOjo: el **ARP gratuito** es normal. Un equipo anuncia su propia IP y MAC sin que nadie pregunte, al conectarse o para detectar IP duplicadas.\n\nLa defensa (DAI) se ve en el Módulo 4.",
+     "capa": 2
+    },
+    {
+     "id": "s13-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp-riesgo",
+     "pregunta": "¿Qué es el ARP spoofing?",
+     "opciones": [
+      "Responder ARP con una MAC falsa",
+      "Preguntar por broadcast la MAC del gateway",
+      "Anunciar tu propia IP y MAC al conectarte"
+     ],
+     "correcta": 0,
+     "explica": "Como ARP no autentica, se puede mentir en la respuesta."
+    },
+    {
+     "id": "s13-q2",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "arp-riesgo",
+     "afirmacion": "El ARP gratuito siempre es señal de un ataque.",
+     "verdadera": false,
+     "explica": "Es un anuncio normal: al conectarse o para detectar IP duplicadas."
+    },
+    {
+     "id": "s13-q3",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "arp-riesgo",
+     "pregunta": "¿Normal o sospechoso?",
+     "grupos": [
+      "Normal",
+      "Sospechoso"
+     ],
+     "items": [
+      {
+       "texto": "Un equipo anuncia su IP al conectarse",
+       "grupo": 0
+      },
+      {
+       "texto": "Una solicitud ARP por broadcast",
+       "grupo": 0
+      },
+      {
+       "texto": "Dos MAC distintas responden por la IP del gateway",
+       "grupo": 1
+      },
+      {
+       "texto": "La MAC del gateway cambia sin motivo en tu caché",
+       "grupo": 1
+      }
+     ],
+     "explica": "Que la MAC del gateway cambie o tenga dos dueños es la huella del spoofing."
+    },
+    {
+     "id": "s13-mini",
+     "tipo": "explica",
+     "concepto": "arp-riesgo",
+     "prompt": "¿Por qué ARP es fácil de engañar?",
+     "puntos": [
+      "Porque no tiene autenticación: cualquiera puede responder con una MAC falsa"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s14",
+   "paso": "Exponer",
+   "titulo": "La fuente: el RFC 826",
+   "minutos": 7,
+   "libro": "md6",
+   "tarjetas": [
+    {
+     "id": "s14-intro",
+     "tipo": "concepto",
+     "titulo": "Directo de la fuente",
+     "texto": "ARP está definido en el **RFC 826** (1982). Está escrito para **cualquier** red y protocolo, no solo Ethernet e IP: por eso el paquete dice qué tipo de dirección lleva y cuánto mide.\n\nAquí te lo explicamos; no necesitas salir de la app."
+    },
+    {
+     "id": "s14-campos",
+     "tipo": "concepto",
+     "titulo": "Los campos del paquete ARP",
+     "texto": "**Tipo de hardware** · qué red (Ethernet)\n**Tipo de protocolo** · qué dirección se traduce (IPv4)\n**Longitudes** · 6 bytes de MAC, 4 de IPv4\n**Operación** · solicitud o respuesta\n**Emisor** · su MAC y su IP\n**Destino** · la IP buscada y, en la solicitud, una MAC vacía (`00:00:00:00:00:00`): es justo lo que se pregunta",
+     "capa": 2
+    },
+    {
+     "id": "s14-q1",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "rfc826",
+     "pregunta": "Une cada campo con lo que lleva en la solicitud de A:",
+     "pares": [
+      [
+       "Operación",
+       "Solicitud"
+      ],
+      [
+       "Emisor",
+       "192.168.1.10 / AA:AA…"
+      ],
+      [
+       "Destino: IP",
+       "192.168.1.20"
+      ],
+      [
+       "Destino: MAC",
+       "00:00:00:00:00:00"
+      ]
+     ],
+     "explica": "La MAC de destino va vacía porque es lo que se busca."
+    },
+    {
+     "id": "s14-recepcion",
+     "tipo": "concepto",
+     "titulo": "Al recibir: la parte clave",
+     "texto": "El RFC dice que el receptor:\n\n**1.** Si ya tenía al emisor en su tabla, **actualiza** su MAC.\n**2.** Si es **el dueño de la IP buscada**, **agrega** al emisor a su tabla.\n**3.** **Solo después** revisa si es solicitud y, si lo es, responde **directo** a quien preguntó.\n\nPor eso B aprende la MAC de A **con la propia solicitud**.",
+     "capa": 2
+    },
+    {
+     "id": "s14-q2",
+     "tipo": "orden",
+     "repaso": true,
+     "concepto": "rfc826",
+     "pregunta": "Ordena lo que hace el receptor, según el RFC 826:",
+     "items": [
+      "Actualiza al emisor si ya lo tenía",
+      "Si es el dueño de la IP, agrega al emisor",
+      "Revisa si es una solicitud",
+      "Responde directo a quien preguntó"
+     ],
+     "explica": "Primero aprende, después responde."
+    },
+    {
+     "id": "s14-q3",
+     "tipo": "vf",
+     "repaso": true,
+     "concepto": "rfc826",
+     "afirmacion": "Según el RFC 826, la MAC de destino de una solicitud ARP va vacía.",
+     "verdadera": true,
+     "explica": "Es justo el dato que se pregunta."
+    },
+    {
+     "id": "s14-q4",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "rfc826",
+     "pregunta": "¿Por qué el paquete ARP indica el tipo y el tamaño de las direcciones?",
+     "opciones": [
+      "Porque ARP sirve para cualquier red y protocolo",
+      "Porque las MAC cambian de tamaño en cada salto",
+      "Para que el switch pueda leer la IP de destino"
+     ],
+     "correcta": 0,
+     "explica": "El RFC lo diseñó genérico."
+    },
+    {
+     "id": "s14-corta1",
+     "tipo": "corta",
+     "repaso": true,
+     "concepto": "rfc826",
+     "pregunta": "Según el RFC 826, ¿cuándo guarda el receptor los datos del emisor?",
+     "respuesta": "Al recibir la solicitud, antes de responder (si ya lo tenía lo actualiza; si es el dueño de la IP, lo agrega).",
+     "puntos": [
+      "Al recibir la solicitud, antes de responder"
+     ],
+     "pista": "¿Qué hace primero: aprender o responder?"
+    },
+    {
+     "id": "s14-mas",
+     "tipo": "concepto",
+     "titulo": "Para profundizar (opcional)",
+     "texto": "El original en inglés, secciones «Packet Generation» y «Packet Reception»:\nhttps://www.rfc-editor.org/rfc/rfc826\n\nNo hace falta para seguir: lo esencial ya está aquí."
+    },
+    {
+     "id": "s14-mini",
+     "tipo": "explica",
+     "concepto": "rfc826",
+     "prompt": "¿Por qué B no necesita preguntar la MAC de A, según el RFC?",
+     "puntos": [
+      "Porque el RFC manda guardar los datos del emisor al recibir la solicitud, antes de responder"
+     ],
+     "segundos": 45
+    }
+   ]
+  },
+  {
+   "id": "s15",
+   "paso": "Exponer",
+   "titulo": "Repaso con el tutor",
+   "minutos": 8,
+   "libro": "md6",
+   "tarjetas": [
+    {
+     "id": "s15-intro",
+     "tipo": "concepto",
+     "titulo": "Una plática corta con el tutor",
+     "texto": "El tutor te va a hacer **5 preguntas cortas**, una por una, sobre la trama Ethernet, los tipos de MAC y ARP.\n\nSi te equivocas, te da una pista, no la respuesta. Al final te dice qué huecos vio."
+    },
+    {
+     "id": "s15-conversa",
+     "tipo": "conversa",
+     "preguntas": 5,
+     "objetivo": "Comprobar si entiende la trama Ethernet, los tipos de dirección MAC y el funcionamiento de ARP",
+     "conceptos": [
+      "trama",
+      "mac-tipos",
+      "mac-local",
+      "arp-respuesta",
+      "arp-gateway"
+     ],
+     "puntos": [
+      "Campos de la trama en orden y para qué sirve cada uno (destino, origen, EtherType, FCS)",
+      "Bit M (unicast/multicast), broadcast FF…, bit L (universal/local)",
+      "Solicitud ARP por broadcast, respuesta por unicast; B aprende de la solicitud",
+      "Para un destino fuera de la red, ARP por la IP del gateway"
+     ]
+    },
+    {
+     "id": "s15-mini",
+     "tipo": "explica",
+     "concepto": "arp-respuesta",
+     "prompt": "Elige el hueco que te marcó el tutor y explícalo bien ahora, en una frase.",
+     "puntos": [
+      "Nombra un hueco concreto de la plática",
+      "Lo explica correctamente"
+     ],
+     "segundos": 45
+    }
+   ]
+  },
+  {
+   "id": "s16",
+   "paso": "Practicar",
+   "titulo": "Ejercicio A: lee una trama en hexadecimal",
+   "minutos": 4,
+   "libro": "md7",
+   "tarjetas": [
+    {
+     "id": "s16-intro",
+     "tipo": "concepto",
+     "titulo": "Ejercicio A · Los primeros 14 bytes",
+     "texto": "Esto es el encabezado de una trama capturada:\n\n`ff ff ff ff ff ff` `00 1a 2b 3c 4d 5e` `08 06`\n\nResponde sin ver nada. Lo que falles es lo que más te conviene repasar."
+    },
+    {
+     "id": "s16-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "mac-tipos",
+     "pregunta": "¿Cuál es la MAC de destino y qué tipo es?",
+     "opciones": [
+      "ff:ff:ff:ff:ff:ff, broadcast",
+      "00:1a:2b:3c:4d:5e, unicast",
+      "08:06, multicast"
+     ],
+     "correcta": 0,
+     "explica": "Los primeros 6 bytes son el destino; todo en F = broadcast."
+    },
+    {
+     "id": "s16-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "trama",
+     "pregunta": "¿Cuál es la MAC de origen?",
+     "opciones": [
+      "00:1a:2b:3c:4d:5e",
+      "ff:ff:ff:ff:ff:ff",
+      "2b:3c:4d:5e:08:06"
+     ],
+     "correcta": 0,
+     "explica": "Los siguientes 6 bytes, después del destino."
+    },
+    {
+     "id": "s16-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "ethertype-fcs",
+     "pregunta": "¿Qué protocolo viene dentro, según el EtherType `08 06`?",
+     "opciones": [
+      "ARP",
+      "IPv4",
+      "IPv6"
+     ],
+     "correcta": 0,
+     "explica": "0x0806 = ARP. (0x0800 sería IPv4.)"
+    },
+    {
+     "id": "s16-q4",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp-solicitud",
+     "pregunta": "Con todo lo anterior, ¿qué está haciendo este equipo?",
+     "opciones": [
+      "Una solicitud ARP: pregunta quién tiene una IP",
+      "Una respuesta ARP: contesta a otro equipo",
+      "Un ping: busca a todos los equipos de la red"
+     ],
+     "correcta": 0,
+     "explica": "ARP por broadcast = solicitud."
+    },
+    {
+     "id": "s16-q5",
+     "tipo": "armar",
+     "repaso": true,
+     "concepto": "trama",
+     "pregunta": "Separa los 14 bytes en sus campos, en orden. Sobra una pieza:",
+     "piezas": [
+      "ff ff ff ff ff ff",
+      "00 1a 2b 3c 4d 5e",
+      "08 06"
+     ],
+     "distractores": [
+      "FCS"
+     ],
+     "explica": "Destino (6) · origen (6) · EtherType (2). El FCS va al final de la trama, no en el encabezado."
+    },
+    {
+     "id": "s16-mini",
+     "tipo": "explica",
+     "concepto": "trama",
+     "prompt": "¿Cuántos bytes mide el encabezado Ethernet y qué campos tiene?",
+     "puntos": [
+      "14 bytes: MAC de destino (6), MAC de origen (6) y EtherType (2)"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s17",
+   "paso": "Practicar",
+   "titulo": "Ejercicio B: clasifica direcciones MAC",
+   "minutos": 5,
+   "libro": "md7",
+   "tarjetas": [
+    {
+     "id": "s17-intro",
+     "tipo": "concepto",
+     "titulo": "Ejercicio B · Mira el primer byte",
+     "texto": "Pásalo a binario y mira sus dos últimos bits:\n\n`x x x x x x L M`\n\n**M** = 0 unicast · 1 multicast\n**L** = 0 universal · 1 local"
+    },
+    {
+     "id": "s17-q1",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "mac-tipos",
+     "pregunta": "¿Unicast, multicast o broadcast?",
+     "grupos": [
+      "Unicast",
+      "Multicast",
+      "Broadcast"
+     ],
+     "items": [
+      {
+       "texto": "00:1A:2B:3C:4D:5E",
+       "grupo": 0
+      },
+      {
+       "texto": "3A:4B:5C:6D:7E:8F",
+       "grupo": 0
+      },
+      {
+       "texto": "F6:12:34:56:78:9A",
+       "grupo": 0
+      },
+      {
+       "texto": "01:00:5E:00:00:FB",
+       "grupo": 1
+      },
+      {
+       "texto": "33:33:00:00:00:01",
+       "grupo": 1
+      },
+      {
+       "texto": "FF:FF:FF:FF:FF:FF",
+       "grupo": 2
+      }
+     ],
+     "explica": "Primer byte impar = multicast; todo en F = broadcast."
+    },
+    {
+     "id": "s17-q2",
+     "tipo": "clasificar",
+     "repaso": true,
+     "concepto": "mac-local",
+     "pregunta": "Ahora las unicast: ¿universal o local?",
+     "grupos": [
+      "Universal",
+      "Local"
+     ],
+     "items": [
+      {
+       "texto": "00:1A:2B:3C:4D:5E",
+       "grupo": 0
+      },
+      {
+       "texto": "3A:4B:5C:6D:7E:8F",
+       "grupo": 1
+      },
+      {
+       "texto": "F6:12:34:56:78:9A",
+       "grupo": 1
+      }
+     ],
+     "explica": "3A y F6: segundo dígito A y 6, bit L en 1."
+    },
+    {
+     "id": "s17-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "mac-tipos",
+     "pregunta": "`01:00:5E:00:00:FB`: ¿qué tipo es?",
+     "opciones": [
+      "Multicast (rango IPv4)",
+      "Unicast (universal)",
+      "Broadcast (a todos)"
+     ],
+     "correcta": 0,
+     "explica": "01 en binario es 0000 0001: bit M en 1."
+    },
+    {
+     "id": "s17-q4",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "mac-local",
+     "pregunta": "El primer byte `3A` en binario es `0011 1010`. ¿Qué dice?",
+     "opciones": [
+      "Unicast y local",
+      "Multicast y universal",
+      "Unicast y universal"
+     ],
+     "correcta": 0,
+     "explica": "M (último) = 0 → unicast · L (penúltimo) = 1 → local."
+    },
+    {
+     "id": "s17-q5",
+     "tipo": "error",
+     "repaso": true,
+     "concepto": "mac-tipos",
+     "pregunta": "Toca la clasificación que está **mal**:",
+     "partes": [
+      "00:1A:… → unicast universal",
+      "FF:FF:… → broadcast",
+      "33:33:… → unicast",
+      "F6:12:… → unicast local"
+     ],
+     "incorrecta": 2,
+     "explica": "33 es impar: 33:33 es multicast (el rango de IPv6)."
+    },
+    {
+     "id": "s17-mini",
+     "tipo": "explica",
+     "concepto": "mac-tipos",
+     "prompt": "¿Qué miras del primer byte para saber si una MAC es multicast?",
+     "puntos": [
+      "El último bit (M): si vale 1, es multicast; un primer byte impar lo delata"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s18",
+   "paso": "Practicar",
+   "titulo": "Ejercicio C: elige el medio",
+   "minutos": 4,
+   "libro": "md8",
+   "tarjetas": [
+    {
+     "id": "s18-intro",
+     "tipo": "concepto",
+     "titulo": "Ejercicio C · Elige el medio",
+     "texto": "Para cada situación, elige el medio y la categoría. Piensa en la distancia y la velocidad."
+    },
+    {
+     "id": "s18-q1",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "medios",
+     "pregunta": "Escritorios a 80 m del switch, 1 Gbps.",
+     "opciones": [
+      "UTP Cat 5e o Cat 6",
+      "Fibra monomodo",
+      "UTP Cat 6a obligatorio"
+     ],
+     "correcta": 0,
+     "explica": "Cat 5e y Cat 6 soportan 1 Gbps hasta 100 m."
+    },
+    {
+     "id": "s18-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "cable-nombres",
+     "pregunta": "Servidor a 90 m del switch, 10 Gbps.",
+     "opciones": [
+      "UTP Cat 6a",
+      "UTP Cat 6",
+      "UTP Cat 5e"
+     ],
+     "correcta": 0,
+     "explica": "Cat 6 solo llega a ~55 m en 10 Gbps."
+    },
+    {
+     "id": "s18-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "medios",
+     "pregunta": "Dos racks del mismo edificio a 250 m, 10 Gbps.",
+     "opciones": [
+      "Fibra multimodo (10GBASE-SR)",
+      "UTP Cat 6a",
+      "Fibra monomodo (10GBASE-LR) obligatoria"
+     ],
+     "correcta": 0,
+     "explica": "El cobre no llega a 250 m; para cientos de metros basta multimodo."
+    },
+    {
+     "id": "s18-q4",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "medios",
+     "pregunta": "Dos edificios de un campus a 2 km.",
+     "opciones": [
+      "Fibra monomodo (10GBASE-LR)",
+      "Fibra multimodo (10GBASE-SR)",
+      "UTP Cat 6a con repetidor"
+     ],
+     "correcta": 0,
+     "explica": "Para kilómetros: monomodo."
+    },
+    {
+     "id": "s18-q5",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "duplex",
+     "pregunta": "El enlace funciona pero lento, con muchos errores CRC; un extremo está fijo en 100/full y el otro en automático.",
+     "opciones": [
+      "Desajuste de dúplex",
+      "Cable de categoría baja",
+      "MAC duplicada"
+     ],
+     "correcta": 0,
+     "explica": "Solución: los dos en automático, o los dos fijos con los mismos valores."
+    },
+    {
+     "id": "s18-q6",
+     "tipo": "emparejar",
+     "repaso": true,
+     "concepto": "medios",
+     "pregunta": "Une cada distancia con su medio:",
+     "pares": [
+      [
+       "80 m",
+       "UTP"
+      ],
+      [
+       "300 m",
+       "Fibra multimodo"
+      ],
+      [
+       "2 km",
+       "Fibra monomodo"
+      ]
+     ],
+     "explica": "100 m cobre · cientos de metros multimodo · kilómetros monomodo."
+    },
+    {
+     "id": "s18-mini",
+     "tipo": "explica",
+     "concepto": "cable-nombres",
+     "prompt": "¿Por qué Cat 6 no sirve para 10 Gbps a 90 m?",
+     "puntos": [
+      "Porque Cat 6 solo llega a ~55 m en 10 Gbps; a 90 m hace falta Cat 6a"
+     ],
+     "segundos": 30
+    }
+   ]
+  },
+  {
+   "id": "s19",
+   "paso": "Practicar",
+   "titulo": "Ejercicio D: predice el tráfico",
+   "minutos": 4,
+   "libro": "md8",
+   "tarjetas": [
+    {
+     "id": "s19-intro",
+     "tipo": "concepto",
+     "titulo": "Ejercicio D · Caché vacía",
+     "texto": "A y B están en la misma red, las dos con la caché ARP **vacía**.\n\n**A**: `192.168.1.10` · MAC `AA:AA:AA:AA:AA:AA`\n**B**: `192.168.1.20` · MAC `BB:BB:BB:BB:BB:BB`\n\nA hace `ping 192.168.1.20`."
+    },
+    {
+     "id": "s19-q1",
+     "tipo": "orden",
+     "repaso": true,
+     "concepto": "arp-respuesta",
+     "pregunta": "Ordena las tramas hasta la primera respuesta del ping:",
+     "items": [
+      "AA → FF…: solicitud ARP",
+      "BB → AA: respuesta ARP",
+      "AA → BB: ICMP echo request",
+      "BB → AA: ICMP echo reply"
+     ],
+     "explica": "Primero ARP (pregunta y respuesta) y luego el ping de ida y vuelta."
+    },
+    {
+     "id": "s19-q2",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp-solicitud",
+     "pregunta": "Trama 1: ¿qué MAC de destino lleva?",
+     "opciones": [
+      "FF:FF:FF:FF:FF:FF",
+      "BB:BB:BB:BB:BB:BB",
+      "00:00:00:00:00:00"
+     ],
+     "correcta": 0,
+     "explica": "La trama va a todos. (Los 00:00… van **dentro** del paquete ARP, no en la trama.)"
+    },
+    {
+     "id": "s19-q3",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp-respuesta",
+     "pregunta": "¿Cuántas solicitudes ARP se envían en total hasta la respuesta del ping?",
+     "opciones": [
+      "Una, la de A",
+      "Dos, una de cada equipo",
+      "Ninguna"
+     ],
+     "correcta": 0,
+     "explica": "B aprendió la MAC de A de la propia solicitud."
+    },
+    {
+     "id": "s19-q4",
+     "tipo": "opcion",
+     "repaso": true,
+     "concepto": "arp-gateway",
+     "pregunta": "Ahora A hace `ping 8.8.8.8` (gateway `192.168.1.1`). ¿Por qué IP pregunta en ARP?",
+     "opciones": [
+      "192.168.1.1",
+      "8.8.8.8",
+      "192.168.1.20"
+     ],
+     "correcta": 0,
+     "explica": "El destino está fuera: solo necesita la MAC del gateway."
+    },
+    {
+     "id": "s19-q5",
+     "tipo": "error",
+     "repaso": true,
+     "concepto": "arp-respuesta",
+     "pregunta": "Toca la trama que está **mal**:",
+     "partes": [
+      "1 · AA → FF…: solicitud ARP",
+      "2 · BB → FF…: respuesta ARP",
+      "3 · AA → BB: ICMP echo request",
+      "4 · BB → AA: ICMP echo reply"
+     ],
+     "incorrecta": 1,
+     "explica": "La respuesta ARP va por **unicast** a AA: B ya sabe la MAC de A."
+    },
+    {
+     "id": "s19-mini",
+     "tipo": "explica",
+     "concepto": "arp-gateway",
+     "prompt": "¿Por qué ARP siempre pregunta por una IP de tu propia red?",
+     "puntos": [
+      "Porque la trama solo viaja dentro de la red local: si el destino está fuera, basta la MAC del gateway"
+     ],
+     "segundos": 45
+    }
+   ]
+  },
+  {
+   "id": "s20",
+   "paso": "Practicar",
+   "titulo": "Laboratorio: ARP y tramas en vivo",
+   "minutos": 90,
+   "libro": "bl1",
+   "tarjetas": [
+    {
+     "id": "bl1-intro",
+     "tipo": "concepto",
+     "titulo": "Este bloque es en la computadora",
+     "texto": "Vas a ver ARP funcionando con **Wireshark** y a descubrir de quién son las MAC de tu red.\n\nNecesitas una computadora, permisos de administrador y unos 90 minutos. La guía completa, con los comandos de cada sistema, está en el **Libro** (Practicar · BL1).\n\n⚠️ Solo en **tu propia red**.\n\nAquí anotas lo que observes."
+    },
+    {
+     "id": "bl1-plan",
+     "tipo": "concepto",
+     "titulo": "El plan",
+     "texto": "**Parte 1** · Mira tu caché ARP.\n**Parte 2** · Borra una entrada, haz `ping` y captura el ARP.\n**Parte 3** · Mira los EtherType y el tamaño de las tramas.\n**Parte 4** · Busca el fabricante de cada MAC con el OUI.\n**Parte 5** · Opcional: la tabla MAC de un switch administrable."
+    },
+    {
+     "id": "bl1-p1",
+     "tipo": "abierta",
+     "pregunta": "Parte 1 · ¿Qué equipos viste en tu caché ARP? ¿Alguna MAC era local (2, 6, A o E en el segundo dígito)?"
+    },
+    {
+     "id": "bl1-p2",
+     "tipo": "abierta",
+     "pregunta": "Parte 2 · ¿La solicitud fue a ff:ff:ff:ff:ff:ff y la respuesta fue unicast? ¿Qué MAC de destino iba dentro del paquete ARP?"
+    },
+    {
+     "id": "bl1-p3",
+     "tipo": "abierta",
+     "pregunta": "Parte 3 · ¿Qué EtherType tenían IPv4, ARP e IPv6? ¿Cuánto medía la trama ARP?"
+    },
+    {
+     "id": "bl1-p4",
+     "tipo": "abierta",
+     "pregunta": "Parte 4 · ¿Alguna MAC no tenía fabricante? ¿Por qué?"
+    },
+    {
+     "id": "bl1-p5",
+     "tipo": "abierta",
+     "pregunta": "Parte 5 · Al cambiarte de puerto, ¿cómo supo el switch dónde estabas?",
+     "opcional": true
+    },
+    {
+     "id": "bl1-sol",
+     "tipo": "concepto",
+     "titulo": "Lo que deberías haber visto",
+     "texto": "**1 ·** Al menos el gateway. Con celulares o laptops modernas es común ver MAC **locales** (aleatorias).\n\n**2 ·** Solicitud ARP a `ff:ff:ff:ff:ff:ff`; **dentro**, la MAC de destino en `00:00:00:00:00:00`. Respuesta **unicast**. Después, los ICMP.\n\n**3 ·** IPv4 `0x0800` · ARP `0x0806` · IPv6 `0x86dd`. La trama ARP mide **60 bytes** en el cable (64 con FCS) por el relleno; si la envió tu propio equipo, Wireshark puede mostrar 42, porque la ve antes de que la tarjeta la rellene.\n\n**4 ·** Las MAC universales tienen fabricante; las locales no aparecen en la base del OUI.\n\n**5 ·** El switch aprende con la **MAC de origen** de cada trama y la asocia al puerto por donde entró."
+    },
+    {
+     "id": "bl1-concl",
+     "tipo": "abierta",
+     "pregunta": "Escribe la conclusión que más te sorprendió del laboratorio, en 1 o 2 frases."
+    },
+    {
+     "id": "bl1-mini",
+     "tipo": "explica",
+     "concepto": "arp-respuesta",
+     "prompt": "¿Qué viste en la captura que confirma cómo funciona ARP?",
+     "puntos": [
+      "La solicitud fue por broadcast y la respuesta por unicast, y después salió el ping"
+     ],
+     "segundos": 45
+    }
+   ]
+  },
+  {
+   "id": "s21",
+   "paso": "Explicar",
+   "titulo": "La prueba de Feynman",
+   "minutos": 3,
+   "libro": "md9",
+   "tarjetas": [
+    {
+     "id": "s21-intro",
+     "tipo": "concepto",
+     "titulo": "La prueba grande",
+     "texto": "Cierra todo: notas, el Libro, Wireshark y la IA.\n\nVas a explicar el tema completo **a alguien que no sabe nada de redes**, en 3 a 5 minutos. Díctalo o escríbelo.\n\nDebe cubrir:\n**Qué es** · la capa 1, la capa 2 y ARP\n**Por qué existe** · por qué hace falta traducir una IP a una MAC\n**Cómo funciona** · la trama, y la solicitud, la respuesta y la caché de ARP\n**Cuándo falla o no aplica** · límites del medio, errores CRC, dúplex, ARP sin autenticación\n**Un ejemplo tuyo** · de tu laboratorio, tu trabajo o tu casa, no el del material"
+    },
+    {
+     "id": "s21-feynman",
+     "tipo": "explica",
+     "repaso": false,
+     "segundos": 300,
+     "prompt": "Explica cómo una computadora entrega datos a otra dentro de la misma red local: por qué medio viajan los bits, qué es una dirección MAC, cómo es una trama Ethernet y cómo ARP descubre la MAC de destino.",
+     "puntos": [
+      "Qué es: la capa 1 lleva bits como señales por un medio (cobre, fibra, radio); la capa 2 entrega tramas dentro de la red local con direcciones MAC; ARP traduce IP a MAC",
+      "Por qué existe: la trama necesita la MAC de destino y el equipo solo conoce la IP; la MAC solo vale en la red local",
+      "Cómo funciona: campos de la trama (destino, origen, EtherType, datos, FCS); MAC de 48 bits con OUI y bits M y L; ARP pregunta por broadcast, responde por unicast, el receptor aprende de la solicitud y todo queda en la caché; fuera de la red, ARP por el gateway",
+      "Cuándo falla o no aplica: límites de distancia del medio, errores CRC por problemas físicos, desajuste de dúplex, ARP sin autenticación (spoofing)",
+      "Ejemplo propio: un caso real de la persona, no el del material; si es genérico, es un hueco"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s22",
+   "paso": "Consolidar",
+   "titulo": "Tus propias tarjetas",
+   "minutos": 9,
+   "libro": "md10",
+   "tarjetas": [
+    {
+     "id": "s22-intro",
+     "tipo": "concepto",
+     "titulo": "Tus propias tarjetas",
+     "texto": "La app ya te repasa lo que viste. Ahora tú escribes **tus** tarjetas sobre lo que más te costó.\n\n**1.** Una idea por tarjeta.\n**2.** Mejor «¿por qué?» y «¿qué pasa si…?» que definiciones.\n**3.** Empieza por tus huecos: los que te marcó el tutor.\n**4.** Respuesta de 1 o 2 líneas.\n**5.** No copies: reformula."
+    },
+    {
+     "id": "s22-formas",
+     "tipo": "concepto",
+     "titulo": "Formas que funcionan",
+     "texto": "**¿Por qué?** ¿Por qué ___ y no ___?\n**¿Qué pasa si…?** ¿Qué pasa si ___?\n**Comparar** ¿Qué diferencia hay entre ___ y ___?\n**Diagnóstico** Si veo ___, ¿qué reviso primero?\n**Predicción** Si A hace ping a ___, ¿qué tramas salen?"
+    },
+    {
+     "id": "s22-t1",
+     "tipo": "abierta",
+     "pregunta": "Tarjeta 1 · Escribe la pregunta y su respuesta."
+    },
+    {
+     "id": "s22-t2",
+     "tipo": "abierta",
+     "pregunta": "Tarjeta 2 · Pregunta y respuesta."
+    },
+    {
+     "id": "s22-t3",
+     "tipo": "abierta",
+     "pregunta": "Tarjeta 3 · Pregunta y respuesta."
+    },
+    {
+     "id": "s22-t4",
+     "tipo": "abierta",
+     "pregunta": "¿Más tarjetas? Escribe hasta 5 más, una por línea.",
+     "opcional": true
+    }
+   ]
+  },
+  {
+   "id": "s23",
+   "paso": "Registrar",
+   "titulo": "Tu nota del tema",
+   "minutos": 7,
+   "libro": "md11",
+   "tarjetas": [
+    {
+     "id": "s23-intro",
+     "tipo": "concepto",
+     "titulo": "Tu nota del tema",
+     "texto": "Una nota **privada**, con tus palabras. Es materia prima del proyecto integrador del Módulo 1.\n\nNo busques que quede bonita: busca que sea tuya."
+    },
+    {
+     "id": "s23-n1",
+     "tipo": "abierta",
+     "pregunta": "Lo esencial del tema en 3 líneas."
+    },
+    {
+     "id": "s23-n2",
+     "tipo": "abierta",
+     "pregunta": "¿Qué error cometiste más y cómo lo entiendes ahora?"
+    },
+    {
+     "id": "s23-n3",
+     "tipo": "abierta",
+     "pregunta": "¿Qué preguntas te quedaron abiertas?",
+     "opcional": true
+    },
+    {
+     "id": "s23-cierre",
+     "tipo": "concepto",
+     "titulo": "Cerraste el tema 1.2",
+     "texto": "Ya puedes explicar cómo una tarjeta de red encuentra a otra dentro de la misma red local.\n\nTus repasos seguirán apareciendo en **Hoy** para que no se te olvide."
+    }
+   ]
+  }
+ ]
+}

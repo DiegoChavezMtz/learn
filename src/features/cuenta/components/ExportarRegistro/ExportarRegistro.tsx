@@ -14,7 +14,8 @@ export function ExportarRegistro() {
     const estados = progressStore.getSnapshot();
     if (!estados) return;
     const registros = progressStore.temas().flatMap((t) => Object.values(progressStore.registros(t)));
-    const paquete = paqueteDeExportacion(estados, registros);
+    const intentos = progressStore.temas().flatMap((t) => progressStore.intentos(t));
+    const paquete = paqueteDeExportacion(estados, registros, intentos);
     const file = new File([JSON.stringify(paquete, null, 2)], `aprender-registro-${isoDay()}.json`, { type: 'application/json' });
     if (navigator.canShare?.({ files: [file] })) {
       try { await navigator.share({ files: [file], title: 'Registro de Aprender' }); setMsg('Compartido.'); return; } catch { /* cancelado: se baja como archivo */ }
@@ -29,7 +30,7 @@ export function ExportarRegistro() {
   return (
     <section className={styles.sec}>
       <h2>Exportar mi registro</h2>
-      <p className={styles.muted}>Un archivo con tu progreso y el registro de cada sesión (formato C3). Se lo puedes pasar al asesor cada semana.</p>
+      <p className={styles.muted}>Un archivo con tu progreso, el registro de cada sesión (C3) y el historial de cada respuesta. Se lo puedes pasar al asesor cada semana.</p>
       <Button variant="ghost" small onClick={() => void exportar()}>Exportar</Button>
       {msg && <p className={styles.ok}>{msg}</p>}
     </section>

@@ -27,6 +27,11 @@ for (const f of readdirSync(content)) {
   lecciones[m[1]] = {
     mapa: l.mapa,
     sesiones: l.sesiones.map((s) => ({ id: s.id, paso: s.paso, titulo: s.titulo, minutos: s.minutos })),
+    // Tarjetas que entran al repaso (misma regla que src/utils/repasar.ts `repasable`). El mapa solo cuenta estas.
+    repasables: l.sesiones.flatMap((s) => s.tarjetas)
+      .filter((t) => (t.tipo === 'corta' || t.tipo === 'explica' ? t.repaso !== false
+        : ['opcion', 'vf', 'orden', 'emparejar', 'clasificar', 'armar', 'error'].includes(t.tipo) ? t.repaso === true : false))
+      .map((t) => t.id),
   };
 }
 

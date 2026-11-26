@@ -6,7 +6,7 @@ import { shuffle } from './shuffle';
 /** Qué tarjetas entran al repaso (C1): las marcadas `repaso`, y `corta` y `explica` salvo `repaso: false`. */
 export const repasable = (t: Tarjeta): boolean =>
   t.tipo === 'corta' || t.tipo === 'explica' ? t.repaso !== false
-  : t.tipo === 'opcion' || t.tipo === 'vf' || t.tipo === 'orden' ? t.repaso === true
+  : t.tipo === 'opcion' || t.tipo === 'vf' || t.tipo === 'orden' || t.tipo === 'emparejar' || t.tipo === 'clasificar' || t.tipo === 'armar' || t.tipo === 'error' ? t.repaso === true
   : false;
 
 /** Tarjetas ya vistas (con estado de repaso), de todo el tema o de una sesión. */
@@ -29,6 +29,6 @@ export const debilesSinCatalogo = (repaso: Record<string, EstadoRepaso>): number
 export function rondaLibre(l: Leccion, ids: string[], alAzar: boolean): ItemTarjeta[] {
   return (alAzar ? shuffle(ids) : ids).slice(0, 12).flatMap((id) => {
     const f = buscarTarjeta(l, id);
-    return f ? [{ tarjeta: f.tarjeta, paso: f.sesion.paso, repaso: true, libre: true }] : [];
+    return f ? [{ tarjeta: f.tarjeta, paso: f.sesion.paso, sesion: f.sesion.id, repaso: true, libre: true }] : [];
   });
 }

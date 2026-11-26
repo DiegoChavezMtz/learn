@@ -56,3 +56,21 @@
 .video { display: block; width: auto; max-width: 100%; height: auto; max-height: 72vh; margin: 0 auto; border-radius: 20px; background: #000; box-shadow: var(--shadow); }
 .ai { border-radius: 20px; padding: 16px 18px; background: var(--card2); border: 1px solid var(--line); display: flex; flex-direction: column; gap: var(--space-2); font-size: 0.95rem; animation: sheet 0.35s ease; }
 .ai ul { margin: 0; padding-left: 1.1em; }
+
+/* Puzzles (C1 v0.13): emparejar, clasificar, armar la secuencia y encontrar el error. Tocar, sin escribir. */
+.pares { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+.columna { display: flex; flex-direction: column; gap: 8px; }
+.par { min-height: 54px; padding: 10px 12px; font-size: 0.95rem; }
+.sel { border-color: var(--g1); background: color-mix(in srgb, var(--g1) 18%, var(--card2)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--g1) 22%, transparent); }
+.unido { border-color: color-mix(in srgb, var(--g3) 70%, var(--line)); background: color-mix(in srgb, var(--g3) 14%, var(--card2)); }
+.objetivo { border-style: dashed; border-color: var(--g1); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: inherit; font-size: 0.92rem; text-align: left; padding: 9px 13px; border-radius: 14px; border: 1.5px solid var(--line); background: color-mix(in srgb, var(--card2) 80%, transparent); color: var(--ink); min-height: 40px; }
+.chip.sel { border-color: var(--g1); }
+.grupo { display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 18px; border: 1.5px solid var(--line); background: color-mix(in srgb, var(--card2) 70%, transparent); min-height: 72px; }
+.grupo[aria-disabled="true"] { cursor: default; }
+.grupoTitulo { font-family: var(--f-disp); font-weight: 800; font-size: 1rem; }
+.torre { display: flex; flex-direction: column-reverse; gap: 8px; min-height: 56px; }
+.pieza { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--card2); font-weight: 600; animation: sheet 0.3s ease; }
+.pieza.right { border-color: var(--ok); }
+.vacia { color: var(--soft); font-weight: 500; border-style: dashed; justify-content: center; }

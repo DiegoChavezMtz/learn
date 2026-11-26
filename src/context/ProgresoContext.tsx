@@ -1,14 +1,16 @@
 'use client';
 import { createContext, useCallback, useContext, useMemo, useSyncExternalStore } from 'react';
 import { progressStore, vacio, type Todos } from '@/lib/progressStore';
-import type { Mini, Progreso, Registro } from '@/types/progreso';
+import type { Intento, Mini, Progreso, Registro, ResultadoCorta } from '@/types/progreso';
 import { isoDay } from '@/utils/dates';
-import { calificar as calificarRepaso } from '@/utils/spacedRepetition';
+import { calificar as calificarRepaso, calificarAyuda } from '@/utils/spacedRepetition';
 import { META_DIARIA, XP, xpDelDia, xpTotal } from '@/utils/xp';
 import { racha as calcularRacha } from '@/utils/streak';
 import { useModoLibre, useTema } from './TemaContext';
 
 type Info = { aciertos: number; total: number; mini: Mini | null };
+/** Lo que se necesita para anotar un intento; el tema y la fecha los pone el store. */
+export type NuevoIntento = Omit<Intento, 'id' | 'tema' | 'fecha'>;
 type CursoCtx = {
   /** false en el servidor y en el primer render: aún no se leyó el progreso del dispositivo. */
   listo: boolean;
@@ -22,10 +24,12 @@ type CursoCtx = {
   xpTotal: number;
   meta: number;
   calificar: (tema: string, tarjetaId: string, bien: boolean) => void;
+  calificarCorta: (tema: string, tarjetaId: string, resultado: ResultadoCorta) => void;
   guardarPreprueba: (tema: string, tarjetaId: string, respuesta: number) => void;
   marcarDia: (tema: string) => void;
   sumarXp: (tema: string, puntos: number) => void;
   terminarSesion: (tema: string, id: string, info: Info, registro: Registro) => void;
+  registrarIntento: (tema: string, intento: NuevoIntento) => void;
 };
 
 const Ctx = createContext<CursoCtx | null>(null);
@@ -40,6 +44,16 @@ export function ProgresoProvider({ children }: { children: React.ReactNode }) {
   const calificar = useCallback((tema: string, id: string, bien: boolean) => {
     const hoy = isoDay();
     progressStore.update(tema, (p) => ({ ...p, repaso: { ...p.repaso, [id]: calificarRepaso(p.repaso[id], bien, hoy) } }));
+  }, []);
+  const calificarCorta = useCallback((tema: string, id: string, resultado: ResultadoCorta) => {
+    const hoy = isoDay();
+    progressStore.update(tema, (p) => ({
+      ...p,
+      repaso: { ...p.repaso, [id]: resultado === 'ayuda' ? calificarAyuda(p.repaso[id], hoy) : calificarRepaso(p.repaso[id], resultado === 'ok', hoy) },
+    }));
+  }, []);
+  const registrarIntento = useCallback((tema: string, intento: NuevoIntento) => {
+    progressStore.guardarIntento({ ...intento, id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`, tema, fecha: new Date().toISOString() });
   }, []);
   const guardarPreprueba = useCallback((tema: string, id: string, respuesta: number) => {
     progressStore.update(tema, (p) => ({ ...p, preprueba: { ...p.preprueba, [id]: respuesta } }));
@@ -66,9 +80,9 @@ export function ProgresoProvider({ children }: { children: React.ReactNode }) {
     return {
       listo, todos, dias, hoy, racha: listo ? calcularRacha(dias, hoy) : 0,
       xpHoy: listo ? xpDelDia(todos, hoy) : 0, xpTotal: xpTotal(todos), meta: META_DIARIA,
-      calificar, guardarPreprueba, marcarDia, sumarXp, terminarSesion,
+      calificar, calificarCorta, guardarPreprueba, marcarDia, sumarXp, terminarSesion, registrarIntento,
     };
-  }, [snap, calificar, guardarPreprueba, marcarDia, sumarXp, terminarSesion]);
+  }, [snap, calificar, calificarCorta, guardarPreprueba, marcarDia, sumarXp, terminarSesion, registrarIntento]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
@@ -90,9 +104,12 @@ export function useProgreso() {
     progreso: c.todos[tema] ?? vacio(),
     // En práctica libre, calificar no cambia cajas ni fechas del repaso espaciado.
     calificar: (id: string, bien: boolean) => { if (!libre) c.calificar(tema, id, bien); },
+    calificarCorta: (id: string, resultado: ResultadoCorta) => { if (!libre) c.calificarCorta(tema, id, resultado); },
     guardarPreprueba: (id: string, r: number) => c.guardarPreprueba(tema, id, r),
     marcarDia: () => c.marcarDia(tema),
     sumarXp: (n: number) => c.sumarXp(tema, n),
+    /** Historial C3: cada respuesta se anota, también en práctica libre (solo no mueve el repaso). */
+    registrarIntento: (intento: NuevoIntento) => c.registrarIntento(tema, intento),
     xpHoy: c.xpHoy, meta: c.meta,
     terminarSesion: (id: string, info: Info, registro: Registro) => c.terminarSesion(tema, id, info, registro),
   }), [c, tema, libre]);

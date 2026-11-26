@@ -26,7 +26,7 @@ export function Orden({ tarjeta: c, kicker, onNext, stats }: CardProps<Extract<T
     setPicked(nextPicked);
     if (nextPicked.length === c.items.length) {
       const ok = nextPicked.every((p, i) => p.k === i);
-      stats.responder(ok);
+      stats.responder(ok, nextPicked.map((p) => p.t).join(' → '));
       if (c.repaso) calificar(c.id, ok);
     }
   };

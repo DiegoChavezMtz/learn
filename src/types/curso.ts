@@ -1,7 +1,7 @@
 import type { Paso } from './lesson';
 
 export type SesionResumen = { id: string; paso: Paso; titulo: string; minutos: number };
-export type LeccionResumen = { mapa: string[]; sesiones: SesionResumen[] };
+export type LeccionResumen = { mapa: string[]; sesiones: SesionResumen[]; /** ids de las tarjetas que entran al repaso (las que pueden estar vencidas). */ repasables?: string[] };
 
 export type TemaCurso = {
   id: string; n: number; titulo: string; pregunta: string; practica: string;

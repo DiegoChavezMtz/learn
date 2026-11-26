@@ -15,5 +15,10 @@ export function calificar(prev: EstadoRepaso | undefined, bien: boolean, hoy: st
   };
 }
 
-export const vencidos = (repaso: Record<string, EstadoRepaso>, hoy: string): string[] =>
+/** `ayuda` (C1 v0.13): no fue de memoria a la primera, así que vuelve pronto (caja 1) y cuenta como fallo para «Puntos débiles». */
+export function calificarAyuda(prev: EstadoRepaso | undefined, hoy: string): EstadoRepaso {
+  return { caja: 1, proxima: addDays(hoy, INTERVALOS[1]), veces: (prev?.veces ?? 0) + 1, fallos: (prev?.fallos ?? 0) + 1 };
+}
+
+export const vencidos =(repaso: Record<string, EstadoRepaso>, hoy: string): string[] =>
   Object.entries(repaso).filter(([, r]) => r.proxima <= hoy).map(([id]) => id);

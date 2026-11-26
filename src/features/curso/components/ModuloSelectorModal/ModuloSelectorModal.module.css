@@ -1,0 +1,240 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 6, 12, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@media (min-width: 640px) {
+  .backdrop {
+    align-items: center;
+    padding: 24px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sheet {
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 28px 28px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.9);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+  .sheet {
+    border-radius: 28px;
+    max-height: 80vh;
+  }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+}
+
+.sub {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--soft);
+  font-weight: 700;
+}
+
+.titulo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-top: 2px;
+  color: var(--ink);
+}
+
+.cerrar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: var(--card2);
+  color: var(--soft);
+  font-size: 1rem;
+  transition: all 0.15s;
+}
+
+.cerrar:hover {
+  color: var(--ink);
+  background: var(--line);
+}
+
+.lista {
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, background-color 0.15s;
+  position: relative;
+}
+
+.item:hover:not(.bloqueado) {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--mc) 60%, var(--line));
+  background: color-mix(in srgb, var(--mc) 10%, var(--card));
+}
+
+.seleccionado {
+  border-color: var(--mc);
+  background: color-mix(in srgb, var(--mc) 15%, var(--card));
+  box-shadow: 0 0 0 1px var(--mc);
+}
+
+.bloqueado {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: var(--bg);
+  border-style: dashed;
+}
+
+.bloqueado:hover {
+  background: color-mix(in srgb, var(--bad) 8%, var(--bg));
+  border-color: color-mix(in srgb, var(--bad) 40%, var(--line));
+}
+
+.numero {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-mono);
+  font-weight: 800;
+  font-size: 1.05rem;
+  background: var(--card2);
+  color: var(--ink);
+  flex-shrink: 0;
+  border: 1px solid color-mix(in srgb, var(--mc) 40%, transparent);
+}
+
+.seleccionado .numero {
+  background: var(--mc);
+  color: #fff;
+  border-color: transparent;
+}
+
+.completo .numero {
+  background: #10b981;
+  color: #06210f;
+  font-weight: 900;
+}
+
+.bloqueado .numero {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--soft);
+  font-size: 1.1rem;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.topInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.kicker {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--soft);
+  font-weight: 700;
+}
+
+.estadoPill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--card2);
+  color: var(--soft);
+}
+
+.seleccionado .estadoPill {
+  background: var(--mc);
+  color: #fff;
+}
+
+.completo .estadoPill {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.bloqueado .estadoPill {
+  background: transparent;
+  color: var(--soft);
+  border: 1px solid var(--line);
+}
+
+.nombre {
+  font-size: 1.02rem;
+  line-height: 1.25;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  font-size: 0.78rem;
+  color: var(--soft);
+}

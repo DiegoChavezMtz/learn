@@ -1,0 +1,252 @@
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 4px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kicker {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--g1);
+  font-weight: 800;
+}
+
+.h1 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.sub {
+  font-size: 0.92rem;
+  color: var(--soft);
+  line-height: 1.45;
+}
+
+.sec {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.secHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.muted {
+  font-size: 0.85rem;
+  color: var(--soft);
+  line-height: 1.4;
+}
+
+/* Tarjeta de puntos débiles */
+.cardDebiles {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--bad) 12%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--bad) 40%, var(--line));
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.4);
+}
+
+.iconoDebiles {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.infoDebiles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.infoDebiles h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.infoDebiles p {
+  font-size: 0.82rem;
+  color: var(--soft);
+}
+
+.btnRow {
+  margin-top: 6px;
+}
+
+/* Catálogo de temas practicables */
+.temasLista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.temaCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.temaCard:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--g1) 45%, var(--line));
+}
+
+.temaTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.moduloKicker {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--soft);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dotModulo {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.badgeDebil {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bad) 20%, transparent);
+  color: var(--bad);
+  border: 1px solid color-mix(in srgb, var(--bad) 40%, transparent);
+}
+
+.temaContenido {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.temaId {
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--g1);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.temaTitulo {
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.temaPregunta {
+  font-size: 0.85rem;
+  color: var(--soft);
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+.temaMetaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.metaInfo {
+  font-size: 0.8rem;
+  color: var(--soft);
+  font-family: var(--f-mono);
+}
+
+.accionesRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btnPracticar {
+  font-size: 0.88rem;
+}
+
+.linkTema {
+  font-size: 0.82rem;
+  color: var(--soft);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 4px 6px;
+  transition: color 0.15s;
+}
+
+.linkTema:hover {
+  color: var(--ink);
+}
+
+.cardVacia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 32px 20px;
+  border-radius: 22px;
+  background: var(--card);
+  border: 1px dashed var(--line);
+  color: var(--soft);
+}
+
+.iconoVacio {
+  font-size: 2.4rem;
+}
+
+.cardVacia h3 {
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.cardVacia p {
+  font-size: 0.85rem;
+  max-width: 320px;
+}

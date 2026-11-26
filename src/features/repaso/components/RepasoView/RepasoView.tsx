@@ -20,7 +20,7 @@ function Cola({ leccion, luego, evaluar }: { leccion: Leccion; luego?: string; e
   const [stats, setStats] = useState<StatsSesion | null>(null);
 
   if (items.length === 0) {
-    return <div className={styles.col}><p>No tienes repasos pendientes.</p><Button href={luego ? `/tema/${leccion.tema}/sesion/${luego}` : '/hoy'}>{luego ? 'Ir a la sesión' : 'Volver a Hoy'}</Button></div>;
+    return <div className={styles.col}><p>No tienes repasos pendientes.</p><Button href={luego ? `/tema/${leccion.tema}/sesion/${luego}` : '/practica'}>{luego ? 'Ir a la sesión' : 'Volver a Práctica'}</Button></div>;
   }
   if (stats) {
     return (
@@ -29,14 +29,14 @@ function Cola({ leccion, luego, evaluar }: { leccion: Leccion; luego?: string; e
           <span className={styles.kicker}>Repaso terminado 🔁</span>
           <div className={styles.big}>{stats.aciertos}/{stats.total}</div>
           <h2>{stats.aciertos === stats.total ? 'Todo en su lugar' : 'Las que fallaste vuelven mañana'}</h2>
-          <div className={styles.actions}><Button variant="light" href="/hoy">Volver a Hoy</Button></div>
+          <div className={styles.actions}><Button variant="light" href="/practica">Volver a Práctica</Button></div>
         </article>
       </div>
     );
   }
   return (
     <Player
-      items={items} evaluar={evaluar} onExit={() => router.push('/hoy')}
+      items={items} evaluar={evaluar} onExit={() => router.push('/practica')}
       onFinish={(s) => { marcarDia(); if (luego) router.push(`/tema/${leccion.tema}/sesion/${luego}`); else setStats(s); }}
     />
   );

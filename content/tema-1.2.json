@@ -1,0 +1,154 @@
+{
+ "tema": "1.2",
+ "titulo": "Capa física y enlace: medios, Ethernet, MAC y ARP",
+ "modulo": "Módulo 1 · Fundamentos de redes",
+ "pregunta": "¿Cómo encuentra una tarjeta de red a otra dentro de la misma red local?",
+ "ficha": "| Campo | Valor |\n|-------|-------|\n| **Ruta** | Diplomado Integral en Infraestructura de TI, Redes y Ciberseguridad |\n| **Módulo** | 1 · Fundamentos de redes |\n| **Microtema** | 1.2 · Capa física y enlace: medios, Ethernet, direcciones MAC y ARP |\n| **Requisitos previos** | 1.1 |\n| **Pregunta guía** | ¿Cómo encuentra una tarjeta de red a otra dentro de la misma red local? |\n| **Inicio** | ⏳ (fecha en que hagas la MD1) |\n| **Plazo** | 7 días desde el inicio (referencia de la metodología) |\n| **Extensión máxima** | +3 días |\n| **Estado** | ⬜ No iniciado |",
+ "criterio": "- [ ] Preprueba hecha (MD1).\n- [ ] Ejercicios resueltos y revisados contra las soluciones.\n- [ ] Laboratorio BL1 completado.\n- [ ] Prueba de Feynman aprobada (8/10 o más, ningún criterio en 0).\n- [ ] De 5 a 10 tarjetas creadas.\n- [ ] Nota interna registrada.\n\nSi no se cumple dentro del plazo más la extensión, el microtema **avanza con pendiente** y entra a la [lista de reactivación](../README.md#lista-de-reactivación).",
+ "sesiones": [
+  {
+   "id": "md1",
+   "paso": "Orientar",
+   "titulo": "Pregunta guía y preprueba",
+   "duracion": "10 min",
+   "md": "## Pregunta guía\n\n> ¿Cómo encuentra una tarjeta de red a otra dentro de la misma red local?\n\n## Conexión\n\n1. **¿Dónde has visto direcciones MAC o problemas de cableado en tu experiencia?**\n   > *Tu respuesta:*\n2. **¿Qué relación tiene este tema con el 1.1 (encapsulación)?**\n   > *Tu respuesta:*\n\n## Preprueba\n\nResponde **sin buscar nada**, aunque no sepas. Máximo 1 minuto por pregunta.\n\n1. ¿Qué distancia máxima soporta un cable UTP de cobre en Ethernet y qué medio usarías para unir dos edificios a 2 km?\n   > *Tu respuesta:*\n2. ¿Cuántos bits tiene una dirección MAC y qué indica su primera mitad?\n   > *Tu respuesta:*\n3. ¿Qué hace ARP y por qué se necesita?\n   > *Tu respuesta:*\n4. ¿Qué es `FF:FF:FF:FF:FF:FF`?\n   > *Tu respuesta:*\n5. ¿Qué diferencia hay entre un hub y un switch?\n   > *Tu respuesta:*\n\n**Califícate al final de MD5:**\n\n| Pregunta | 1 | 2 | 3 | 4 | 5 | Total |\n|----------|---|---|---|---|---|-------|\n| ¿Correcta? (✅/🟡/❌) | | | | | | /5 |",
+   "mini": false,
+   "miniPrompt": "",
+   "texto": "Mis respuestas de la preprueba (sin buscar nada)",
+   "solucion": ""
+  },
+  {
+   "id": "md2",
+   "paso": "Exponer",
+   "titulo": "Medios físicos",
+   "duracion": "10 min",
+   "md": "La capa 1 solo transporta **bits como señales**. Hay tres familias de medios:\n\n| Medio | Señal | Distancia típica | Velocidades comunes | Cuándo se usa |\n|-------|-------|------------------|---------------------|---------------|\n| **Cobre (UTP)** | Eléctrica | **100 m** por tramo | 1 a 10 Gbps | Escritorios, oficinas, racks |\n| **Fibra multimodo (MM)** | Luz, núcleo ancho | Cientos de metros | 1 a 100 Gbps | Dentro de un edificio o un centro de datos |\n| **Fibra monomodo (SM)** | Luz, núcleo muy delgado | Kilómetros | 1 a 400 Gbps | Entre edificios, campus, proveedores |\n| **Inalámbrico (Wi-Fi)** | Ondas de radio | Decenas de metros | Variable, compartida | Movilidad (se ve en el Módulo 3) |\n\n### Categorías de cable UTP\n\n| Categoría | 1 Gbps (1000BASE-T) | 10 Gbps (10GBASE-T) |\n|-----------|---------------------|---------------------|\n| Cat 5e | ✅ hasta 100 m | ❌ no está especificado |\n| Cat 6 | ✅ hasta 100 m | ⚠️ solo hasta ~55 m |\n| Cat 6a | ✅ hasta 100 m | ✅ hasta 100 m |\n\n### Cómo leer los nombres de Ethernet\n`1000BASE-T` = **1000** Mbps · **BASE**band (banda base) · **T** = par trenzado (*twisted pair*).\nOtros: `10GBASE-SR` (fibra multimodo, alcance corto), `10GBASE-LR` (fibra monomodo, alcance largo).\n\n### Dúplex y autonegociación\n- **Full dúplex:** se envía y recibe al mismo tiempo (lo normal con switches).\n- **Half dúplex:** se turnan; pasaba con los hubs y genera colisiones.\n- **Autonegociación:** los dos extremos acuerdan velocidad y dúplex. Si uno está fijo y el otro en automático, aparece un **desajuste de dúplex**: el enlace funciona, pero lento y con errores.",
+   "mini": true,
+   "miniPrompt": "¿Qué medio usarías a 80 m, a 300 m y a 2 km?",
+   "texto": null,
+   "solucion": ""
+  },
+  {
+   "id": "md3",
+   "paso": "Exponer",
+   "titulo": "La trama Ethernet",
+   "duracion": "15 min",
+   "md": "```\n ┌──────────┬─────┬─────────────┬─────────────┬───────────┬──────────────────────┬─────┐\n │Preámbulo │ SFD │ MAC destino │ MAC origen  │ EtherType │  Datos (payload)     │ FCS │\n │  7 B     │ 1 B │    6 B      │    6 B      │   2 B     │  46 a 1500 B         │ 4 B │\n └──────────┴─────┴─────────────┴─────────────┴───────────┴──────────────────────┴─────┘\n   sincroniza        ◄──────── encabezado Ethernet: 14 B ────────►                  verifica\n   (Wireshark                                                                       errores\n    no lo muestra)\n```\n\n| Campo | Para qué sirve |\n|-------|----------------|\n| **Preámbulo + SFD** | Sincronizar al receptor y marcar dónde empieza la trama |\n| **MAC destino** | Para quién es. Va **primero** para que el switch decida rápido a dónde enviarla |\n| **MAC origen** | Quién la envía. El switch la usa para **aprender** dónde está cada equipo |\n| **EtherType** | Qué protocolo viene dentro: `0x0800` = IPv4 · `0x86DD` = IPv6 · `0x0806` = ARP |\n| **Datos** | El paquete de capa 3. Máximo 1500 bytes: es la **MTU** estándar de Ethernet |\n| **FCS** | Código CRC. Si no coincide, la trama se **descarta** sin avisar |\n\n> **Dato útil:** si el paquete es menor de 46 bytes se rellena (*padding*). Las tramas con el FCS incorrecto aparecen como \"errores CRC\" en los contadores de los switches: casi siempre indican un problema de **capa 1** (cable, conector, interferencia o dúplex).",
+   "mini": true,
+   "miniPrompt": "Nombra los campos de la trama Ethernet en orden.",
+   "texto": null,
+   "solucion": ""
+  },
+  {
+   "id": "md4",
+   "paso": "Exponer",
+   "titulo": "Direcciones MAC",
+   "duracion": "10 min",
+   "md": "Una MAC tiene **48 bits** (6 bytes) y se escribe en hexadecimal: `00:1A:2B:3C:4D:5E`.\n\n```\n   00 : 1A : 2B   :   3C : 4D : 5E\n  └──── OUI ────┘   └── específico ──┘\n   fabricante          del equipo\n   (24 bits)           (24 bits)\n```\n\n- **OUI** (*Organizationally Unique Identifier*): lo asigna el IEEE a cada fabricante.\n- Los **dos bits menos significativos del primer byte** tienen significado especial:\n\n```\n   Primer byte en binario:   x x x x x x  L  M\n                                          │  └─ M: 0 = unicast · 1 = multicast\n                                          └──── L: 0 = universal (del fabricante) · 1 = local (asignada por software)\n```\n\n| Tipo | Cómo reconocerla | Ejemplo |\n|------|------------------|---------|\n| **Unicast** | Bit M = 0 | `00:1A:2B:3C:4D:5E` |\n| **Multicast** | Bit M = 1 | `01:00:5E:…` (IPv4 multicast), `33:33:…` (IPv6) |\n| **Broadcast** | Todos los bits en 1 | `FF:FF:FF:FF:FF:FF`: llega a **todos** en la red local |\n| **Local / aleatoria** | Bit L = 1 | `3A:…`: muchos celulares y laptops usan MAC aleatoria por privacidad |\n\n> **Truco rápido:** si el **segundo dígito** hexadecimal es **2, 6, A o E**, es una MAC **local** (unicast).",
+   "mini": true,
+   "miniPrompt": "¿Cómo se distingue una MAC unicast de una multicast y una universal de una local?",
+   "texto": null,
+   "solucion": ""
+  },
+  {
+   "id": "md5a",
+   "paso": "Exponer",
+   "titulo": "ARP: la pregunta",
+   "duracion": "10 min",
+   "md": "**Problema:** en el tema 1.1 viste que, para armar la trama, la PC necesita la **MAC** del siguiente salto, pero solo conoce su **IP**. **ARP** (*Address Resolution Protocol*) traduce una **IP** a una **MAC** dentro de la red local.\n\n### Escenario\n- PC A: `192.168.1.10`, MAC `AA:AA:AA:AA:AA:AA`\n- PC B: `192.168.1.20`, MAC `BB:BB:BB:BB:BB:BB`\n- A quiere hacer `ping 192.168.1.20` y su caché ARP está vacía.\n\n### Paso 1 · A revisa su caché ARP\nNo tiene ninguna entrada para `192.168.1.20`. **No puede armar la trama del ping todavía**, así que el ping espera.\n\n### Paso 2 · A envía una solicitud ARP (*request*) por **broadcast**\n```\nEthernet: AA:AA… → FF:FF:FF:FF:FF:FF   EtherType 0x0806 (ARP)\nARP:      \"¿Quién tiene 192.168.1.20? Díselo a 192.168.1.10\"\n          Sender: 192.168.1.10 / AA:AA…   Target: 192.168.1.20 / 00:00:00:00:00:00 (desconocida)\n```\n**Todos** los equipos de la red reciben la trama, pero solo responde quien tiene esa IP.",
+   "mini": true,
+   "miniPrompt": "¿Qué problema resuelve ARP?",
+   "texto": null,
+   "solucion": ""
+  },
+  {
+   "id": "md5b",
+   "paso": "Exponer",
+   "titulo": "ARP: la respuesta y sus límites",
+   "duracion": "10 min",
+   "md": "Mismo escenario de MD5a: A (`192.168.1.10`, `AA:AA…`) acaba de preguntar por broadcast quién tiene `192.168.1.20`.\n\n### Paso 3 · B aprende y responde por **unicast**\n- Al recibir la solicitud, **B guarda en su caché** que `192.168.1.10` es `AA:AA…`, porque venía en la solicitud.\n- Responde **directo** a A:\n```\nEthernet: BB:BB… → AA:AA…   EtherType 0x0806\nARP:      \"192.168.1.20 está en BB:BB:BB:BB:BB:BB\"\n```\n\n### Paso 4 · A guarda la respuesta y por fin envía el ping\n```\nEthernet: AA:AA… → BB:BB…   EtherType 0x0800 (IPv4)   →  ICMP echo request\n```\nB responde el ping **sin hacer ARP**, porque ya aprendió la MAC de A en el paso 3.\n\n### Detalles importantes\n| Concepto | Qué es |\n|----------|--------|\n| **Caché ARP** | Tabla temporal IP → MAC. Las entradas caducan después de un tiempo (de segundos a minutos, según el sistema) |\n| **Destino fuera de la red** | Se hace ARP **por la IP del gateway**, nunca por la del destino remoto |\n| **ARP gratuito** | Un equipo anuncia su propia IP/MAC sin que nadie pregunte (al conectarse o para detectar IP duplicadas) |\n| **Riesgo** | ARP **no tiene autenticación**: cualquiera puede responder mintiendo (*ARP spoofing*). Su defensa se ve en el Módulo 4 (DAI) |\n\n### Ahora califica tu preprueba\nVuelve a [01-orientar](01-orientar.md).",
+   "mini": true,
+   "miniPrompt": "¿Por qué la solicitud ARP va por broadcast y la respuesta por unicast?",
+   "texto": null,
+   "solucion": ""
+  },
+  {
+   "id": "md6",
+   "paso": "Exponer",
+   "titulo": "Fuente primaria + diálogo con IA",
+   "duracion": "15 min",
+   "md": "### Parte A · La fuente, explicada aquí: RFC 826 (ARP, 1982) (8 min)\nEl **RFC 826** (1982) es el documento que define ARP. Está escrito para **cualquier** combinación de red y protocolo, no solo Ethernet e IP; por eso el paquete dice qué tipo de dirección lleva y de qué tamaño.\n\n**Los campos del paquete ARP:**\n\n| Campo | Qué lleva |\n|-------|-----------|\n| Tipo de hardware | Qué red es (por ejemplo, Ethernet) |\n| Tipo de protocolo | Qué dirección se quiere traducir (por ejemplo, IPv4) |\n| Longitud de cada dirección | Cuántos bytes mide la de hardware (6 en Ethernet) y la de protocolo (4 en IPv4) |\n| Código de operación | **Solicitud** o **respuesta** |\n| Emisor: dirección de hardware y de protocolo | La MAC y la IP de quien envía |\n| Destino: dirección de hardware y de protocolo | La IP que se busca y, en la solicitud, una MAC vacía: es justo lo que se pregunta |\n\n**Generar la solicitud (Packet Generation):** si un equipo quiere enviar a una IP y no la tiene en su tabla, arma una solicitud con **sus propios datos** como emisor y la IP buscada como destino, y la envía por **broadcast** a toda la red.\n\n**Recibir (Packet Reception), la parte clave:**\n1. Si el receptor ya tenía al emisor en su tabla, **actualiza** su MAC con la que viene en el paquete.\n2. Si el receptor es **el dueño de la IP buscada**, y no lo tenía, **agrega** al emisor a su tabla.\n3. **Solo después** mira si es una solicitud. Si lo es, intercambia los campos, pone sus propios datos como emisor, cambia la operación a respuesta y la envía **directo** a quien preguntó.\n\nPor eso B aprende la MAC de A **con la propia solicitud** (paso 3 de MD5b): el RFC guarda los datos del emisor antes de responder.\n\n**La idea que más importa:** el receptor aprende del emisor en cuanto recibe la solicitud; por eso la respuesta no necesita otro ARP.\n\n> **Para profundizar (opcional):** el original en inglés, https://www.rfc-editor.org/rfc/rfc826. No hace falta para seguir: lo esencial ya está aquí.\n\n### Parte B · Diálogo con IA (7 min)\nEn la app, el tutor conversa contigo dentro de la misma sesión (tarjeta `conversa`). Fuera de la app, copia este mensaje en tu asistente de IA:\n```\nEstoy aprendiendo capa física, Ethernet, direcciones MAC y ARP.\nActúa como tutor: NO me des explicaciones largas.\nHazme 5 preguntas, una por una, sobre la trama Ethernet,\nlos tipos de dirección MAC y el funcionamiento de ARP.\nEspera mi respuesta antes de la siguiente pregunta.\nSi me equivoco, dame una pista, no la respuesta.\nAl final dime qué huecos detectaste.\n```",
+   "mini": true,
+   "miniPrompt": "¿Cuándo guarda un equipo la información de ARP según el RFC 826?",
+   "texto": null,
+   "solucion": ""
+  },
+  {
+   "id": "md7",
+   "paso": "Practicar",
+   "titulo": "Ejercicios A y B",
+   "duracion": "15 min",
+   "md": "### Ejercicio A · Leer una trama en hexadecimal\n\nEstos son los primeros 14 bytes de una trama capturada:\n\n```\nff ff ff ff ff ff 00 1a 2b 3c 4d 5e 08 06\n```\n\n1. ¿Cuál es la MAC de destino y qué tipo de dirección es?\n2. ¿Cuál es la MAC de origen?\n3. ¿Qué protocolo viene dentro, según el EtherType?\n4. Con lo anterior, ¿qué está haciendo probablemente este equipo?\n\n> *Tus respuestas:*\n\n### Ejercicio B · Clasificar direcciones MAC\n\n| # | MAC | ¿Unicast, multicast o broadcast? | ¿Universal o local? |\n|---|-----|----------------------------------|---------------------|\n| 1 | `00:1A:2B:3C:4D:5E` | | |\n| 2 | `FF:FF:FF:FF:FF:FF` | | |\n| 3 | `01:00:5E:00:00:FB` | | |\n| 4 | `3A:4B:5C:6D:7E:8F` | | |\n| 5 | `33:33:00:00:00:01` | | |\n| 6 | `F6:12:34:56:78:9A` | | |",
+   "mini": true,
+   "miniPrompt": "¿Cómo supiste, con solo ver el primer byte, si una MAC es multicast o local?",
+   "texto": null,
+   "solucion": "## Ejercicio A · Trama en hexadecimal\n\n1. **Destino:** `ff:ff:ff:ff:ff:ff` → **broadcast**.\n2. **Origen:** `00:1a:2b:3c:4d:5e` (unicast, universal).\n3. **EtherType** `08 06` = `0x0806` → **ARP**.\n4. Un ARP por broadcast es casi seguro una **solicitud ARP**: el equipo `00:1a:2b:3c:4d:5e` pregunta \"¿quién tiene tal IP?\".\n\n## Ejercicio B · Clasificar MAC\n\nSe analiza el **primer byte** en binario y se miran sus dos últimos bits (L y M):\n\n| # | MAC | Primer byte | Tipo | Origen |\n|---|-----|-------------|------|--------|\n| 1 | `00:1A:…` | `0000 0000` | Unicast (M=0) | Universal (L=0) |\n| 2 | `FF:FF:…` | `1111 1111` | **Broadcast** | — |\n| 3 | `01:00:5E:…` | `0000 0001` | **Multicast** (M=1). Es el rango de multicast IPv4; `…:00:FB` corresponde a mDNS | Universal |\n| 4 | `3A:4B:…` | `0011 1010` | Unicast (M=0) | **Local** (L=1): probablemente una MAC aleatoria |\n| 5 | `33:33:…` | `0011 0011` | **Multicast** (M=1): rango de multicast IPv6 | Bit L=1 (el rango 33:33 está reservado para IPv6) |\n| 6 | `F6:12:…` | `1111 0110` | Unicast (M=0) | **Local** (L=1). Segundo dígito = 6 |"
+  },
+  {
+   "id": "md8",
+   "paso": "Practicar",
+   "titulo": "Ejercicios C y D",
+   "duracion": "15 min",
+   "md": "### Ejercicio C · Elegir el medio\n\n| # | Situación | Medio y categoría | ¿Por qué? |\n|---|-----------|-------------------|-----------|\n| 1 | Escritorios a 80 m del switch, 1 Gbps | | |\n| 2 | Servidor a 90 m del switch, 10 Gbps | | |\n| 3 | Dos racks del mismo edificio a 250 m, 10 Gbps | | |\n| 4 | Dos edificios de un campus a 2 km | | |\n| 5 | Un enlace funciona pero lento, con muchos errores CRC; un extremo está fijo en 100/full y el otro en automático | Diagnóstico: | |\n\n### Ejercicio D · Predecir el tráfico\n\nLas PC A (`192.168.1.10`) y B (`192.168.1.20`) están en la misma red. Ambas tienen la caché ARP **vacía**.\n\n1. A hace `ping 192.168.1.20`. **Escribe en orden todas las tramas** que se envían hasta la primera respuesta del ping, con MAC de origen, MAC de destino y qué contienen.\n   > *Tu respuesta:*\n2. ¿Por qué B **no** necesita hacer su propia solicitud ARP para responder?\n   > *Tu respuesta:*\n3. Ahora A hace `ping 8.8.8.8` (su gateway es `192.168.1.1`). ¿Por qué IP pregunta en ARP?\n   > *Tu respuesta:*",
+   "mini": true,
+   "miniPrompt": "¿Por qué ARP siempre pregunta por una IP de tu propia red, aunque el destino esté en internet?",
+   "texto": null,
+   "solucion": "## Ejercicio C · Elegir el medio\n\n| # | Respuesta |\n|---|-----------|\n| 1 | **UTP Cat 5e o Cat 6.** Ambos soportan 1 Gbps hasta 100 m |\n| 2 | **UTP Cat 6a.** Cat 6 solo llega a ~55 m en 10 Gbps |\n| 3 | **Fibra multimodo** (por ejemplo, 10GBASE-SR con fibra OM3/OM4). El cobre no llega a 250 m |\n| 4 | **Fibra monomodo** (por ejemplo, 10GBASE-LR). Para kilómetros |\n| 5 | **Desajuste de dúplex.** El extremo en automático no logra negociar y suele caer en half dúplex. Solución: los dos extremos en automático, o los dos fijos con los mismos valores. Es un problema de **capa 1/2** |\n\n## Ejercicio D · Predecir el tráfico\n\n1. Tramas en orden:\n\n   | # | Origen | Destino | Contenido |\n   |---|--------|---------|-----------|\n   | 1 | MAC de A | `FF:FF:FF:FF:FF:FF` | **ARP request:** ¿quién tiene 192.168.1.20? |\n   | 2 | MAC de B | MAC de A | **ARP reply:** 192.168.1.20 está en MAC de B |\n   | 3 | MAC de A | MAC de B | **ICMP echo request** (IPv4) |\n   | 4 | MAC de B | MAC de A | **ICMP echo reply** (IPv4) |\n\n2. Porque **la solicitud ARP de A incluía la IP y la MAC de A** (campos *sender*). B las guardó en su caché al recibirla, como lo indica el RFC 826.\n3. Por **`192.168.1.1`**, el gateway. `8.8.8.8` está fuera de la red, así que la trama va al gateway y solo se necesita su MAC."
+  },
+  {
+   "id": "bl1",
+   "paso": "Practicar",
+   "titulo": "Laboratorio: ARP y tramas Ethernet en vivo",
+   "duracion": "90 min",
+   "md": "### Objetivo\nVer ARP funcionando y descubrir qué dicen las direcciones MAC de los equipos de tu red.\n\n### Requisitos\n- Wireshark instalado.\n- Permisos de administrador (para borrar la caché ARP).\n- ⚠️ Solo en tu propia red.\n\n### Comandos por sistema\n\n| Acción | macOS | Linux | Windows (como administrador) |\n|--------|-------|-------|------------------------------|\n| Ver caché ARP | `arp -a` | `ip neigh` | `arp -a` |\n| Borrar una entrada | `sudo arp -d <IP>` | `sudo ip neigh del <IP> dev <interfaz>` | `arp -d <IP>` |\n| Borrar todas | `sudo arp -a -d` | `sudo ip neigh flush dev <interfaz>` | `arp -d *` |\n\n### Parte 1 · Tu caché ARP (10 min)\nEjecuta el comando de tu sistema y llena:\n\n| IP | MAC | ¿Qué equipo es? | ¿Universal o local? |\n|----|-----|-----------------|---------------------|\n| | | | |\n| | | | |\n| | | | |\n\n### Parte 2 · Provocar y capturar ARP (25 min)\n1. Inicia una captura con el filtro de visualización `arp or icmp`.\n2. **Borra** la entrada ARP de otro equipo de tu red (o del gateway).\n3. Haz `ping -c 3 <IP>` (en Windows: `ping -n 3 <IP>`).\n4. Detén la captura y llena:\n\n| Trama | MAC origen | MAC destino | Tipo (ARP request, ARP reply, ICMP) | Sender IP / MAC | Target IP / MAC |\n|-------|-----------|-------------|-------------------------------------|-----------------|-----------------|\n| 1 | | | | | |\n| 2 | | | | | |\n| 3 | | | | | |\n\n**Comprueba:** ¿la solicitud fue a `ff:ff:ff:ff:ff:ff`? ¿La respuesta fue unicast? ¿Qué MAC destino tenía la solicitud **dentro** del paquete ARP?\n> *Tu respuesta:*\n\n### Parte 3 · Anatomía de tramas (20 min)\nEn la misma captura, o en una nueva sin filtro:\n1. Encuentra una trama con EtherType **IPv4**, una **ARP** y, si aparece, una **IPv6**. Anota el valor hexadecimal de cada EtherType.\n2. Busca el tamaño total de una trama grande (por ejemplo, al descargar algo) y de una pequeña (ARP).\n\n| Tipo | EtherType (hex) | Tamaño de la trama (bytes) |\n|------|-----------------|----------------------------|\n| IPv4 | | |\n| ARP | | |\n| IPv6 | | |\n\n**Pregunta:** ¿la trama ARP mide menos de 60 bytes? ¿Por qué Ethernet exige un mínimo?\n> *Tu respuesta:*\n\n### Parte 4 · ¿De quién es cada MAC? (15 min)\n1. Para cada MAC de la Parte 1, busca su fabricante con el OUI en: https://www.wireshark.org/tools/oui-lookup.html\n2. ¿Alguna MAC no tiene fabricante? Revisa si su segundo dígito es 2, 6, A o E.\n\n| MAC | Fabricante | ¿Es aleatoria (local)? |\n|-----|-----------|------------------------|\n| | | |\n\n### Parte 5 · Opcional: la tabla MAC del switch (20 min)\nSi tienes un **switch administrable**:\n1. Abre su tabla de direcciones MAC (en la interfaz web o con `show mac address-table` si es de línea de comandos).\n2. Ubica en qué puerto aparece la MAC de tu PC.\n3. Desconecta y reconecta tu PC en **otro puerto**, genera tráfico y vuelve a ver la tabla.\n\n**Observa:** ¿cómo supo el switch que te moviste de puerto? (Pista: ¿qué campo de la trama usa para aprender?)\n> *Tu respuesta:*\n\n### Cierre del laboratorio (10 min)\nEscribe **3 conclusiones con tus palabras**:\n1.\n2.\n3.",
+   "mini": true,
+   "miniPrompt": "¿Qué viste en la captura que confirma cómo funciona ARP?",
+   "texto": null,
+   "solucion": "## Laboratorio BL1 · Qué deberías observar\n\n| Parte | Resultado esperado |\n|-------|--------------------|\n| 1 | Al menos el gateway. Si hay celulares o laptops modernas, es común ver MAC **locales** (aleatorias) |\n| 2 | Trama 1: **ARP request** a `ff:ff:ff:ff:ff:ff`. **Dentro** del paquete ARP, la *target MAC* va en `00:00:00:00:00:00` porque es justo lo que se pregunta. Trama 2: **ARP reply** unicast. Después, los ICMP |\n| 3 | IPv4 = `0x0800`, ARP = `0x0806`, IPv6 = `0x86dd`. Una trama ARP en el cable mide **60 bytes** sin FCS (64 con FCS) por el relleno. En una captura **enviada** por tu propio equipo puede aparecer de 42 bytes, porque Wireshark la ve antes de que la tarjeta agregue el relleno. Ethernet exige un mínimo para que las colisiones se pudieran detectar en los medios compartidos originales |\n| 4 | Las MAC universales tienen fabricante. Las locales (2, 6, A o E en el segundo dígito) no aparecen en la base del OUI |\n| 5 | El switch aprende leyendo la **MAC de origen** de cada trama que recibe y la asocia al puerto por donde entró. Al recibir tráfico tuyo por el nuevo puerto, actualiza la entrada |"
+  },
+  {
+   "id": "md9",
+   "paso": "Explicar",
+   "titulo": "Prueba de Feynman completa",
+   "duracion": "15 min",
+   "md": "## Instrucciones\n\n1. **Cierra todo**: notas, archivos, herramientas y la IA.\n2. Explica el tema **en voz alta (grabándote) o por escrito**, para alguien que no sabe nada del tema.\n3. Duración: de 3 a 5 minutos hablando, o una página escrita.\n4. Revisa la explicación con la rúbrica: puede hacerlo el asesor si la compartes, o tú mismo, honestamente.\n\n## Lo que debes explicar\n\n> *\"Explica cómo una computadora entrega datos a otra dentro de la misma red local: por qué medio viajan los bits, qué es una dirección MAC, cómo es una trama Ethernet y cómo ARP descubre la MAC de destino.\"*\n\n| Criterio | Pregunta guía |\n|----------|---------------|\n| **Qué es** | ¿Qué hacen la capa 1, la capa 2 y ARP? |\n| **Por qué existe** | ¿Por qué hace falta traducir una IP a una MAC? |\n| **Cómo funciona** | ¿Cómo es la trama? ¿Cómo funcionan la solicitud, la respuesta y la caché de ARP? |\n| **Cuándo falla o no aplica** | Límites del medio, errores CRC, desajuste de dúplex, ARP sin autenticación |\n| **Ejemplo propio** | Un caso **tuyo** (de tu laboratorio, tu trabajo o tu casa), no el del material |\n\n## Tu explicación\n\n> *Escribe aquí o pon el enlace a tu grabación.*\n\n## Rúbrica\n\n**Completo = 2 · Parcial = 1 · Ausente o incorrecto = 0**\n\n| Criterio | Puntos | Comentario (qué faltó) |\n|----------|--------|------------------------|\n| Qué es | /2 | |\n| Por qué existe | /2 | |\n| Cómo funciona | /2 | |\n| Cuándo falla o no aplica | /2 | |\n| Ejemplo propio | /2 | |\n| **Total** | **/10** | |\n\n**Aprobado:** 8/10 o más **y** ningún criterio en 0.\n\n- ✅ **Aprobado** → pasa a [05-consolidar](05-consolidar.md).\n- ❌ **No aprobado y queda plazo** → vuelve a [02-exponer](02-exponer.md) **solo para los criterios que fallaron** y repite esta prueba.\n- ⚠️ **No aprobado y se acabó el plazo y la extensión** → el microtema avanza con pendiente y entra a la lista de reactivación.\n\n| Intento | Fecha | Total | Resultado |\n|---------|-------|-------|-----------|\n| 1 | | /10 | |\n| 2 | | /10 | |",
+   "mini": false,
+   "miniPrompt": "",
+   "texto": "Mi explicación (escríbela sin ver nada)",
+   "solucion": "## Prueba de Feynman · Puntos que debería tocar la explicación\n\n- **Qué es:** la capa 1 transmite bits por un medio; la capa 2 entrega tramas dentro de la red local usando direcciones MAC; ARP traduce IP a MAC.\n- **Por qué:** la capa 3 conoce IPs, pero el medio local solo entrega por MAC. Hace falta ese puente.\n- **Cómo:** estructura de la trama (MAC destino, origen, EtherType, datos, FCS); tipos de MAC; ARP con solicitud broadcast, respuesta unicast y caché.\n- **Cuándo falla:** límites de distancia del medio; desajuste de dúplex y errores CRC; ARP sin autenticación (*spoofing*); entradas de caché viejas cuando un equipo cambia de MAC.\n- **Ejemplo propio:** un caso real tuyo."
+  },
+  {
+   "id": "md10",
+   "paso": "Consolidar",
+   "titulo": "Crear tarjetas",
+   "duracion": "15 min",
+   "md": "Crea **de 5 a 10 tarjetas** de repaso **con tus propias palabras** y pásalas a tu herramienta de repaso espaciado.\n\n## Reglas para buenas tarjetas\n\n1. **Una idea por tarjeta.**\n2. Prioriza preguntas de **\"¿por qué?\"** y **\"¿qué pasa si…?\"** sobre definiciones.\n3. **Empieza por tus huecos:** los del [README](README.md) y los de la prueba de Feynman.\n4. La respuesta debe caber en 1-2 líneas.\n5. **No copies** del material; reformula.\n\n## Plantillas de pregunta\n\n| Tipo | Forma |\n|------|-------|\n| ¿Por qué? | ¿Por qué _____ y no _____? |\n| ¿Qué pasa si…? | ¿Qué pasa si _____? |\n| Comparar | ¿Qué diferencia hay entre _____ y _____? |\n| Diagnóstico | Si veo el síntoma _____, ¿qué reviso primero? |\n| Predicción | Si cambio _____, ¿qué ocurre con _____? |\n\n## Mis tarjetas\n\n| # | Pregunta (frente) | Respuesta (reverso) | ¿Viene de un hueco? |\n|---|-------------------|---------------------|---------------------|\n| 1 | | | |\n| 2 | | | |\n| 3 | | | |\n| 4 | | | |\n| 5 | | | |\n| 6 | | | |\n| 7 | | | |\n| 8 | | | |\n| 9 | | | |\n| 10 | | | |\n\n- [ ] Tarjetas creadas en la herramienta de repaso.",
+   "mini": true,
+   "miniPrompt": "Elige tu tarjeta más difícil y respóndela en voz alta, sin verla.",
+   "texto": "Mis tarjetas (pregunta → respuesta, una por línea)",
+   "solucion": ""
+  },
+  {
+   "id": "md11",
+   "paso": "Registrar",
+   "titulo": "Nota interna",
+   "duracion": "10 min",
+   "md": "Nota **privada**, con tus palabras. Es la materia prima del [proyecto integrador del Módulo 1](../proyecto-integrador.md).\n\n## Lo esencial en 5 líneas\n>\n\n## Mi diagrama\n> Haz de memoria un diagrama del tema (ASCII, foto de un papel o una herramienta).\n\n## Errores que cometí y cómo los corregí\n| Error o confusión | Cómo lo entendí al final |\n|-------------------|--------------------------|\n| | |\n\n## Lo que vi en el laboratorio que no esperaba\n>\n\n## Aporte al proyecto integrador\n> Inventario de la capa 2 de tu red de laboratorio: equipos, MAC, fabricante y puerto del switch.\n>\n> *Tu nota:*\n\n## Preguntas que me quedaron abiertas\n>",
+   "mini": false,
+   "miniPrompt": "",
+   "texto": "Mi nota interna",
+   "solucion": ""
+  }
+ ],
+ "fuente": "Academia/Modulo-01-Fundamentos-de-redes/Tema-02-Capa-fisica-enlace-Ethernet-MAC-ARP"
+}

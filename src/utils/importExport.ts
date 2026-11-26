@@ -1,4 +1,4 @@
-import type { Progreso, Registro } from '@/types/progreso';
+import type { Intento, Progreso, Registro } from '@/types/progreso';
 
 export const FORMATO = 'aprender-export-2';
 
@@ -27,6 +27,7 @@ export function clasificar(json: unknown): Archivo | null {
 /** El estado exportado del artefacto no trae el tema dentro: se saca del nombre del archivo ("1.1.json"). */
 export const temaDeNombre = (nombre: string): string | null => nombre.match(/(\d+\.\d+)/)?.[1] ?? null;
 
-export function paqueteDeExportacion(estados: Record<string, Progreso>, registros: Registro[]) {
-  return { formato: FORMATO, generado: new Date().toISOString(), estados, registros };
+/** `intentos` (C3, D39): historial de cada respuesta. Es una clave nueva y opcional: los archivos anteriores siguen válidos. */
+export function paqueteDeExportacion(estados: Record<string, Progreso>, registros: Registro[], intentos: Intento[] = []) {
+  return { formato: FORMATO, generado: new Date().toISOString(), estados, registros, intentos };
 }

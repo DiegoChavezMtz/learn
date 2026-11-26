@@ -14,7 +14,7 @@ export function Vf({ tarjeta: c, kicker, onNext, stats }: CardProps<Extract<Tarj
   const elegir = (v: boolean) => {
     const bien = v === c.verdadera;
     setElegida(v);
-    stats.responder(bien);
+    stats.responder(bien, v ? 'Verdadero' : 'Falso');
     if (c.repaso) calificar(c.id, bien);
   };
 

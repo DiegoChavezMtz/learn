@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import { ServiceWorker } from "@/components/atoms/ServiceWorker";
 import { TabBar } from "@/components/organisms/TabBar";
+import { SesionGate } from "@/features/acceso";
 import { ProgresoProvider } from "@/context/ProgresoContext";
 import { SyncProvider } from "@/context/SyncContext";
 import "@/styles/globals.css";
@@ -30,8 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ServiceWorker />
         <ProgresoProvider>
           <SyncProvider>
-            {children}
-            <TabBar />
+            <SesionGate>
+              {children}
+              <TabBar />
+            </SesionGate>
           </SyncProvider>
         </ProgresoProvider>
       </body>

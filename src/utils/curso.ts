@@ -1,5 +1,6 @@
 import type { Curso, ModuloCurso, TemaCurso } from '@/types/curso';
 import type { Progreso } from '@/types/progreso';
+import { vencidos } from './spacedRepetition';
 
 export const todosLosTemas = (c: Curso): TemaCurso[] => c.modulos.flatMap((m) => m.temas);
 export const buscarTema = (c: Curso, id: string): { tema: TemaCurso; modulo: ModuloCurso } | null => {
@@ -16,6 +17,12 @@ export type EstadoTema = 'hecho' | 'en-curso' | 'disponible' | 'pronto';
 export type Avance = { hechas: number; total: number; pct: number };
 
 /** El avance se mide sobre lo ya publicado: cada sesión nueva que llega abre un paso más, no "borra" lo que llevas. */
+/** Repasos vencidos de un tema que de verdad existen en su lección. Ignora tarjetas de versiones anteriores del contenido. */
+export const repasosVencidos = (t: TemaCurso, repaso: Progreso['repaso'], hoy: string): number => {
+  const ids = new Set(t.leccion?.repasables ?? []);
+  return vencidos(repaso, hoy).filter((id) => ids.has(id)).length;
+};
+
 export const avanceTema = (t: TemaCurso, p: Progreso | undefined): Avance => {
   const total = t.leccion?.sesiones.length ?? 0;
   const hechas = t.leccion ? t.leccion.sesiones.filter((s) => p?.sesiones[s.id]?.terminada).length : 0;
